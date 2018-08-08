@@ -1,15 +1,18 @@
 <template>
   <div id="app">
     <navbar></navbar>
+    <form></form>
   </div>
 </template>
 
 <script>
   import navbar from './components/NavBar.vue'
+  import form from './components/Form.vue'
   export default {
     name: 'App',
     components: {
       navbar,
+      form,
     }
 
   }
@@ -22,9 +25,5 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%
   }
 </style>
