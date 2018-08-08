@@ -67,6 +67,8 @@
 
   #navbar_dropdown {
     flex-direction: column;
+    position:absolute;
+    width:100%
   }
 
     #navbar_dropdown * {

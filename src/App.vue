@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <navbar></navbar>
-    <form></form>
+    <input_form></input_form>
   </div>
 </template>
 
 <script>
   import navbar from './components/NavBar.vue'
-  import form from './components/Form.vue'
+  import input_form from './components/Form.vue'
   export default {
     name: 'App',
     components: {
       navbar,
-      form,
+      input_form,
     }
 
   }
