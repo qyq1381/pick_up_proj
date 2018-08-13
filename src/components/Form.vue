@@ -21,6 +21,7 @@
   </div>
 </template>
 <script>
+
   export default {
     name: 'input_form',
     components: {
@@ -76,8 +77,12 @@
           "option": option_v,
         }
 
-        this.$http.post('https://postman-echo.com/get?foo1=bar1&foo2=bar2', data);wqwwda
-        alert(data)
+        this.$http.post('http://localhost:3000/todos', data).then((response)=>{
+          console.log("success");
+        }, (error)=>{
+          console.log("failed");
+        });
+        alert(data);
       },
       
     }
