@@ -20,7 +20,7 @@
       </select>
 
     </div>
-    <button id="submitbutton" @click="submitvalue(selectState,selectCity,selectAirport)">Continue</button>
+    <button id="submitbutton" @click="submitvalue(selectState,selectCity,selectAirport)" :class="[selectAirport=='' ? 'disableBTN' : 'enableBTN' ]" :disabled="selectAirport==''">Continue</button>
   </div>
 </template>
 <script>
@@ -113,7 +113,7 @@
     width: 15%;
   }
 
-  button {
+  .disableBTN, .enableBTN {
     margin: 0 0 40px 0;
     padding: .75rem 1.5rem;
     font-size: 1.25rem;
@@ -127,7 +127,9 @@
     white-space: nowrap;
     vertical-align: middle;
   }
-
+  .enableBTN:hover{
+    cursor:pointer;
+  }
   .selectcontainer {
     padding: 40px 0 40px 0;
     width: 100%;
