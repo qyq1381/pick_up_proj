@@ -3,88 +3,76 @@
     <h1>First, tell us about your junker.</h1>
     <h4>Then, make cash in seconds.</h4>
     <div class="selectcontainer">
-      <select v-model="selectedYear" class="smselectbox">
-        <option hidden disabled :value="selectedYear" v-if="selectedYear==''">Select Year</option>
-        <option v-for="year in YearArrary()" :value="year">{{year}}</option>
-      </select>
-      <select v-model="selectedDrink" @change="selectDrink" class="lgselectbox">
-        <option hidden disabled :value=selectedDrink v-if="selectedDrink==''">SelectDrink</option>
-        <option v-for="(drink,index) in drinks" :value="index">{{ drink.label }}</option>
+
+      <select v-model="selectState" class="lgselectbox" @change="ChangeState" :disabled="false">
+        <option hidden disabled :value="selectState" v-if="selectState==''">Select State</option>
+        <option v-for="(Cites,state) in States">{{state}}</option>
       </select>
 
-      <select v-model="selectedOption" class="lgselectbox">
-        <option hidden disabled :value="selectedOption" v-if="selectedOption==''">SelectSubDrink</option>
-        <option v-for="option in options">{{ option }}</option>
+      <select v-model="selectCity" class="lgselectbox" @change="ChangeCity" :disabled="selectState==''">
+        <option hidden disabled :value="selectCity" v-if="selectCity==''">Select City</option>
+        <option v-for="(Airports,city) in Cities">{{city}}</option>
       </select>
+
+      <select v-model="selectAirport" class="lgselectbox" @change="ChangeAirport" :disabled="selectCity==''">
+        <option hidden disabled :value="selectAirport" v-if="selectAirport==''">Select Airport</option>
+        <option v-for="airport in Airports">{{airport}}</option>
+      </select>
+
     </div>
-    <button id="submitbutton" @click="submitvalue(selectedYear,selectedDrink,selectedOption)">Continue</button>
+    <button id="submitbutton" @click="submitvalue(selectState,selectCity,selectAirport)">Continue</button>
   </div>
 </template>
 <script>
-
+  import airport from '../../static/airport.json'
   export default {
     name: 'input_form',
+
     components: {
     },
+
     data: function () {
-
       return {
-        drinks: [
-          {
-            label: "Beer",
-            options: ["Sam Adams", "Anchor Steam", "St. Arnold"]
-          },
-          {
-            label: "Soda",
-            options: ["Pepsi", "Coke", "RC"]
-          },
-          {
-            label: "Coffee",
-            options: ["Starbucks", "Dunkin Donuts", "Gross Hotel Room"]
-          }
-        ],
-
-        selectedDrink: '',
-        selectedOption: '',
-        options: [],
-        selectedDrinkLabel: '',
-        selectedYear: '',
+        FindAirport: airport,
+        States: airport,
+        Cities: '',
+        Airports: '',
+        selectState: '',
+        selectCity: '',
+        selectAirport: '',
       }
     },
+
     methods: {
-      selectDrink: function () {
-        this.selectedOption = '';
-        this.options = this.drinks[this.selectedDrink].options;
-        this.selectedDrinkLabel = this.drinks[this.selectedDrink].label;
-      },
-      getOption: function () {
-        return this.selectedOption;
+      ChangeState: function () {
+        this.Cities = this.FindAirport[this.selectState];
+        this.selectCity = '';
+        this.selectAirport = '';
       },
 
-      YearArrary: function () {
-        let Year_Arrary = [];
-        let endYear = new Date().getFullYear() + 1;
-        while (endYear >= 1950) {
-          Year_Arrary.push(endYear);
-          endYear--;
-        }
-        return Year_Arrary
+      ChangeCity: function () {
+        this.Airports = this.FindAirport[this.selectState][this.selectCity];
+        this.selectAirport = '';
       },
-      submitvalue: function (year_v, drink_v, option_v) {
+
+      ChangeAirport: function () {
+        return undefined;
+      },
+      submitvalue: function (state_v, city_v, airport_v) {
         let data = {
-          "year": year_v,
-          "drink": this.drinks[drink_v].label,
-          "option": option_v,
+          "state": state_v,
+          "city": city_v,
+          "airport": airport_v,
         }
 
-        this.$http.post('http://localhost:3000/todos', data).then((response)=>{
+        this.$http.post('http://localhost:3000/todos', data).then((response) => {
           console.log("success");
-        }, (error)=>{
+        }, (error) => {
           console.log("failed");
         });
-        alert(data);
+        alert(state_v + '--' + city_v + '--' + airport_v);
       },
-      
+
     }
   }
 </script>
