@@ -1,23 +1,29 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <navbar></navbar>
+    <input_form></input_form>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+  import navbar from './components/NavBar.vue'
+  import input_form from './components/Form.vue'
+  export default {
+    name: 'App',
+    components: {
+      navbar,
+      input_form,
+    }
+
+  }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  #app {
+    font-family: 'Hind', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+  }
 </style>
