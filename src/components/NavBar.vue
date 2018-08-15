@@ -1,11 +1,12 @@
 <template>
   <div id="NavBar">
     <div id="NavItem_conatiner">
-      <navbar_logo LogoPath="https://dgsecmg9973qw.cloudfront.net/junkmycar/Images/JMCLogo.png" ClickLogo="#"></navbar_logo>
-      <navbar_link LinkTo="#" @click="ShowNav=!ShowNav">DropDown</navbar_link>
-      <navbar_link LinkTo="#">About us</navbar_link>
-      <navbar_link LinkTo="#">&nbsp;FAQ&nbsp;&nbsp;</navbar_link>
+      <navbar_logo LogoPath="https://dgsecmg9973qw.cloudfront.net/junkmycar/Images/JMCLogo.png" ClickLogo="/"></navbar_logo>
+
+      <navbar_link href="/About_us">About us</navbar_link>
+      <navbar_link href="/FAQ">&nbsp;FAQ&nbsp;&nbsp;</navbar_link>
       <navbar_expandwidth></navbar_expandwidth>
+      <navbar_link href="./login">LogIn</navbar_link>
       <navbar_icon IconClass="fa fa-comments fa-lg">Chat</navbar_icon>
       <navbar_icon IconClass="fa fa-phone fa-lg">(666)666-6666</navbar_icon>
     </div>
@@ -15,11 +16,11 @@
   </div>
 </template>
 <script>
-  import navbar_icon from "./NavBar_icon.vue"
-  import navbar_link from "./NavBar_link.vue"
-  import navbar_logo from "./NavBar_logo.vue"
-  import navbar_expandwidth from "./NavBar_expandwidth.vue"
-  import navbar_dropdown from "./navbar_dropdown.vue"
+  import navbar_icon from "../components/NavBar/NavBar_icon.vue"
+  import navbar_link from "../components/NavBar/NavBar_link.vue"
+  import navbar_logo from "../components/NavBar/NavBar_logo.vue"
+  import navbar_expandwidth from "../components/NavBar/NavBar_expandwidth.vue"
+  import navbar_dropdown from "../components/NavBar/navbar_dropdown.vue"
 
   export default {
     name: 'navbar',
