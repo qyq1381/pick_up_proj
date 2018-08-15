@@ -9,15 +9,14 @@
 <script>
   import navbar from './components/NavBar.vue'
 
+
   import footer_main from './components/footer.vue'
 
   export default {
     name: 'App',
     components: {
       navbar,
-
       footer_main
-
     }
 
   }
@@ -41,5 +40,8 @@
     color: #2c3e50;
     height: 100%;
     margin: 0;
+  }
+  section {
+    padding: 50px;
   }
 </style>

@@ -1,4 +1,5 @@
 <template>
+
   <div id="footer">
 
     <footer_logo ClickLogo="#" LogoPath="https://dgsecmg9973qw.cloudfront.net/junkmycar/Images/JMCLogoFooter.png">© Junk my Car, LLC. 2018</footer_logo>
@@ -46,3 +47,4 @@
       background-color: gray;
     }
 </style>
+
