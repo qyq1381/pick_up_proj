@@ -1,5 +1,5 @@
 <template>
-  <div id="form">
+  <div id="login">
     <h1> this is log in page
     </h1>
   </div>
@@ -21,11 +21,10 @@
   }
 </script>
 <style scoped>
-#form{
-  width:50%;
-  height:40%;
-  position:center;
+#login{
+  display:flex;
   background-color:lightgreen;
+  
 }
 
 </style>

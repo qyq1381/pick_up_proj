@@ -1,5 +1,5 @@
 <template>
- <div>
+ <div id="Footer_Logo">
     <img :src=LogoPath alt="footer-logo">
     <span><slot></slot></span>
 </div>
@@ -15,13 +15,10 @@
   }
 
 </script>
-
 <style scoped>
- div {
-   float:left;
- }
-
- span {
-  padding: 0px 10px 0px 10px;
-}
+  #Footer_Logo {
+    display: flex;
+    align-items: center;
+    padding-right:1rem;
+  }
 </style>

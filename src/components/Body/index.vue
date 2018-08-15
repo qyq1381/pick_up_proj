@@ -23,8 +23,9 @@
 </script>
 <style scoped>
   #main {
-    width: 50%;
-    height: 40%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
     position: center;
     background-color: lightpink;
   }
