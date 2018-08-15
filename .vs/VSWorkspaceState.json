@@ -3,8 +3,9 @@
     "",
     "\\src",
     "\\src\\components",
+    "\\src\\router",
     "\\static"
   ],
-  "SelectedNode": "\\src\\components\\Form.vue",
+  "SelectedNode": "\\.editorconfig",
   "PreviewInSolutionExplorer": false
 }

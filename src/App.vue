@@ -1,18 +1,24 @@
 <template>
   <div id="app">
     <navbar></navbar>
-    <input_form></input_form>
+    <router-view></router-view>
+    <footer_main></footer_main>
+
   </div>
 </template>
 
 <script>
   import navbar from './components/NavBar.vue'
-  import input_form from './components/Form.vue'
+
+  import footer_main from './components/footer.vue'
+
   export default {
     name: 'App',
     components: {
       navbar,
-      input_form,
+
+      footer_main
+
     }
 
   }
