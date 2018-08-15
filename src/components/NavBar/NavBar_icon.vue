@@ -1,11 +1,14 @@
 <template>
-  <a :href="LinkTo" @click="onClick"><slot></slot></a>
+  <a v-on:click="onClick">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <span :class="IconClass" id="icon"></span><slot></slot>
+  </a>
 </template>
 <script>
   export default {
-    name: 'navbar_link',
+    name: 'navbar_icon',
     props: {
-      LinkTo: String,
+      IconClass: String,
     },
     methods: {
       onClick: function () {
@@ -29,4 +32,8 @@
       color: white;
       background-color: #0b6da5;
     }
+
+  #icon {
+    padding-right: 0.5rem;
+  }
 </style>

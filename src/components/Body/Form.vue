@@ -24,7 +24,7 @@
   </div>
 </template>
 <script>
-  import airport from '../../static/airport.json'
+  import airport from '../../../static/airport.json'
   export default {
     name: 'input_form',
 
@@ -141,5 +141,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
   }
 </style>
