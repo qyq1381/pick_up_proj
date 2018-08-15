@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import form from '@/components/Body/Form.vue'
 import login from '@/components/Body/Login.vue'
-import main from '@/components/Body/main.vue'
+import index from '@/components/Body/index.vue'
+import FAQ from '@/components/Body/FAQ.vue'
+import AboutUs from '@/components/Body/AboutUs.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -10,8 +12,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'main',
-      component: main
+      name: 'index',
+      component: index
     }
     ,
     {
@@ -23,6 +25,17 @@ export default new Router({
       path: '/form',
       name: 'form',
       component: form
+    },
+    {
+      path: '/FAQ',
+      name: 'FAQ',
+      component: FAQ
+    },
+    {
+      path: '/AboutUs',
+      name: 'AboutUs',
+      component: AboutUs
     }
+
   ]
 })

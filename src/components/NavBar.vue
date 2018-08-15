@@ -2,8 +2,8 @@
   <div id="NavBar">
     <div id="NavItem_conatiner">
       <navbar_logo LogoPath="https://dgsecmg9973qw.cloudfront.net/junkmycar/Images/JMCLogo.png" ClickLogo="/"></navbar_logo>
-
-      <navbar_link href="/About_us">About us</navbar_link>
+      <navbar_link href="./form">Form</navbar_link>
+      <navbar_link href="/AboutUs">About us</navbar_link>
       <navbar_link href="/FAQ">&nbsp;FAQ&nbsp;&nbsp;</navbar_link>
       <navbar_expandwidth></navbar_expandwidth>
       <navbar_link href="./login">LogIn</navbar_link>
