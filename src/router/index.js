@@ -5,6 +5,8 @@ import login from '@/components/Body/Login.vue'
 import index from '@/components/Body/index.vue'
 import FAQ from '@/components/Body/FAQ.vue'
 import AboutUs from '@/components/Body/AboutUs.vue'
+import Register from '@/components/Body/Register.vue'
+import NotFound from '@/components/Body/404.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -35,7 +37,20 @@ export default new Router({
       path: '/AboutUs',
       name: 'AboutUs',
       component: AboutUs
-    }
+    },
+    {
+      path: '/Register',
+      name: 'Register',
+      component: Register
+    },
+    {
+      path: '/404',
+      component: NotFound
+    },
+    {
+      path: '*',
+      redirect: '/404'
+    },  
 
   ]
 })
