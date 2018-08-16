@@ -3,10 +3,10 @@
   <div id="footer">
 
     <footer_logo ClickLogo="#" LogoPath="https://dgsecmg9973qw.cloudfront.net/junkmycar/Images/JMCLogoFooter.png">© Junk my Car, LLC. 2018</footer_logo>
+    <div style="flex-grow:1"></div>
     <a href="/" class="FooterItem">Sell junk car</a>
     <a href="/AboutUs" class="FooterItem">About us</a>
     <a href="/JunkIt" class="FooterItem">Junk it</a>
-    <div style="flex-grow:1"></div>
     <a href="/FAQ" class="FooterItem">FAQ</a>
     <a href="/Terms" class="FooterItem">Terms</a>
     <a href="/Privacy" class="FooterItem">Privacy</a>
