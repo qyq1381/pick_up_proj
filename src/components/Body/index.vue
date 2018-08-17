@@ -5,28 +5,27 @@
     </h1>
   </div>
 </template>
+
 <script>
-  export default {
-    name: 'index',
+export default {
+  name: "index",
 
-    components: {
-    },
+  components: {},
 
-    data: function () {
-      return {
-      }
-    },
+  data: function() {
+    return {};
+  },
 
-    methods: {
-    }
-  }
+  methods:{}
+};
 </script>
+
 <style scoped>
-  #main {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    position: center;
-    background-color: lightpink;
-  }
+#main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: center;
+  background-color: lightpink;
+}
 </style>
