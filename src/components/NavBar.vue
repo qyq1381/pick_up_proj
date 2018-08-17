@@ -5,7 +5,8 @@
     <a href="./AboutUs" class="NavItem">About Us</a>
     <a href="./FAQ" class="NavItem">FAQ</a>
     <div style="flex:1;"></div>
-    <a href="./LogIn" class="NavItem">LogIn</a>
+
+    <a href="./LogIn" class="NavItem">LogIn/Register</a>
     <navbar_icon IconClass="fa fa-comments fa-lg">Chat</navbar_icon>
     <navbar_icon IconClass="fa fa-phone fa-lg">(666)666-6666</navbar_icon>
   </div>

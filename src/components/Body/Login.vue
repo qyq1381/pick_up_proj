@@ -4,9 +4,9 @@
       <h1>User Login</h1>
       <h5>Please enter your username and password</h5>
       <input v-model="username" class="textbox" placeholder="Username">
-      <input v-model="password" type="password" class="textbox" placeholder="password">
+      <input v-model="password" type="password" class="textbox" placeholder="Password">
       <a href="/forgetpassword">Forget your password?</a>
-      <div id="Registerbox">Do not have an Account? <a href="/register">Register here</a></div>
+      <div id="Registerbox">Do not have an Account? <a href="/Register">Register here</a></div>
       <div id="RememberMebox"><input type="checkbox" v-model="rememberuser">Remember Me</div>
       <button id="loginbutton">LogIn</button>
     </div>
