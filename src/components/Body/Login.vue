@@ -8,12 +8,13 @@
       <a href="/forgetpassword">Forget your password?</a>
       <div id="Registerbox">Do not have an Account? <a href="/Register">Register here</a></div>
       <div id="RememberMebox"><input type="checkbox" v-model="rememberuser">Remember Me</div>
-      <button id="loginbutton">LogIn</button>
+      <button id="loginbutton" @click="submitvalue(username,password)">LogIn</button>
     </div>
   </div>
 </template>
 
 <script>
+import usermethods from "../../api/usermethods.js";
 export default {
   name: "login",
 
@@ -23,7 +24,12 @@ export default {
     return {};
   },
 
-  methods: {}
+  methods: {
+    sendloginform: usermethods.sendloginform,
+    submitvalue: function(username,password) {
+      this.sendloginform(username,password);
+    }
+  }
 };
 </script>
 

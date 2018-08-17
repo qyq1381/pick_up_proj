@@ -26,7 +26,6 @@
 
 <script>
 import airport from "../../../static/airport.json";
-import sendeventform from "../../api/eventmethods.js";
 import eventmethods from '../../api/eventmethods.js';
 export default {
   name: "input_form",
