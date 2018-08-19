@@ -1,8 +1,7 @@
 <template>
   <div>
     <h1>
-      DO YOU ACTUALLY WANT TO SEE SOMETHING HERE?
-      Do it yourself!!!!!!!!!!!!!
+      This is AboutUs PAGE!
     </h1>
   </div>
 </template>

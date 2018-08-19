@@ -1,21 +1,17 @@
 <template>
+
   <div id="NavBar">
-    <a href="/" id="NavLogo"><img src="https://dgsecmg9973qw.cloudfront.net/junkmycar/Images/JMCLogo.png" /></a>
+
+    <a href="/" id="Logo"><img src="https://dgsecmg9973qw.cloudfront.net/junkmycar/Images/JMCLogo.png" /></a>
     <a href="./Form" class="NavItem">Form</a>
     <a href="./AboutUs" class="NavItem">About Us</a>
     <a href="./FAQ" class="NavItem">FAQ</a>
     <div style="flex:1;"></div>
 
-    <a href="./LogIn" class="NavItem">LogIn/Register</a>
     <navbar_icon IconClass="fa fa-comments fa-lg">Chat</navbar_icon>
     <navbar_icon IconClass="fa fa-phone fa-lg">(666)666-6666</navbar_icon>
+    <a href="./LogIn" class="NavItem">LogIn/Register</a>
   </div>
-
-  <!--
-  <transition name="slide-fade">
-    <navbar_dropdown v-if="ShowNav"></navbar_dropdown>
-  </transition>
-  -->
 
 </template>
 <script>
@@ -26,16 +22,11 @@ export default {
   components: {
     navbar_icon
   },
-  data: function() {
-    return {
-      ShowNav: false
-    };
-  }
 };
 </script>
 
 <style scoped>
-#NavLogo {
+#Logo {
   display: flex;
   align-items: center;
   margin-right: 15px;
@@ -74,18 +65,4 @@ export default {
   background-color: #0c79b8;
   align-items: stretch;
 }
-/*
-  .slide-fade-enter-active {
-    transition: all .8s;
-  }
-
-  .slide-fade-leave-active {
-    transition: all .8s;
-  }
-
-  .slide-fade-enter, .slide-fade-leave-to
-  /* .slide-fade-leave-active below version 2.1.8 \*\/ {
-    transform: translateY(-100% );
-  }
-  */
 </style>

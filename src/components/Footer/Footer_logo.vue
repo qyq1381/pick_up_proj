@@ -9,16 +9,14 @@
 export default {
   name: "footer_logo",
   props: {
-    ClickLogo: String,
     LogoPath: String
   }
 };
 </script>
 
 <style scoped>
-#Footer_Logo {
-  display: flex;
-  align-items: center;
-  padding-right: 1rem;
-}
+  #Footer_Logo {
+    display: flex;
+    align-items: center;
+  }
 </style>

@@ -32,7 +32,7 @@
       registe: function () {
         [this.username == '' ? this.NameError = true : this.NameError = false];
         [this.password == '' ? this.passwordError = true : this.passwordError = false];
-        [this.passwordVerify == '' ? this.passwordVerifyError = true : this.passwordVerifyError = false];
+        [this.passwordVerify != this.password ? this.passwordVerifyError = true : this.passwordVerifyError = false];
         [this.phoneNumber == '' ? this.phoneNumberError = true : this.phoneNumberError = false];
         [this.email == '' ? this.emailError = true : this.emailError = false];
       }

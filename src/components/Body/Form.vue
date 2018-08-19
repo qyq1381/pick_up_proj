@@ -2,25 +2,16 @@
   <div id="form">
     <h1>First, tell us about your junker.</h1>
     <h4>Then, make cash in seconds.</h4>
-    <div class="selectcontainer">
+    <div class="SelectContainer">
 
-      <select v-model="selectState" class="lgselectbox" @change="ChangeState" :disabled="false">
-        <option hidden disabled :value="selectState" v-if="selectState==''">Select State</option>
-        <option v-for="(Cites,state) in States">{{state}}</option>
-      </select>
-
-      <select v-model="selectCity" class="lgselectbox" @change="ChangeCity" :disabled="selectState==''">
-        <option hidden disabled :value="selectCity" v-if="selectCity==''">Select City</option>
-        <option v-for="(Airports,city) in Cities">{{city}}</option>
-      </select>
-
-      <select v-model="selectAirport" class="lgselectbox" @change="ChangeAirport" :disabled="selectCity==''">
-        <option hidden disabled :value="selectAirport" v-if="selectAirport==''">Select Airport</option>
-        <option v-for="airport in Airports">{{airport}}</option>
-      </select>
-
+      <div>First Name:<input v-model="firstName" class="inputbox" /></div>
+      <div>Last Name:<input v-model="lastName" class="inputbox" /></div>
+      <div>Phone Number:<input v-model="phone" class="inputbox" /></div>
+      <div>Flight Number:<input v-model="flightNumber" class="inputbox" /></div>
+      <div>Number of passenger:<input v-model="numpassenger" class="inputbox" /></div>
+      <div>Weight of luggage:<input v-model="luggage" class="inputbox"  /></div>
     </div>
-    <button id="submitbutton" @click="submitvalue(selectState,selectCity,selectAirport)" :class="[selectAirport=='' ? 'disableBTN' : 'enableBTN' ]" :disabled="selectAirport==''">Continue</button>
+    <button id="submitbutton" @click="" :class="[selectAirport=='' ? 'disableBTN' : 'enableBTN' ]" >Continue</button>
   </div>
 </template>
 

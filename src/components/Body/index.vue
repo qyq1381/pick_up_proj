@@ -1,7 +1,7 @@
 <template>
-  <div id="main">
+  <div id="index">
     <h1>
-      This should be the first think you see!!!
+      This is the Index Page
     </h1>
   </div>
 </template>
@@ -9,23 +9,14 @@
 <script>
 export default {
   name: "index",
-
-  components: {},
-
-  data: function() {
-    return {};
-  },
-
-  methods:{}
 };
 </script>
 
 <style scoped>
-#main {
+#index {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: center;
-  background-color: lightpink;
 }
 </style>
