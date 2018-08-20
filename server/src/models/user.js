@@ -33,6 +33,6 @@ let UserSchema = new Schema({
 	}
 });
 
-let Model = mongoose.model('User', UserSchema, );
+let User = mongoose.model('User', UserSchema, );
 
-module.exports = {Model};
+module.exports = {User};

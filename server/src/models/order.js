@@ -1,11 +1,15 @@
 let mongoose = require('mongoose');
 let CollectionName = 'orders';
-let Model = mongoose.model('Order',{
+let Order = mongoose.model('Order',{
+  OrderTime: {
+    type: Date,
+    default: Date.now
+  },
   ContactName:{
   	type: String,
   	trim: true,
   	require: true,
-  	minlength: 3
+  	minlength: 3 
   },	
   DepartureDate:{
   	type: String,
@@ -62,4 +66,4 @@ let Model = mongoose.model('Order',{
   }
 },CollectionName);
 
-module.exports = {Model};
+module.exports = {Order};

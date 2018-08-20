@@ -1,0 +1,7 @@
+{
+	"name":"xxxx",
+	"mail": {
+		"host":"dev-mail-server",
+		"password": "app_password" //app_password was set in computer terminal
+	}
+}

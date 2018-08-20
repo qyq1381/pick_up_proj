@@ -1,11 +1,10 @@
-const {Model} = require('../models/airport');
 const {ObjectID} = require('mongodb');
 const _ = require('lodash');	//load low_dash library
-const commonMethod = require('../services/commonMethod');
+const service = require('../services/airportService');
 
 module.exports = {
 	post(req, res){
-		commonMethod.postModel(Model, req, res);
+		service.postModel(req, res);
 	},
 	
 	get(req, res) {
@@ -13,20 +12,20 @@ module.exports = {
 		const filter = {
 			//write filter
 		}
-		commonMethod.getByFilter(Model, filter, req, res);
+		service.getByFilter(filter, req, res);
 	},
 
 	getById(req, res) {
-		commonMethod.getById(Model, req, res);
+		service.getById(req, res);
 	},
 
 	patchById(req, res){
 		//pickArray should come from request
 		let pickArray = ["State", "City", "Airport"];
-		commonMethod.patchById(Model, pickArray, req, res);
+		service.patchById(pickArray, req, res);
 	},
 
 	deleteById(req, res){
-		commonMethod.deleteById(Model, req, res);
+		service.deleteById(req, res);
 	}
 }

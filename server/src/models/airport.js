@@ -7,6 +7,6 @@ let AirportSchema = new Schema({
 	Airport: String 
 });
 
-let Model = mongoose.model('Airport', AirportSchema, collectionName);
+let Airport = mongoose.model('Airport', AirportSchema, collectionName);
 
-module.exports = {Model}; 
+module.exports = {Airport}; 

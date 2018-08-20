@@ -12,7 +12,7 @@ module.exports={
 		});
 	},
 
-	getByFilter(Model, filter, req, res){
+	getByFilter(Model, filter, res){
 		Model.find(filter).then((model) => {
 			res.send({model});
 		}, (err) => {

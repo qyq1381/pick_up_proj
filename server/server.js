@@ -1,15 +1,23 @@
 const express = require('express');
-const port = 3000;
+const port = process.env.PORT ||3000;
+const bodyParser = require('body-parser');
 
 let {mongoose} = require('./src/db/mongoose');
-let {User} = require('./src/models/user');
-let {Airport} = require('./src/models/airport');
 let app = express();
 
 app.listen(port, ()=>{
 	console.log("Started listening port "+port);
 });
-app.use(require('./src/middleware/middleware'));
+
+//app.use(require('./src/middleware/middleware'));
+app.use(express.static('public'));
+app.use(bodyParser.json());
+//solved bug "Access-Control-Allow-Origin"
+app.use(function(req, res, next) { 
+	res.header("Access-Control-Allow-Origin", "*"); 
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
+	next(); 
+});
 
 require('./src/routers/router')(app);
 
