@@ -1,0 +1,12 @@
+{
+  "IL": {
+    "Chicago": [ "O'hair", "Midway" ],
+    "Champaign": [ "Willard" ],
+    "Bloomington": [ "Central Illinois" ]
+  },
+  "New York": {
+    "New York City": [ "Kennedy", "LaGuardia" ],
+    "New New York": [ "Delta", "Omega" ],
+    "Old New York": ["alpha","beta","Gamma","Delta"]
+  }
+}
