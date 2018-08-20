@@ -20,14 +20,14 @@
       table_main,
       footer_main
     }
-
+}
 export default {
   name: "App",
   components: {
     navbar,
     footer_main
   }
-};
+}
 </script>
 
 <style>
