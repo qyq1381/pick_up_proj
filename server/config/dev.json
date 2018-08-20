@@ -1,0 +1,6 @@
+{
+	"name" : "Pick up Flight app -- development",
+	"configuration" : {
+		"database" : "mongodb://localhost/PickUpFlight_default_development"
+	}
+}
