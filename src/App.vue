@@ -1,18 +1,13 @@
 <template>
   <div id="app">
     <navbar></navbar>
-<<<<<<< HEAD
     <input_form></input_form>
     <table_main></table_main>
-=======
-    <router-view style="flex-grow:1"></router-view>
->>>>>>> fbe2d00266ef22cc9494e15ceb8edf0f57f1ae05
     <footer_main></footer_main>
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
   import navbar from './components/NavBar.vue'
   import input_form from './components/Form.vue'
   import table_main from './components/table.vue'
@@ -25,10 +20,6 @@
       table_main,
       footer_main
     }
-=======
-import navbar from "./components/NavBar.vue";
-import footer_main from "./components/footer.vue";
->>>>>>> fbe2d00266ef22cc9494e15ceb8edf0f57f1ae05
 
 export default {
   name: "App",
