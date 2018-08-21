@@ -36,13 +36,14 @@
       <h1>this is page 4</h1>
       <div>
         <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
-        <button id="submitbutton" @click="submit" :class="'enableBTN'">Submit</button>
+        <button id="submitbutton" @click="submitvalue('1','2')" :class="'enableBTN'">Submit</button>
       </div>    </div>
 
   </div>
 </template>
 
 <script>
+  import usermethods from "../../api/usermethods.js";
   import stepProgress from '../Body/stepProgress.vue'
   export default {
     components: {
@@ -64,6 +65,10 @@
       }
     },
     methods: {
+      sendloginform: usermethods.sendloginform,
+      submitvalue: function (username, password) {
+        this.sendloginform(username, password);
+      },
       submit: function () {
         alert('You Complete the pages, Yea!!')
       }
