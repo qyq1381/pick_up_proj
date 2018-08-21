@@ -3,7 +3,7 @@
   <div id="NavBar">
 
     <a href="/" id="Logo"><img src="https://dgsecmg9973qw.cloudfront.net/junkmycar/Images/JMCLogo.png" /></a>
-    <a href="./Form" class="NavItem">Form</a>
+    <a href="./Form1" class="NavItem">Form</a>
     <a href="./AboutUs" class="NavItem">About Us</a>
     <a href="./FAQ" class="NavItem">FAQ</a>
     <div style="flex:1;"></div>

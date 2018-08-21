@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import form from '@/components/Body/Form.vue'
+import form1 from '@/components/Body/Form/Form1.vue'
+import form2 from '@/components/Body/Form/Form2.vue'
+import form3 from '@/components/Body/Form/Form3.vue'
+import form4 from '@/components/Body/Form/Form4.vue'
 import login from '@/components/Body/Login.vue'
 import index from '@/components/Body/index.vue'
 import FAQ from '@/components/Body/FAQ.vue'
@@ -24,9 +27,24 @@ export default new Router({
       component: login
     },
     {
-      path: '/Form',
-      name: 'form',
-      component: form
+      path: '/Form1',
+      name: 'form1',
+      component: form1
+    },
+    {
+      path: '/Form2',
+      name: 'form2',
+      component: form2
+    },
+    {
+      path: '/Form3',
+      name: 'form3',
+      component: form3
+    },
+    {
+      path: '/Form4',
+      name: 'form4',
+      component: form4
     },
     {
       path: '/FAQ',
