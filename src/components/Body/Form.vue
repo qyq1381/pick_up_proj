@@ -14,7 +14,6 @@
     -->
     <div id="page1" v-show="currentStep==1" style="background-color:lightgreen">
       <div class="SelectContainer">
-        <div>Pick Up Date:<input v-model="passengerInfo.date" class="inputbox" /></div>
         <div>Flight Number:<input v-model="passengerInfo.flightNumber" class="inputbox" /></div>
         <div>Number of passenger:<input v-model="passengerInfo.numpassenger" class="inputbox" /></div>
         <div>Number of large luggage:<input v-model="passengerInfo.lgluggage" class="inputbox" /></div>
@@ -74,7 +73,6 @@
         passengerInfo: {
           firstName: '',
           lastName: '',
-          date: '',
           phone: '',
           flightNumber: '',
           numpassenger: '',
