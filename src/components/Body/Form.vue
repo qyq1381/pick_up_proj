@@ -1,128 +1,125 @@
 <template>
-  <div id="form">
-    <h1>First, tell us about your junker.</h1>
-    <h4>Then, make cash in seconds.</h4>
-    <div class="SelectContainer">
-
-      <div>First Name:<input v-model="firstName" class="inputbox" /></div>
-      <div>Last Name:<input v-model="lastName" class="inputbox" /></div>
-      <div>Phone Number:<input v-model="phone" class="inputbox" /></div>
-      <div>Flight Number:<input v-model="flightNumber" class="inputbox" /></div>
-      <div>Number of passenger:<input v-model="numpassenger" class="inputbox" /></div>
-      <div>Weight of luggage:<input v-model="luggage" class="inputbox"  /></div>
+  <div id="root">
+    <step-progress :length="4" :currentStep="currentStep" :stepName="stepName"></step-progress>
+    <!--
+  <div class="SelectContainer">
+        <div>First Name:<input v-model="passengerInfo.firstName" class="inputbox" /></div>
+        <div>Last Name:<input v-model="passengerInfo.lastName" class="inputbox" /></div>
+        <div>Phone Number:<input v-model="passengerInfo.phone" class="inputbox" /></div>
+        <div>Flight Number:<input v-model="passengerInfo.flightNumber" class="inputbox" /></div>
+        <div>Number of passenger:<input v-model="passengerInfo.numpassenger" class="inputbox" /></div>
+        <div>Weight of luggage:<input v-model="passengerInfo.luggage" class="inputbox" /></div>
+        <button id="submitbutton" @click="" :class="'enableBTN'">Continue</button>
+      </div>
+  -->
+    <div id="page1" v-show="currentStep==1" style="background-color:lightgreen">
+      <h1>this is page 1</h1>
+      <div>
+        <button id="submitbutton" @click="currentStep++" :class="'enableBTN'">Continue</button>
+      </div>
     </div>
-    <button id="submitbutton" @click="" :class="[selectAirport=='' ? 'disableBTN' : 'enableBTN' ]" >Continue</button>
+    <div id="page2" v-show="currentStep==2" style="background-color:lightyellow">
+      <h1>this is page 2</h1>
+      <div>
+        <div>
+          <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
+          <button id="submitbutton" @click="currentStep++" :class="'enableBTN'">Continue</button>
+        </div>      </div>
+    </div>
+    <div id="page3" v-show="currentStep==3" style="background-color:lightblue">
+      <h1>this is page 3</h1>
+      <div>
+        <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
+        <button id="submitbutton" @click="currentStep++" :class="'enableBTN'">Continue</button>
+      </div>    </div>
+    <div id="page4" v-show="currentStep==4" style="background-color:lightpink">
+      <h1>this is page 4</h1>
+      <div>
+        <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
+        <button id="submitbutton" @click="submit" :class="'enableBTN'">Submit</button>
+      </div>    </div>
+
   </div>
 </template>
 
 <script>
-import airport from "../../../static/airport.json";
-import eventmethods from '../../api/eventmethods.js';
-export default {
-  name: "input_form",
-
-  components: {},
-
-  data: function() {
-    return {
-      FindAirport: airport,
-      States: airport,
-      Cities: "",
-      Airports: "",
-      selectState: "",
-      selectCity: "",
-      selectAirport: ""
-    };
-  },
-
-  methods: {
-    ChangeState: function() {
-      this.Cities = this.FindAirport[this.selectState];
-      this.selectCity = "";
-      this.selectAirport = "";
+  import stepProgress from '../Body/stepProgress.vue'
+  export default {
+    components: {
+      stepProgress
     },
+    data() {
+      return {
+        currentStep:1,
+        stepName: ['page1', 'page2', 'page3', 'page4'],
+        passengerInfo: {
+          firstName: '',
+          lastName: '',
+          phone: '',
+          flightNumber: '',
+          numpassenger: '',
+          luggage: '',
+        }
 
-    ChangeCity: function() {
-      this.Airports = this.FindAirport[this.selectState][this.selectCity];
-      this.selectAirport = "";
+      }
     },
-
-    ChangeAirport: function() {
-      return undefined;
-    },
-    sendeventform:eventmethods.sendeventform,
-    submitvalue: function(state_v, city_v, airport_v) {
-      this.sendeventform(state_v, city_v, airport_v);
+    methods: {
+      submit: function () {
+        alert('You Complete the pages, Yea!!')
+      }
     }
   }
-};
 </script>
 
 <style scoped>
-h1 {
-  padding: 100px 0 0 0;
-  font-size: 2.5rem;
-}
 
-h4 {
-  padding: 30px 0 0 0;
-  font-size: 1.5rem;
-}
 
-h1,
-h4 {
-  font-family: inherit;
-  font-weight: 500;
-  line-height: 1.1;
-  color: inherit;
-}
+  .disableBTN,
+  .enableBTN {
+    margin: 0 50px 40px 50px;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.25rem;
+    border-radius: 0.3rem;
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+    font-weight: 400;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
 
-select {
-  font-size: 1rem;
-}
+    .enableBTN:hover {
+      cursor: pointer;
+    }
 
-.smselectbox {
-  display: inline-block;
-  padding: 15px 20px;
-  margin: 0 3px;
-  width: 8%;
-}
+  .SelectContainer {
+    margin-top: 2rem;
+    padding: 40px 0 40px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+  }
 
-.lgselectbox {
-  display: inline-block;
-  padding: 15px 20px;
-  margin: 0 3px;
-  width: 15%;
-}
+  #form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-.disableBTN,
-.enableBTN {
-  margin: 0 0 40px 0;
-  padding: 0.75rem 1.5rem;
-  font-size: 1.25rem;
-  border-radius: 0.3rem;
-  color: #fff;
-  background-color: #f0ad4e;
-  border-color: #f0ad4e;
-  font-weight: 400;
-  line-height: 1.25;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-}
-.enableBTN:hover {
-  cursor: pointer;
-}
-.selectcontainer {
-  padding: 40px 0 40px 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-#form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  input {
+    border: 1px #aaa solid;
+    border-radius: 4px;
+    background: 0 0;
+    text-align: left;
+    font-size: 20px;
+    width: 438px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
+  }
 </style>
