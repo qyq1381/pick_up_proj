@@ -1,10 +1,6 @@
 export default {
-  sendeventform: function (state_v, city_v, airport_v) {
-    let data = {
-      state: state_v,
-      city: city_v,
-      airport: airport_v
-    };
+  sendeventform: function (obj) {
+    let data = obj;
     this.$http.post("http://localhost:3000/todos", data).then(
       response => {
         console.log("success");
@@ -13,6 +9,6 @@ export default {
         console.log("failed");
       }
     );
-    alert(state_v + "--" + city_v + "--" + airport_v);
+    alert(JSON.stringify(obj, null, 4))
   }
 };
