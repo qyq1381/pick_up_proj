@@ -1,5 +1,5 @@
 <template>
-  <div id="root" >
+  <div id="root">
     <step-progress :length="4" :currentStep="currentStep" :stepName="stepName"></step-progress>
     <!--
     <div class="SelectContainer">
@@ -14,10 +14,10 @@
     -->
     <div id="page1" v-show="currentStep==1" style="background-color:lightgreen">
       <div class="SelectContainer">
-        <div>Flight Number:<input v-model="passengerInfo.flightNumber" class="inputbox" /></div>
-        <div>Number of passenger:<input v-model="passengerInfo.numpassenger" class="inputbox" /></div>
-        <div>Number of large luggage:<input v-model="passengerInfo.lgluggage" class="inputbox" /></div>
-        <div>Number of small luggage:<input v-model="passengerInfo.smluggage" class="inputbox" /></div>
+        <div>Flight Number:<input v-model="passengerInfo.flightNumber" class="inputbox"/></div>
+        <div>Number of passenger:<input v-model="passengerInfo.numpassenger" class="inputbox" @keypress="isNumber(event)"/></div>
+        <div>Number of large luggage:<input v-model="passengerInfo.lgluggage" class="inputbox" @keypress="isNumber(event)"/></div>
+        <div>Number of small luggage:<input v-model="passengerInfo.smluggage" class="inputbox" @keypress="isNumber(event)" /></div>
       </div>
       <div>
         <button id="submitbutton" @click="currentStep++" :class="'enableBTN'">Continue</button>
@@ -48,7 +48,7 @@
     </div>
     <div id="page4" v-show="currentStep==4" style="background-color:lightpink">
       <div class="SelectContainer">
-        <div>Phone number:<input v-model="passengerInfo.phone" class="inputbox" /></div>
+        <div>Phone number:<input v-model="passengerInfo.phone" class="inputbox" @keypress="isNumber(event)"/></div>
       </div>
       <div>
         <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
@@ -80,7 +80,7 @@
           smluggage: '',
           email: '',
           wechat: '',
-          address:'',
+          address: '',
         }
 
       }
@@ -92,16 +92,27 @@
       },
       submit: function () {
         alert('You Complete the pages, Yea!!')
+      },
+      isNumber: function (evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+          evt.preventDefault();;
+        } else {
+          return true;
+        }
       }
     }
   }
 </script>
 
 <style scoped>
-  #root{
-    display:flex;
-    flex-direction:column;
+
+  #root {
+    display: flex;
+    flex-direction: column;
   }
+
   #page1, #page2, #page3, #page4 {
     display: flex;
     flex-direction: column;
@@ -142,7 +153,7 @@
     align-items: stretch;
     text-align: left;
     align-self: center;
-    flex-grow:1;
+    flex-grow: 1;
   }
 
   #form {
@@ -161,8 +172,6 @@
     height: 50px;
     line-height: 50px;
     padding: 0 20px;
-    margin-bottom:2rem;
+    margin-bottom: 2rem;
   }
-
-
 </style>
