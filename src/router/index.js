@@ -14,7 +14,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'form',
+      name: 'index',
       component: form
     }
     ,
