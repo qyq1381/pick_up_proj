@@ -11,32 +11,36 @@ module.exports={
 		let largeLuggage = 0;
 		let Passenger = 0;
 		let responseData = {};
-		Order.find({flightNumber:flightNumber, departureDate:date})
-			.then((orderInfo)=>{
-				smallLuggage += orderInfo.smallLuggage;
-				largeLuggage += orderInfo.largeLuggage;
-				Passenger += orderInfo.Passenger;
 
+		Order.find({/*depend on request*/})
+			.then((orderInfo)=>{
+				orderInfo.forEach((object)=>{
+					smallLuggage += object.smallLuggage;
+				largeLuggage += object.largeLuggage;
+				Passenger += object.Passenger;
+				});
+				
 				responseData = {
 					sumSmallLuggage: smallLuggage,
 					sumLargeLuggage: largeLuggage,
-					sumPassener: Passenger
+					sumPassener: Passenger,
 				}
 				res.status(200).send(responseData);
 			}).catch((err)=>{
 				res.status(400).send(err);
 			});
-
 	},
 	getPassengerByDay(req, res){
 		let date = req.body.departureDate;
-		Order.find({departureDate:date})
+		let responseData = {};
+		let Passenger = 0;
+		Order.find({/*depend on request*/})
 			.then((orderInfo)=>{
-				
-				Passenger += orderInfo.Passenger;
-
+				orderInfo.forEach((object)=>{
+					Passenger += object.Passenger;
+				});
 				responseData = {
-					sumPassener: Passenger
+					sumPassenger: Passenger
 				}
 				res.status(200).send(responseData);
 			}).catch((err)=>{
@@ -45,7 +49,7 @@ module.exports={
 
 	},
 	getUserIncompleted(req, res){
-		res.status(400).send('still in developping');
+		res.status(400).send('still in developing');
 	},
 
 	getUserNotPhone(req, res){

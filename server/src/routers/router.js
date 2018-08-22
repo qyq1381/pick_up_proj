@@ -18,8 +18,8 @@ module.exports = (app) => {
   
   app.get('/query/bydayflight', QueryController.getByDayFlight);
   app.get('/query/byday', QueryController.getByDay);
-  app.get('/user/incompleted', QueryController.getUserIncompleted);
-  app.get('/user/notphone', QueryController.getUserNotPhone);
+  app.get('/query/incompleted', QueryController.getUserIncompleted);
+  app.get('/query/notphone', QueryController.getUserNotPhone);
 
   app.patch('/order/:id', OrderController.patchById);
   app.patch('/airport/:id',AirportController.patchById);

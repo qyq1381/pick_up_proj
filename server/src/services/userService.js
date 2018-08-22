@@ -51,21 +51,7 @@ module.exports={
 		});
 	},
 
-	getUserIncompleted(req, res){
-
-	},
-
-	getUserNotPhone(req, res){
-		//日期什么形式会比较好？
-		let day = req.body.day;
-		let currentDay = Date.now();
-		//
-		let diff_time = currentDay - day*86400*1000;
-
-		User.find({Phone:null}).then((user)=>{
-
-		})
-	},
+	
 
 	patchById(pickArray, req, res){
 		let id = req.params.id;

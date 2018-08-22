@@ -6,23 +6,25 @@ let UserSchema = new Schema({
 	firstName: {
 		type: String,
 		trim: true,
+		//require: true
 	},
 	lastName:{
 		type: String,
-		trim: true
+		trim: true,
 	},
 	Email: {
 		type: String,
 		trim: true,
-		require: true
 	},
 	Phone: {
 		type: String,
-		trim: true
+		trim: true,
+		default: null
 	},
 	WeChat: {
 		type: String,
-		trim: true
+		trim: true,
+		default: null
 	},
 	IdNumber: {
 		type: Number
