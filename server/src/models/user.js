@@ -3,14 +3,14 @@ let Schema = mongoose.Schema;
 let collectionName = 'User';
 let UserSchema = new Schema({
 	
-	firstName:{
+	firstName: {
+		type: String,
+		trim: true,
+	},
+	lastName:{
 		type: String,
 		trim: true
-	}
-	lastName: {
-		type: String,
-		trim: true
-	}
+	},
 	Email: {
 		type: String,
 		trim: true,
