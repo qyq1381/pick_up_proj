@@ -5,7 +5,18 @@ const {User} = require('../models/user');
 module.exports={
 	
 	postModel(req, res){
-		let user = new User(req.body);
+		let createTime = new Date();
+		let idNumber = getUserNumber(createTime);
+		let user = new User({
+			firstName:req.body.firstName,
+			lastName: req.body.lastName,
+			Email:req.body.email,
+			Phone:req.body.phone,
+			WeChat: req.body.wechat,
+			IdNumber: idNumber,
+			CreateTime: createTime.getTime(),
+			CreateTime_uni: createTime.getTime()
+		});
 		user.save().then((doc) => {
 			res.send(doc);
 		}, (err) => {
@@ -38,6 +49,22 @@ module.exports={
 		}).catch((err)=>{
 			res.status(400).send(`bad request made by: ${err}`);
 		});
+	},
+
+	getUserIncompleted(req, res){
+
+	},
+
+	getUserNotPhone(req, res){
+		//日期什么形式会比较好？
+		let day = req.body.day;
+		let currentDay = Date.now();
+		//
+		let diff_time = currentDay - day*86400*1000;
+
+		User.find({Phone:null}).then((user)=>{
+
+		})
 	},
 
 	patchById(pickArray, req, res){
@@ -73,6 +100,15 @@ module.exports={
 			res.status(400).send(`bad request made by: ${err}`);
 		});
 	}
+
 }
 
+function getUserNumber(createtime){
+	let timeStamp="";  
+	for(let i=0;i<3;i++) 
+	{
+		timeStamp += Math.floor(Math.random()*10);
+	}
+	return createtime.getTime().toString() + timeStamp;
 
+}

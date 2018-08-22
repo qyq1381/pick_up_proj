@@ -1,7 +1,7 @@
 export default {
   sendeventform: function (obj) {
     let data = obj;
-    this.$http.post("http://localhost:3000/todos", data).then(
+    this.$http.post("http://localhost:3000/order", data).then(
       response => {
         console.log("success");
       },
