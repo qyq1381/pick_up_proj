@@ -16,8 +16,8 @@ module.exports = (app) => {
   app.get('/user', UserController.get);
   app.get('/user/:id', UserController.getById);
   
-  app.get('/query/bydayflight', QueryController.getByDayFlight);
-  app.get('/query/byday', QueryController.getByDay);
+  app.get('/query/bydayflight/:flightNumber', QueryController.getByDayFlight);
+  app.get('/query/byday/:departureDate', QueryController.getByDay);
   app.get('/query/incompleted', QueryController.getUserIncompleted);
   app.get('/query/notphone', QueryController.getUserNotPhone);
 

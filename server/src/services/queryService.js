@@ -5,14 +5,14 @@ const {User} = require('../models/user');
 
 module.exports={
 	getPassengerLuggageByDayFlight(req, res){
-		let flightNumber = req.body.flightNumber;
-		let date = req.body.departureDate;
+		let flightNumber = req.params.flightNumber;
+		let date = req.params.departureDate;
 		let smallLuggage = 0;
 		let largeLuggage = 0;
 		let Passenger = 0;
 		let responseData = {};
-
-		Order.find({/*depend on request*/})
+		console.log(flightNumber)
+		Order.find({flightNumber: flightNumber})
 			.then((orderInfo)=>{
 				orderInfo.forEach((object)=>{
 					smallLuggage += object.smallLuggage;
@@ -31,10 +31,10 @@ module.exports={
 			});
 	},
 	getPassengerByDay(req, res){
-		let date = req.body.departureDate;
+		let date = req.params.departureDate;
 		let responseData = {};
 		let Passenger = 0;
-		Order.find({/*depend on request*/})
+		Order.find({departureDate:date})
 			.then((orderInfo)=>{
 				orderInfo.forEach((object)=>{
 					Passenger += object.Passenger;
@@ -49,15 +49,25 @@ module.exports={
 
 	},
 	getUserIncompleted(req, res){
-		res.status(400).send('still in developing');
+		let day = 14;
+		let currentTime = Date.now();
+		let beginTime =currentTime - day * 86400 * 1000;
+
+		User.find({$or:[{Phone: null},{Wechat: null},{Email: null}]}, {CreateTime_uni:{$gt:beginTime}})
+			.then((user)=>{
+				res.status(200),send({user});		
+			}).catch((err)=>{
+				res.status(400).send(err);
+			})
+		
 	},
 
 	getUserNotPhone(req, res){
-		let day = req.body.day;
+		let day = 7;
 		let currentTime = Date.now();
-		let beginTime = currentDay - day*86400*1000;
+		let beginTime = currentTime - day * 86400 * 1000;
 
-		User.find({Phone:null},{$gt:beginTime}).then((user)=>{
+		User.find({Phone:null},{CreateTime_uni:{$gt:beginTime}}).then((user)=>{
 			res.status(200).send({user});
 		}).catch((err)=>{
 			res.status(400).send(err);

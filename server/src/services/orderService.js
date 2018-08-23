@@ -14,7 +14,9 @@ module.exports={
 			smallLuggage: req.body.smluggage,
 			orderTime: orderTime.getTime(),
 			orderTime_uni: orderTime.getTime(),
-			orderNumber: orderNumber
+			orderNumber: orderNumber,
+			departureDate: req.body.departureDate,
+			Address: req.body.address
 		});
 		order.save().then((doc) => {
 			res.send(doc);

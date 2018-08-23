@@ -30,5 +30,7 @@ module.exports = {
 
 	deleteById(req, res){
 		service.deleteById(req, res);
-	}
+	},
+
+	
 }

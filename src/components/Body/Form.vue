@@ -15,6 +15,7 @@
     <div id="page1" v-show="currentStep==1" style="background-color:lightgreen">
       <div class="SelectContainer">
         <div>Flight Number:<input v-model="passengerInfo.flightNumber" class="inputbox"/></div>
+        <div>Departure Date<input v-model="passengerInfo.departureDate" type="date" class="inputbox"/></div>
         <div>Number of passenger:<input v-model="passengerInfo.numpassenger" class="inputbox" @keypress="isNumber(event)"/></div>
         <div>Number of large luggage:<input v-model="passengerInfo.lgluggage" class="inputbox" @keypress="isNumber(event)"/></div>
         <div>Number of small luggage:<input v-model="passengerInfo.smluggage" class="inputbox" @keypress="isNumber(event)" /></div>
@@ -27,7 +28,7 @@
       <div class="SelectContainer">
         <div>First Name:<input v-model="passengerInfo.firstName" class="inputbox" /></div>
         <div>Last Name:<input v-model="passengerInfo.lastName" class="inputbox" /></div>
-        <div>E-mail:<input v-model="passengerInfo.email" class="inputbox" /></div>
+        <div>E-mail:<input v-model="passengerInfo.email" type="email" class="inputbox" /></div>
         <div>WeChat ID:<input v-model="passengerInfo.wechat" class="inputbox" /></div>
       </div>
       <div>
@@ -39,7 +40,12 @@
     </div>
     <div id="page3" v-show="currentStep==3" style="background-color:lightblue">
       <div class="SelectContainer">
-        <div>Destination:<input v-model="passengerInfo.address" class="inputbox" /></div>
+        <div>Address line 1:<input v-model="passengerInfo.address.address_line_1" class="inputbox" /></div>
+        <div>Address line 2:<input v-model="passengerInfo.address.address_line_2" class="inputbox" /></div>
+        <div>City:<input v-model="passengerInfo.address.city"  class="inputbox" /></div>
+        <div>State/Province/Region:<input v-model="passengerInfo.address.state" class="inputbox" /></div>
+        <div>Zip/Postal Code:<input v-model="passengerInfo.address.zip" class="inputbox" @keypress="isNumber(event)"/></div>
+        <div>country:<input v-model="passengerInfo.address.country" class="inputbox" /></div>
       </div>
       <div>
         <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
@@ -48,7 +54,7 @@
     </div>
     <div id="page4" v-show="currentStep==4" style="background-color:lightpink">
       <div class="SelectContainer">
-        <div>Phone number:<input v-model="passengerInfo.phone" class="inputbox" @keypress="isNumber(event)"/></div>
+        <div>Phone number:<input v-model="passengerInfo.phone" input='tel' class="inputbox" @keypress="isNumber(event)"/></div>
       </div>
       <div>
         <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
@@ -80,7 +86,15 @@
           smluggage: '',
           email: '',
           wechat: '',
-          address: '',
+          address: {
+            address_line_1: '',
+            address_line_2: '',
+            city: '',
+            state: '',
+            zip: '',
+            country: ''
+          },
+          departureDate:''
         }
 
       }
