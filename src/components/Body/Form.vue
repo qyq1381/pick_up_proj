@@ -28,11 +28,7 @@
       <div class="SelectContainer">
         <div>First Name:<input v-model="passengerInfo.firstName" class="inputbox" /></div>
         <div>Last Name:<input v-model="passengerInfo.lastName" class="inputbox" /></div>
-<<<<<<< HEAD
-        <div>E-mail:<input v-model="passengerInfo.email" class="inputbox" :rules="emailRules"/></div>
-=======
         <div>E-mail:<input v-model="passengerInfo.email" type="email" class="inputbox" /></div>
->>>>>>> master
         <div>WeChat ID:<input v-model="passengerInfo.wechat" class="inputbox" /></div>
       </div>
       <div>
@@ -70,7 +66,7 @@
 </template>
 
 <script>
-  import eventmethods from "../../api/eventmethods.js";
+  import eventmethods from "../../services/api/eventmethods.js";
   import stepProgress from '../Body/stepProgress.vue'
   export default {
     components: {
@@ -90,14 +86,6 @@
           smluggage: '',
           email: '',
           wechat: '',
-<<<<<<< HEAD
-          address:'',
-        },
-        valid: true,
-        generalRules: [v => !!v || 'Information is required'],
-        emailRules: [v => !!v || 'E-mail is required',
-      v => /.+@.+/.test(v) || 'E-mail must be valid']
-=======
           address: {
             address_line_1: '',
             address_line_2: '',
@@ -108,7 +96,6 @@
           },
           departureDate:''
         }
->>>>>>> master
 
       }
     },

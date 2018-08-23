@@ -15,11 +15,13 @@ let UserSchema = new Schema({
 	Email: {
 		type: String,
 		trim: true,
+		unique: true,
 	},
 	Phone: {
 		type: String,
 		trim: true,
-		default: null
+		default: null,
+		unique: true,
 	},
 	WeChat: {
 		type: String,
@@ -27,7 +29,8 @@ let UserSchema = new Schema({
 		default: null
 	},
 	IdNumber: {
-		type: Number
+		type: Number,
+		unique: true,
 	},
 	CreateTime: {
 		type: Date
