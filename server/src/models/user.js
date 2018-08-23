@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');
+let Joi = require('joi');
 let Schema = mongoose.Schema;
 let collectionName = 'User';
 let UserSchema = new Schema({
@@ -12,10 +13,22 @@ let UserSchema = new Schema({
 		type: String,
 		trim: true,
 	},
+	userName:{
+		type: String,
+		trim: true,
+		minlength: 6,
+		maxlength: 20
+	},
+	Password:{
+		type: String,
+		trim: true,
+		default: null
+	},
 	Email: {
 		type: String,
 		trim: true,
-		unique: true,
+		unique: true, //won't save same email in mongodb
+		required: true
 	},
 	Phone: {
 		type: String,
@@ -26,11 +39,11 @@ let UserSchema = new Schema({
 	WeChat: {
 		type: String,
 		trim: true,
-		default: null
+		default: null,
+		unique: true
 	},
 	IdNumber: {
-		type: Number,
-		unique: true,
+		type: Number
 	},
 	CreateTime: {
 		type: Date
@@ -42,4 +55,13 @@ let UserSchema = new Schema({
 
 let User = mongoose.model('User', UserSchema, collectionName);
 
-module.exports = {User};
+function validateUser(user) {
+	console.log(user);
+	const schema = {
+		email: Joi.string().min(5).max(50).required().email()
+	}
+	console.log(`Joi validate decision is: ${Joi.validate(user, schema)}`);
+	return Joi.validate(user, schema);
+
+}
+module.exports = {User, validateUser};

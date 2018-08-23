@@ -11,10 +11,10 @@ export default {
     );
     this.$http.post("http://localhost:3000/user", data).then(
       response => {
-        console.log("success");
+        console.log(response);
       },
       error => {
-        console.log("failed");
+        console.log(error);
       }
     );
     alert(JSON.stringify(obj, null, 4))

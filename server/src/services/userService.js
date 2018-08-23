@@ -1,13 +1,22 @@
 const {ObjectID} = require('mongodb');
 const _ = require('lodash');	//load low_dash library
-const {User} = require('../models/user');
+const {User, validateUser} = require('../models/user');
 
 module.exports={
 	
-	postModel(req, res){
+	async postModel(req, res){
+		/* input valid checking
+		const {error} = validateUser(req.body);
+		console.log(error);
+		if (error) return res.status(401).send(error.details[0].message);
+		*/
+
+		let user = await User.findOne({Email: req.body.email});
+		if (user) return res.status(400).send(`${req.body.email} already registered.`)
+
 		let createTime = new Date();
 		let idNumber = getUserNumber(createTime);
-		let user = new User({
+		user = new User({
 			firstName:req.body.firstName,
 			lastName: req.body.lastName,
 			Email:req.body.email,

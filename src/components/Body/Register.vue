@@ -2,22 +2,16 @@
   <div id="Register">
     <div id="registerbox">
       <h2>Registe Your Account</h2>
-      <!-- <input v-model="username" type="text" :class="{'textbox':true,'Error':NameError}" placeholder="Username">
+      <input v-model="username" type="text" :class="{'textbox':true,'Error':NameError}" placeholder="Username">
       <input v-model="password" type="password" :class="{'textbox':true,'Error':passwordError}" placeholder="Password">
       <input v-model="passwordVerify" type="password" :class="{'textbox':true,'Error':passwordVerifyError}" placeholder="Verify Your Password">
       <input v-model="phoneNumber" :class="{'textbox':true,'Error':phoneNumberError}" placeholder="Phone Number">
-      <input v-model="email" :class="{'textbox':true,'Error':emailError}" placeholder="Email"> -->
-         <input v-model="username" type="text" class="textbox" placeholder="Username">
-      <input v-model="password" type="password" class="textbox" placeholder="Password">
-      <input v-model="passwordVerify" type="password" class="textbox" placeholder="Verify Your Password">
-      <input v-model="phoneNumber" class="textbox" placeholder="Phone Number">
-      <input v-model="email" class="textbox" placeholder="Email">
-      <button id="registerbutton" @click="register">Register</button>
+      <input v-model="email" :class="{'textbox':true,'Error':emailError}" placeholder="Email">
+      <button id="registerbutton" @click="registe">Registe</button>
     </div>
   </div>
 </template>
 <script>
-  import AuthenticationService from '../../services/AuthenticationService'
   export default {
     data: function () {
       return {
@@ -35,7 +29,13 @@
       }
     },
     methods: {
-    
+      registe: function () {
+        [this.username == '' ? this.NameError = true : this.NameError = false];
+        [this.password == '' ? this.passwordError = true : this.passwordError = false];
+        [this.passwordVerify != this.password ? this.passwordVerifyError = true : this.passwordVerifyError = false];
+        [this.phoneNumber == '' ? this.phoneNumberError = true : this.phoneNumberError = false];
+        [this.email == '' ? this.emailError = true : this.emailError = false];
+      }
     }
   }
 </script>
