@@ -56,12 +56,15 @@ let UserSchema = new Schema({
 let User = mongoose.model('User', UserSchema, collectionName);
 
 function validateUser(user) {
-	console.log(user);
-	const schema = {
-		email: Joi.string().min(5).max(50).required().email()
+	let InfotobeChecked = {
+		email: user.email,
 	}
-	console.log(`Joi validate decision is: ${Joi.validate(user, schema)}`);
-	return Joi.validate(user, schema);
+	console.log(InfotobeChecked);
+	const schema = {
+		email: Joi.string().min(0).max(50).required().email(),
+	}
+	console.log(`Joi validate decision is: ${Joi.validate(InfotobeChecked, schema)}`);
+	return Joi.validate(InfotobeChecked, schema);
 
 }
 module.exports = {User, validateUser};

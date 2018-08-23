@@ -5,11 +5,11 @@ const {User, validateUser} = require('../models/user');
 module.exports={
 	
 	async postModel(req, res){
-		/* input valid checking
+		/* input valid checking*/
 		const {error} = validateUser(req.body);
 		console.log(error);
-		if (error) return res.status(401).send(error.details[0].message);
-		*/
+		if (error) return res.status(400).send(error.details[0].message);
+		
 
 		let user = await User.findOne({Email: req.body.email});
 		if (user) return res.status(400).send(`${req.body.email} already registered.`)
