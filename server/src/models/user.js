@@ -3,36 +3,40 @@ let Schema = mongoose.Schema;
 let collectionName = 'User';
 let UserSchema = new Schema({
 	
-	UserName: {
+	firstName: {
 		type: String,
 		trim: true,
-		//require: true,
-		//minlength: 1
+		//require: true
 	},
-	UserPsw: {
+	lastName:{
 		type: String,
-		trim: true
-		//require : true,
-		//minlength: 8
+		trim: true,
 	},
 	Email: {
 		type: String,
-		trim: true
-		//require: false,
-		//minlength: 1
+		trim: true,
 	},
 	Phone: {
 		type: String,
-		trim: true
-		//require: true
-		
+		trim: true,
+		default: null
+	},
+	WeChat: {
+		type: String,
+		trim: true,
+		default: null
 	},
 	IdNumber: {
 		type: Number
-		//default: 10000
+	},
+	CreateTime: {
+		type: Date
+	},
+	CreateTime_uni: {
+		type: Number,
 	}
 });
 
-let User = mongoose.model('User', UserSchema, );
+let User = mongoose.model('User', UserSchema, collectionName);
 
 module.exports = {User};

@@ -1,69 +1,46 @@
 let mongoose = require('mongoose');
-let CollectionName = 'orders';
-let Order = mongoose.model('Order',{
-  OrderTime: {
+let Schema = mongoose.Schema;
+let CollectionName = 'Order';
+let orderSchema = new Schema({
+  orderTime: {
     type: Date,
-    default: Date.now
   },
-  ContactName:{
-  	type: String,
-  	trim: true,
-  	require: true,
-  	minlength: 3 
-  },	
-  DepartureDate:{
-  	type: String,
-  	trim: true,
-  	require: true,
-  	minlength: 3
-  },	
-  FlightNumber:{
-  	type: Number,
-  	trim: true,
-  	require: true,
-  	minlength: 8
-  },	
-  Location:{
-  	type: String,
-  	trim: true,
-  	require: true,
-  	minlength: 3
-  },	
+  orderTime_uni: {
+    type: Number
+  },
+  departureDate:{
+    type: Date,
+    require: true,
+  },  
+  flightNumber:{
+    type: String,
+    trim: true
+  },  
   Passenger:{
-  	type: {
-  		adult: Number,
-  		child: Number
-  	},
-  	trim: true,
-  	require: true,
-  	minlength: 3
-  },	
-  Luggage:{
-  	type: Number,
-  	trim: true,
-  	require: true,
-  	minlength: 3
+    type: Number,
+    require: true
+  },  
+  largeLuggage:{
+    type: Number,
+    require: true
   },
-  OrderNumber:{
-  	type: Number,
-  	trim: true,
-  	require: true,
-  	minlength: 3
+  smallLuggage: {
+    type: Number,
+    require: true
   },
-  IdNumber:{
-  	type: Number,
-  	trim: true,
-  	require: true,
-  	minlength: 3
+  orderNumber:{
+    type: String,
   },
-  PickupTime:{
-  	type: String,
-  	default: null
-  },
-  isValidOrder: {
-    type: Boolean,
-    default: null
+  Address: {
+
+            address_line_1: String,
+            address_line_2: String,
+            city: String,
+            state: String,
+            zip: Number,
+            country: String
   }
-},CollectionName);
+});
+let Order = mongoose.model('Order', orderSchema, CollectionName);
 
 module.exports = {Order};

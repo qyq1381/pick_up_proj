@@ -5,7 +5,19 @@ const {Order} = require('../models/order');
 module.exports={
 	
 	postModel(req, res){
-		let order = new Order(req.body);
+		let orderTime = new Date();
+		let orderNumber = getOrderNumber(orderTime);
+		let order = new Order({
+			flightNumber : req.body.flightNumber,
+			Passenger: req.body.numpassenger,
+			largeLuggage: req.body.lgluggage,
+			smallLuggage: req.body.smluggage,
+			orderTime: orderTime.getTime(),
+			orderTime_uni: orderTime.getTime(),
+			orderNumber: orderNumber,
+			departureDate: req.body.departureDate,
+			Address: req.body.address
+		});
 		order.save().then((doc) => {
 			res.send(doc);
 		}, (err) => {
@@ -38,6 +50,17 @@ module.exports={
 		}).catch((err)=>{
 			res.status(400).send(`bad request made by: ${err}`);
 		});
+	},
+
+	getByDayFlight(req, res){
+		let Day = req.body.Day;
+		let Flight = req.body.Flight;	
+
+
+
+	},
+	getByDay(req, res){
+		let Day = req.body.Day;
 	},
 
 	patchById(pickArray, req, res){
@@ -76,3 +99,12 @@ module.exports={
 }
 
 
+function getOrderNumber(ordertime){
+	let timeStamp="";  
+	for(let i=0;i<6;i++) 
+	{
+		timeStamp += Math.floor(Math.random()*10);
+	}
+	return ordertime.getTime().toString() + timeStamp;
+
+}
