@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import usermethods from "../../api/usermethods.js";
+import usermethods from "../../services/api/usermethods.js";
 export default {
   name: "login",
 
