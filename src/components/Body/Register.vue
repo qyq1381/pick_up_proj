@@ -1,12 +1,17 @@
 <template>
   <div id="Register">
     <div id="registerbox">
-      <h2>Registe Your Account</h2>
-      <input v-model="username" type="text" :class="{'textbox':true,'Error':NameError}" placeholder="Username">
+      <h2>Register Your Account</h2>
+      <!-- <input v-model="username" type="text" :class="{'textbox':true,'Error':NameError}" placeholder="Username">
       <input v-model="password" type="password" :class="{'textbox':true,'Error':passwordError}" placeholder="Password">
       <input v-model="passwordVerify" type="password" :class="{'textbox':true,'Error':passwordVerifyError}" placeholder="Verify Your Password">
       <input v-model="phoneNumber" :class="{'textbox':true,'Error':phoneNumberError}" placeholder="Phone Number">
-      <input v-model="email" :class="{'textbox':true,'Error':emailError}" placeholder="Email">
+      <input v-model="email" :class="{'textbox':true,'Error':emailError}" placeholder="Email"> -->
+      <input v-model="username" type="text" class="textbox" placeholder="Username">
+      <input v-model="password" type="password" class="textbox" placeholder="Password">
+      <input v-model="passwordVerify" type="password" class="textbox" placeholder="Verify Your Password">
+      <input v-model="phoneNumber" class="textbox" placeholder="Phone Number">
+      <input v-model="email" class="textbox" placeholder="Email">
       <button id="registerbutton" @click="register">Register</button>
     </div>
   </div>
@@ -35,7 +40,6 @@
           email: this.email,
           password: this.password
         })
-        console.log(response.data)
       }
     }
   }

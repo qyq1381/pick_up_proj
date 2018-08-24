@@ -2,7 +2,7 @@ const OrderController = require('../controller/OrderController');
 const AirportController = require('../controller/AirportController');
 const UserController = require('../controller/UserController');
 const QueryController = require('../controller/QueryController');
-const AuthenticationController = require('./controllers/AuthenticationController')
+const AuthenticationController = require('../controller/AuthenticationController')
 
 module.exports = (app) => {
   app.post('/order', OrderController.post);
