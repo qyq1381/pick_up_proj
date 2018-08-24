@@ -21,7 +21,7 @@
         <div>Number of small luggage:<input v-model="passengerInfo.smluggage" class="inputbox" @keypress="isNumber(event)" /></div>
       </div>
       <div>
-        <button id="submitbutton" @click="currentStep++" :class="'enableBTN'" :disabled="ture">Continue</button>
+        <button id="submitbutton" @click="currentStep++" :class="'enableBTN'">Continue</button>
       </div>
     </div>
     <div id="page2" v-show="currentStep==2" style="background-color:lightyellow">
@@ -34,7 +34,7 @@
       <div>
         <div>
           <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
-          <button id="submitbutton" @click="currentStep++" :class="'enableBTN'" disabled>Continue</button>
+          <button id="submitbutton" @click="currentStep++" :class="'enableBTN'">Continue</button>
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@
       </div>
       <div>
         <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
-        <button id="submitbutton" @click="currentStep++" :class="'enableBTN'" disabled>Continue</button>
+        <button id="submitbutton" @click="currentStep++" :class="'enableBTN'">Continue</button>
       </div>
     </div>
     <div id="page4" v-show="currentStep==4" style="background-color:lightpink">
@@ -58,7 +58,7 @@
       </div>
       <div>
         <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
-        <button id="submitbutton" @click="submitvalue()" :class="'enableBTN'" disabled>Submit</button>
+        <button id="submitbutton" @click="submitvalue()" :class="'enableBTN'">Submit</button>
       </div>
     </div>
 
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-  import eventmethods from "../../services/api/eventmethods.js";
+  import eventmethods from "../../api/eventmethods.js";
   import stepProgress from '../Body/stepProgress.vue'
   export default {
     components: {

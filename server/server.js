@@ -18,7 +18,10 @@ app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
 	next(); 
 });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 10253ceb18a4cb2417f4e8cfbcd932c5ff751159
 
 require('./src/routers/router')(app);
 
