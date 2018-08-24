@@ -66,7 +66,7 @@
 </template>
 
 <script>
-  import eventmethods from "../../api/eventmethods.js";
+  import eventmethods from "../../services/api/eventmethods.js";
   import stepProgress from '../Body/stepProgress.vue'
   export default {
     components: {

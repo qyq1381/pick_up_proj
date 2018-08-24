@@ -7,11 +7,12 @@
       <input v-model="passwordVerify" type="password" :class="{'textbox':true,'Error':passwordVerifyError}" placeholder="Verify Your Password">
       <input v-model="phoneNumber" :class="{'textbox':true,'Error':phoneNumberError}" placeholder="Phone Number">
       <input v-model="email" :class="{'textbox':true,'Error':emailError}" placeholder="Email">
-      <button id="registerbutton" @click="registe">Registe</button>
+      <button id="registerbutton" @click="register">Register</button>
     </div>
   </div>
 </template>
 <script>
+  import AuthenticationService from '../../services/AuthenticationService'
   export default {
     data: function () {
       return {
@@ -29,21 +30,12 @@
       }
     },
     methods: {
-<<<<<<< HEAD
       async register () {
         const response = await AuthenticationService.register({
           email: this.email,
           password: this.password
         })
         console.log(response.data)
-=======
-      registe: function () {
-        [this.username == '' ? this.NameError = true : this.NameError = false];
-        [this.password == '' ? this.passwordError = true : this.passwordError = false];
-        [this.passwordVerify != this.password ? this.passwordVerifyError = true : this.passwordVerifyError = false];
-        [this.phoneNumber == '' ? this.phoneNumberError = true : this.phoneNumberError = false];
-        [this.email == '' ? this.emailError = true : this.emailError = false];
->>>>>>> 10253ceb18a4cb2417f4e8cfbcd932c5ff751159
       }
     }
   }
