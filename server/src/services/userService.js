@@ -19,8 +19,9 @@ module.exports={
 		user = new User({
 			firstName:req.body.firstName,
 			lastName: req.body.lastName,
-			Email:req.body.email,
-			Phone:req.body.phone,
+			Email: req.body.email,
+			Password: req.body.password,
+			Phone: req.body.phone,
 			WeChat: req.body.wechat,
 			IdNumber: idNumber,
 			CreateTime: createTime.getTime(),
@@ -29,11 +30,39 @@ module.exports={
 		user.save().then((doc) => {
 			res.send(doc);
 		}, (err) => {
-			res.status(400).send(err);
+			res.status(400).send("error in save operation");
 		});
 	},
 
-	getByFilter(filter, res){
+	async postRegister(req, res) {
+		console.log('postregister working');
+		const {error} = validateUser(req.body);
+		if (error) return res.status(400).send("error in vaildUser");
+		else console.log("no error in valid checking");
+		let user = await User.findOne({Email: req.body.email});
+		if (user) return res.status(400).send(`${req.body.email} already registered.`);
+		await console.log("no error in duplicate checking");
+
+		let createTime = new Date();
+		let idNumber = getUserNumber(createTime);
+		user = new User({
+			userName: req.body.userName,
+			Email: req.body.email,
+			Password: req.body.password,
+			Phone: req.body.phoneNumber,
+			IdNumber: idNumber
+		});
+		//console.log(user);
+		await user.save().then((doc) => { 
+			res.send(doc);
+		}, (err) => {
+			console.log(err);
+			console.log("error happen in save");
+			res.status(400).send("error in saving");
+		});
+	},
+
+	getByFilter(filter, res) {
 		User.find(filter).then((model) => {
 			res.send({model});
 		}, (err) => {
@@ -59,9 +88,6 @@ module.exports={
 			res.status(400).send(`bad request made by: ${err}`);
 		});
 	},
-
-	
-
 	patchById(pickArray, req, res){
 		let id = req.params.id;
 		let body = _.pick(req.body, pickArray);

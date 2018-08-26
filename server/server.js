@@ -1,8 +1,10 @@
 const express = require('express');
 const port = process.env.PORT || 3000 ;
 const bodyParser = require('body-parser');
+const config = require('config');
 const morgan = require('morgan')
 
+console.log(config.get('name'));
 let {mongoose} = require('./src/db/mongoose');
 let app = express();
 

@@ -39,11 +39,11 @@ let UserSchema = new Schema({
 	WeChat: {
 		type: String,
 		trim: true,
-		default: null,
-		unique: true
+		default: "null"
 	},
 	IdNumber: {
-		type: Number
+		type: Number,
+		default: 10000
 	},
 	CreateTime: {
 		type: Date
@@ -56,15 +56,13 @@ let UserSchema = new Schema({
 let User = mongoose.model('User', UserSchema, collectionName);
 
 function validateUser(user) {
-	let InfotobeChecked = {
+	let InfoToBeChecked = {
 		email: user.email,
 	}
-	console.log(InfotobeChecked);
 	const schema = {
 		email: Joi.string().min(0).max(50).required().email(),
 	}
-	console.log(`Joi validate decision is: ${Joi.validate(InfotobeChecked, schema)}`);
-	return Joi.validate(InfotobeChecked, schema);
+	return Joi.validate(InfoToBeChecked, schema);
 
 }
 module.exports = {User, validateUser};

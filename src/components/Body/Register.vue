@@ -21,24 +21,26 @@
   export default {
     data: function () {
       return {
-        username: '',
+        userName: '',
         password: '',
         passwordVerify: '',
         phoneNumber: '',
         email: '',
 
-        NameError: false,
-        passwordError: false,
-        passwordVerifyError: false,
-        phoneNumberError: false,
-        emailError: false,
+        // NameError: false,
+        // passwordError: false,
+        // passwordVerifyError: false,
+        // phoneNumberError: false,
+        // emailError: false,
       }
     },
     methods: {
       async register () {
         const response = await AuthenticationService.register({
           email: this.email,
-          password: this.password
+          password: this.password,
+          phoneNumber: this.phoneNumber,
+          userName:this.username
         })
       }
     }

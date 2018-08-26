@@ -6,6 +6,10 @@ module.exports = {
 	post(req, res){
 		service.postModel(req, res);
 	},
+
+	postByReg(req, res){
+		service.postRegister(req, res);
+	},
 	
 	get(req, res) {
 		//filter should come from request
