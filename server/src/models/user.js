@@ -58,9 +58,13 @@ let User = mongoose.model('User', UserSchema, collectionName);
 function validateUser(user) {
 	let InfoToBeChecked = {
 		email: user.email,
+		password: user.password
 	}
 	const schema = {
-		email: Joi.string().min(0).max(50).required().email(),
+		email: Joi.string().email(),
+		password: Joi.string().regex(
+			new RegExp('^[a-zA-Z0-9]{8,32}$')
+		)
 	}
 	return Joi.validate(InfoToBeChecked, schema);
 

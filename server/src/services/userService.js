@@ -8,12 +8,11 @@ module.exports={
 		/* input valid checking*/
 		const {error} = validateUser(req.body);
 		console.log(error);
-		if (error) return res.status(400).send(error.details[0].message);
-		
-
 		let user = await User.findOne({Email: req.body.email});
 		if (user) return res.status(400).send(`${req.body.email} already registered.`)
-
+		user = await User.findOne({Phone: req.body.phoneNumber});
+		if (user) return res.status(400).send(`${req.body.phoneNumber} already registered.`);
+		await console.log("no error in duplicate checking");
 		let createTime = new Date();
 		let idNumber = getUserNumber(createTime);
 		user = new User({
@@ -37,11 +36,31 @@ module.exports={
 	async postRegister(req, res) {
 		console.log('postregister working');
 		const {error} = validateUser(req.body);
-		if (error) return res.status(400).send("error in vaildUser");
+		if (error) {
+            switch (error.details[0].context.key) {
+                case 'email':
+                    return res.status(400).send({
+                        error: 'You must provide a valid email address'
+                    })
+                    
+                case 'password':
+                    return res.status(400).send({
+                        error: `The password provided failed to match the following rules:
+          <br>
+          1. It must contain ONLY the following character: lower case, upper case, numerics
+          <br>
+          2. The password length must bewteen 8-32. `
+                    })
+            }
+        }
 		else console.log("no error in valid checking");
 		let user = await User.findOne({Email: req.body.email});
 		if (user) return res.status(400).send(`${req.body.email} already registered.`);
 		await console.log("no error in duplicate checking");
+		user = await User.findOne({Phone: req.body.phoneNumber});
+		if (user) return res.status(400).send(`${req.body.phoneNumber} already registered.`);
+		await console.log("no error in duplicate checking");
+	
 
 		let createTime = new Date();
 		let idNumber = getUserNumber(createTime);
