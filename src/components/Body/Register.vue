@@ -14,6 +14,7 @@
       <input v-model="email" class="textbox" placeholder="Email">
       <button id="registerbutton" @click="register">Register</button>
     </div>
+    <div class="error" v-html="error">jklkj</div>
   </div>
 </template>
 <script>
@@ -26,7 +27,7 @@
         passwordVerify: '',
         phoneNumber: '',
         email: '',
-
+        error: null,
         // NameError: false,
         // passwordError: false,
         // passwordVerifyError: false,
@@ -36,14 +37,17 @@
     },
     methods: {
       async register () {
-        const response = await AuthenticationService.register({
+        try { await AuthenticationService.register({
           email: this.email,
           password: this.password,
           phoneNumber: this.phoneNumber,
           userName:this.username
         })
+      } catch (error) {
+        this.error = error.response.data.error
       }
     }
+  }
   }
 </script>
 <style scoped>
@@ -85,5 +89,8 @@
   }
   .Error{
    border-color:red;
+  }
+  .error{
+    color: red;
   }
 </style>

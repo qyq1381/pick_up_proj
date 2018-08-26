@@ -49,7 +49,7 @@ module.exports={
           <br>
           1. It must contain ONLY the following character: lower case, upper case, numerics
           <br>
-          2. The password length must bewteen 8-32. `
+          2. The password length must between 8-32. `
                     })
             }
         }
