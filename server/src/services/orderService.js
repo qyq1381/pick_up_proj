@@ -19,7 +19,7 @@ module.exports={
 			Address: req.body.address
 		});
 		order.save().then((doc) => {
-			res.send(doc);
+			res.status(200).send(doc);
 		}, (err) => {
 			res.status(400).send(err);
 		});
@@ -27,7 +27,7 @@ module.exports={
 
 	getByFilter(filter, res){
 		Order.find(filter).then((model) => {
-			res.send({model});
+			res.status(200).send({model});
 		}, (err) => {
 			res.status(400).send(`The error is "${err}"`);
 		}).catch((err)=>{

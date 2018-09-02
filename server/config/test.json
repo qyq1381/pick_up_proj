@@ -1,0 +1,6 @@
+{
+	"name":"Pick up Flight App - Production_test",
+	"configuration": {
+		"database" : "mongodb://localhost/PickUpFlight_tests"
+	}
+}

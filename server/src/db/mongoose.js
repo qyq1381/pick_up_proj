@@ -4,7 +4,7 @@ const database = config.get('configuration.database'); //database depend on envi
 console.log(database); 
 mongoose.Promise = global.Promise;
 mongoose.connect(database)
-		.then(() => console.log(`connected to ${database}`))
+		.then(() => console.log(`connected to ${database}...`))
 		.catch((err) => console.err("failed to connect mongodb", err));
 
 module.exports = {mongoose};
