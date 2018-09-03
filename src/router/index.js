@@ -7,6 +7,7 @@ import FAQ from '@/components/Body/FAQ.vue'
 import AboutUs from '@/components/Body/AboutUs.vue'
 import Register from '@/components/Body/Register.vue'
 import NotFound from '@/components/Body/404.vue'
+import back_end_ui from '@/components/Body/back_end_ui.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -50,7 +51,12 @@ export default new Router({
     {
       path: '*',
       redirect: '/404'
-    },  
+    },
+    {
+      path: '/back',
+      name: 'back',
+      component: back_end_ui
+    }  
 
   ]
 })
