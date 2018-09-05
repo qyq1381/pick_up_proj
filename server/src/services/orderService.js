@@ -9,14 +9,14 @@ module.exports={
 		let orderNumber = getOrderNumber(orderTime);
 		let order = new Order({
 			flightNumber : req.body.flightNumber,
-			Passenger: req.body.numpassenger,
-			largeLuggage: req.body.lgluggage,
-			smallLuggage: req.body.smluggage,
+			Passenger: req.body.Passenger,
+			largeLuggage: req.body.largeLuggage,
+			smallLuggage: req.body.smallLuggage,
 			orderTime: orderTime.getTime(),
 			orderTime_uni: orderTime.getTime(),
 			orderNumber: orderNumber,
 			departureDate: req.body.departureDate,
-			Address: req.body.address
+			address: req.body.address
 		});
 		order.save().then((doc) => {
 			res.status(200).send(doc);
