@@ -9,14 +9,14 @@ module.exports={
 		let orderNumber = getOrderNumber(orderTime);
 		let order = new Order({
 			flightNumber : req.body.flightNumber,
-			Passenger: req.body.numpassenger,
-			largeLuggage: req.body.lgluggage,
-			smallLuggage: req.body.smluggage,
+			Passenger: req.body.Passenger,
+			largeLuggage: req.body.largeLuggage,
+			smallLuggage: req.body.smallLuggage,
 			orderTime: orderTime.getTime(),
 			orderTime_uni: orderTime.getTime(),
 			orderNumber: orderNumber,
 			departureDate: req.body.departureDate,
-			Address: req.body.address
+			address: req.body.address
 		});
 		order.save().then((doc) => {
 			res.status(200).send(doc);
@@ -24,6 +24,7 @@ module.exports={
 			res.status(400).send(err);
 		});
 	},
+
 
 	getByFilter(filter, res){
 		Order.find().then((model) => {
@@ -33,6 +34,14 @@ module.exports={
 		}).catch((err)=>{
 			res.status(400).send(`The reject error is "${err}"`);
 		});
+	}
+	getAll(req, res){
+		Order.find().then((order) => {
+			res.send({order})
+		},(err) => {
+			res.status(400).send(err)
+		})
+
 	},
 
 	getById(req, res){
@@ -42,11 +51,11 @@ module.exports={
 		if(!ObjectID.isValid(id)){
 			return res.status(404).send();
 		}
-		Order.findById(id).then((model)=>{
-			if(!model){
+		Order.findById(id).then((order)=>{
+			if(!order){
 				return res.status(404).send();
 			}
-			res.send({model});
+			res.send({order});
 		}).catch((err)=>{
 			res.status(400).send(`bad request made by: ${err}`);
 		});

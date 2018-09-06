@@ -7,12 +7,16 @@ module.exports = {
 		service.postModel(req, res);
 	},
 	
-	get(req, res) {
-		//filter should come from request
-		const filter = {
-			//write filter
-		}
-		service.getByFilter(filter, req, res);
+	// get(req, res) {
+	// 	//filter should come from request
+	// 	const filter = {
+	// 		//write filter
+	// 	}
+	// 	service.getByFilter(filter, req, res);
+	// },
+
+	get(req,res) {
+		service.getAll(req,res)
 	},
 
 	getById(req, res) {

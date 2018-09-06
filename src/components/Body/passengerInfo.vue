@@ -7,7 +7,6 @@
 			:loading="false"
 			class="elevation-1"
 			>
-			<!--<v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>-->
 			<template slot="items" slot-scope="props">
 				<td>{{ props.item.IdNumber }}</td>
 				<td class="text-xs-left">{{ props.item.firstName }}</td>

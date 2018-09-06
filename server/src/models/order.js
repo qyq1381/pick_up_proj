@@ -31,14 +31,13 @@ let orderSchema = new Schema({
   orderNumber:{
     type: String,
   },
-  Address: {
-
-            address_line_1: String,
-            address_line_2: String,
-            city: String,
-            state: String,
-            zip: Number,
-            country: String
+  address: {
+    address_line_1: String,
+    address_line_2: String,
+    city: String,
+    state: String,
+    zip: Number,
+    country: String
   }
 });
 let Order = mongoose.model('Order', orderSchema, CollectionName);

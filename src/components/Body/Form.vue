@@ -16,9 +16,9 @@
       <div class="SelectContainer">
         <div>Flight Number:<input v-model="passengerInfo.flightNumber" class="inputbox"/></div>
         <div>Departure Date<input v-model="passengerInfo.departureDate" type="date" class="inputbox"/></div>
-        <div>Number of passenger:<input v-model="passengerInfo.numpassenger" class="inputbox" @keypress="isNumber(event)"/></div>
-        <div>Number of large luggage:<input v-model="passengerInfo.lgluggage" class="inputbox" @keypress="isNumber(event)"/></div>
-        <div>Number of small luggage:<input v-model="passengerInfo.smluggage" class="inputbox" @keypress="isNumber(event)" /></div>
+        <div>Number of passenger:<input v-model="passengerInfo.Passenger" class="inputbox" @keypress="isNumber(event)"/></div>
+        <div>Number of large luggage:<input v-model="passengerInfo.largeLuggage" class="inputbox" @keypress="isNumber(event)"/></div>
+        <div>Number of small luggage:<input v-model="passengerInfo.smallLuggage" class="inputbox" @keypress="isNumber(event)" /></div>
       </div>
       <div>
         <button id="submitbutton" @click="currentStep++" :class="'enableBTN'">Continue</button>
@@ -81,9 +81,9 @@
           lastName: '',
           phone: '',
           flightNumber: '',
-          numpassenger: '',
-          lgluggage: '',
-          smluggage: '',
+          Passenger: '',
+          largeLuggage: '',
+          smallLuggage: '',
           email: '',
           wechat: '',
           address: {
