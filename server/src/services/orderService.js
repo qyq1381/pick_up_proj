@@ -78,11 +78,11 @@ module.exports={
 			return res.status(400).send();
 		}
 
-		Order.findByIdAndUpdate(id, {$set: body}, {new: true}).then((model)=>{
-			if(!model){
+		Order.findByIdAndUpdate(id, {$set: body}, {new: true}).then((order)=>{
+			if(!order){
 				return res.status(404).send();
 			}
-			res.send({model});
+			res.send({order});
 		}).catch((err) => {
 			res.status(400).send(`bad request made by: ${err}`);
 		});
@@ -94,11 +94,11 @@ module.exports={
 		if(!ObjectID.isValid(_id)){
 			return res.status(404).send();
 		}
-		Order.findByIdAndRemove(_id).then((model) => {
-			if(!model){
+		Order.findByIdAndRemove(_id).then((order) => {
+			if(!order){
 				return res.status(404).send();
 			}
-			res.send({model});
+			res.send({order});
 		}).catch((err) => {
 			res.status(400).send(`bad request made by: ${err}`);
 		});

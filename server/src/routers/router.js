@@ -4,13 +4,13 @@ const UserController = require('../controller/UserController');
 const QueryController = require('../controller/QueryController');
 
 module.exports = (app) => {
-  app.post('/order', OrderController.post);
+  app.post('/order', OrderController.post); //
   app.post('/airport',AirportController.post);
   app.post('/user', UserController.post);
   app.post('/register', UserController.postByReg);
 
-  app.get('/order', OrderController.get);
-  app.get('/order/:id',OrderController.getById);
+  app.get('/order', OrderController.get); //
+  app.get('/order/:id',OrderController.getById); //
   
   app.get('/airport',AirportController.get);
   app.get('/airport/:id', AirportController.getById);
@@ -26,7 +26,7 @@ module.exports = (app) => {
   app.patch('/airport/:id',AirportController.patchById);
   app.patch('/user/:id', UserController.patchById);
 
-  app.delete('/order/:id', OrderController.deleteById);
+  app.delete('/order/:id', OrderController.deleteById); //
   app.delete('/airport/:id',AirportController.deleteById);
   app.delete('/user/:id', UserController.deleteById);
 }

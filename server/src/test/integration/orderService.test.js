@@ -170,7 +170,7 @@ describe('GET /order', () => {
     it('Should return err if the id is not found', (done) => { 
       let HexId = new ObjectID().toHexString()
       request(app)
-        .get(`/order/HexId`)
+        .get(`/order/${HexId}`)
         .expect(404)
         .end(done)
     })
@@ -178,6 +178,44 @@ describe('GET /order', () => {
     it('Should return err if the id is not valid', (done) => { 
       request(app)
         .get(`/order/123`)
+        .expect(404)
+        .end(done)
+    })
+  })
+
+  describe('DELETE /order/:id', () => {
+
+    it('Should delete order by id', (done) => {
+      let HexId = order[0]._id.toHexString()
+      request(app)
+        .delete(`/order/${HexId}` ) 
+        .expect(200)
+        .expect((res) => {
+          expect(res.body.order._id).toBe(HexId)
+        })
+        .end((err, res) => {
+          if(err) {
+            return done(err);
+          }
+        Order.findById(HexId).then((order) => {
+          console.log(order)
+          expect(order).toBeFalsy(); // toNotExist is not exist anymore
+          done()
+        }).catch((e) => done(e))
+      })
+    })
+
+    it('Should return err if the id is not found', (done) => { 
+      let HexId = new ObjectID().toHexString()
+      request(app)
+        .delete(`/order/${HexId}`)
+        .expect(404)
+        .end(done)
+    })
+
+    it('Should return err if the id is not valid', (done) => { 
+      request(app)
+        .delete(`/order/123`)
         .expect(404)
         .end(done)
     })
