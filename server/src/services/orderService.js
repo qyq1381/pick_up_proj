@@ -73,7 +73,7 @@ module.exports={
 	patchById(pickArray, req, res){
 		let id = req.params.id;
 		let body = _.pick(req.body, pickArray);
-
+			// console.log(req.body)
 		if(!ObjectID.isValid(id)) {
 			return res.status(400).send();
 		}

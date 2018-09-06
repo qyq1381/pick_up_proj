@@ -25,11 +25,26 @@ module.exports = {
 
 	patchById(req, res){
 		//pickArray should come from request
-		let pickArray = ['ContactName', 'DepartureDate',
-						'FlightNumber','Location',
-						'Passenger','Luggage',
-						'OrderNumber','IdNumber','PickupTime'];
+
+		let pickArray = [
+			'flightNumber', 
+			'Passenger', 
+			'largeLuggage', 
+			'smallLuggage', 
+			'departureDate',
+			'address_line_1', 
+			'address_line_2', 
+			'city', 
+			'state', 
+			'zip', 
+			'country'
+		  ];
+	
+		
+		  
+
 		service.patchById(pickArray, req, res);
+		// service.patchById(pickArray1, req, res);
 	},
 
 	deleteById(req, res){

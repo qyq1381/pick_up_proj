@@ -82,8 +82,8 @@ module.exports={
 	},
 
 	getByFilter(filter, res) {
-		User.find(filter).then((model) => {
-			res.send({model});
+		User.find(filter).then((order) => {
+			res.send({order});
 		}, (err) => {
 			res.status(400).send(`The error is "${err}"`);
 		}).catch((err)=>{
@@ -98,28 +98,27 @@ module.exports={
 		if(!ObjectID.isValid(id)){
 			return res.status(404).send();
 		}
-		User.findById(id).then((model)=>{
-			if(!model){
+		User.findById(id).then((order)=>{
+			if(!order){
 				return res.status(404).send();
 			}
-			res.send({model});
+			res.send({order});
 		}).catch((err)=>{
 			res.status(400).send(`bad request made by: ${err}`);
 		});
 	},
-	patchById(pickArray, req, res){
+	patchById(pickArray1, req, res){
 		let id = req.params.id;
 		let body = _.pick(req.body, pickArray);
-
+		// let body2 = _.pick(req.body.address, pickArray2); //have no idea why this is not work
 		if(!ObjectID.isValid(id)) {
 			return res.status(400).send();
 		}
-
-		User.findByIdAndUpdate(id, {$set: body}, {new: true}).then((model)=>{
-			if(!model){
+		User.findByIdAndUpdate(id, {$set: body}, {new: true}).then((order)=>{
+			if(!order){
 				return res.status(404).send();
 			}
-			res.send({model});
+			res.send({order});
 		}).catch((err) => {
 			res.status(400).send(`bad request made by: ${err}`);
 		});
@@ -131,11 +130,11 @@ module.exports={
 		if(!ObjectID.isValid(_id)){
 			return res.status(404).send();
 		}
-		User.findByIdAndRemove(_id).then((model) => {
-			if(!model){
+		User.findByIdAndRemove(_id).then((order) => {
+			if(!order){
 				return res.status(404).send();
 			}
-			res.send({model});
+			res.send({order});
 		}).catch((err) => {
 			res.status(400).send(`bad request made by: ${err}`);
 		});
