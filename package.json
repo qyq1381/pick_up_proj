@@ -27,7 +27,7 @@
     "vue-resource": "^1.5.1",
     "vue-router": "^3.0.1",
     "vue-source": "^1.1.1",
-    "vuetify": "^1.2.1"
+    "vuetify": "^1.2.3"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

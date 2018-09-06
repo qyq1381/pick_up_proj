@@ -26,7 +26,7 @@ const {Order} = require('../../models/order');
 
 beforeEach((done) => {
   Order.remove({}).then(() => {
-    done()
+    done();
   })
 })
 describe('POST /order', () => {
@@ -40,12 +40,12 @@ describe('POST /order', () => {
       country : "sad"
       },
       flightNumber : 123, 
-      Passenger : 12, 
+      numpassenger : 12, 
       largeLuggage : 12, 
       smallLuggage : 1, 
-      orderTime : "2018-08-26T04:36:49.996+0000", 
-      orderTime_uni : 1535258209996.0, 
-      orderNumber : 1535258209996299465, 
+      //orderTime : "2018-08-26T04:36:49.996+0000", 
+      //orderTime_uni : 1535258209996.0, 
+      //orderNumber : 1535258209996299465, 
       departureDate : "2018-08-30T00:00:00.000+0000"
     }
     request(app)
@@ -53,17 +53,21 @@ describe('POST /order', () => {
       .send(order)
       .expect(200)
       .expect((res) => {
-        expect(res.body.Passenger).toBe(12)
+        console.log(res.body);
+      let varable = res.body.Passenger;
+        expect(varable).toBe(12);
+      })
       .end((err, res) => {
         if (err) {
           return done(err);
         }
+
         Order.find().then((order) => {
+          console.log(order);
           expect(order[0].Passenger).toBe(12)
           done()
         }).catch((e) => done(e));
       })
     })
   })
-})
 

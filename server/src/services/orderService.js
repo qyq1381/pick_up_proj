@@ -26,7 +26,7 @@ module.exports={
 	},
 
 	getByFilter(filter, res){
-		Order.find(filter).then((model) => {
+		Order.find().then((model) => {
 			res.status(200).send({model});
 		}, (err) => {
 			res.status(400).send(`The error is "${err}"`);

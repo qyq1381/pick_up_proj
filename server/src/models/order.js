@@ -10,7 +10,7 @@ let orderSchema = new Schema({
   },
   departureDate:{
     type: Date,
-    require: true,
+    required: true,
   },  
   flightNumber:{
     type: String,
@@ -18,15 +18,15 @@ let orderSchema = new Schema({
   },  
   Passenger:{
     type: Number,
-    require: true
+    required: true
   },  
   largeLuggage:{
     type: Number,
-    require: true
+    required: true
   },
   smallLuggage: {
     type: Number,
-    require: true
+    required: true
   },
   orderNumber:{
     type: String,
