@@ -137,7 +137,7 @@ describe('GET /order', () => {
       .get('/order')
       .expect(200)
       .expect((res) => {
-        console.log(res.body);
+        // console.log(res.body);
         expect(res.body.order.length).toBe(1);
       })
       .end(done);
@@ -145,6 +145,7 @@ describe('GET /order', () => {
 })
 
   describe('GET /order/:id', () => {
+
     it('Should return order by id', (done) => {
       request(app)
         .get(`/order/${order[0]._id.toHexString()}` ) // generate a proper id
@@ -165,25 +166,22 @@ describe('GET /order', () => {
         })
         .end(done)
     })
-  })
 
-  // it('Should not produce a new order with invalid body data', (done) => { // always works
-  //   request(app)
-  //     .post('/order')
-  //     .send({})
-  //     .expect(400)
-  //     .end((err, res) => {
-  //       if (err) {
-  //         return done(err);
-  //       }
-  //     Order.find().then((order) => {
-  //       console.log(order[1])
-  //       expect(order.length).toBe(1)
-  //       done()
-  //     }).catch((e) => done(e));
-  //   })
-  // })
-// })
+    it('Should return err if the id is not found', (done) => { 
+      let HexId = new ObjectID().toHexString()
+      request(app)
+        .get(`/order/HexId`)
+        .expect(404)
+        .end(done)
+    })
+
+    it('Should return err if the id is not valid', (done) => { 
+      request(app)
+        .get(`/order/123`)
+        .expect(404)
+        .end(done)
+    })
+  })
 
 
 
