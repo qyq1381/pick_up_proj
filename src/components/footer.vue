@@ -24,7 +24,7 @@
     components: {
       footer_logo,
     }
-  }
+  };
 
 </script>
 

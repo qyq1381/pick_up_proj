@@ -17,10 +17,14 @@ module.exports = (app) => {
   app.get('/user', UserController.get);
   app.get('/user/:id', UserController.getById);
   
-  app.get('/query/bydayflight/:flightNumber', QueryController.getByDayFlight);
+
+  app.get('/query/bydayflight/getByFlightNumber',QueryController.getByFlightNumber);
+  app.get('/query/getFlightInfo', QueryController.getFlightInfo);
   app.get('/query/byday/:departureDate', QueryController.getByDay);
+  app.get('/query/userwithoutfilter', QueryController.getUserList);
   app.get('/query/incompleted', QueryController.getUserIncompleted);
   app.get('/query/notphone', QueryController.getUserNotPhone);
+
 
   app.patch('/order/:id', OrderController.patchById);
   app.patch('/airport/:id',AirportController.patchById);

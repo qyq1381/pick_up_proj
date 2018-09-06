@@ -8,6 +8,7 @@ import AboutUs from '@/components/Body/AboutUs.vue'
 import Register from '@/components/Body/Register.vue'
 import NotFound from '@/components/Body/404.vue'
 import back_end_ui from '@/components/Body/back_end_ui.vue'
+import passengerInfo from '@/components/Body/passengerInfo.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -56,7 +57,12 @@ export default new Router({
       path: '/back',
       name: 'back',
       component: back_end_ui
-    }  
+    },
+    {
+      path: '/passengerinfo',
+      name: 'Passenger Info',
+      component: passengerInfo
+    },  
 
   ]
 })

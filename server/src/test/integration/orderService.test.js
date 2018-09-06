@@ -24,6 +24,10 @@ const expect = require('expect');
 const {app} = require('../../../server');
 const {Order} = require('../../models/order');
 
+beforeEach((done) => {
+  Order.remove({}).then(() => {
+    done();
+
   let order = [{ address : {
     address_line_1 : "qwq", 
     address_line_2 : "qwq", 
@@ -80,6 +84,15 @@ describe('POST /order', () => {
       zip : 12312, 
       country : "sad"
       },
+<<<<<<< HEAD
+      flightNumber : 123, 
+      numpassenger : 12, 
+      largeLuggage : 12, 
+      smallLuggage : 1, 
+      //orderTime : "2018-08-26T04:36:49.996+0000", 
+      //orderTime_uni : 1535258209996.0, 
+      //orderNumber : 1535258209996299465, 
+      departureDate : "2018-08-30T00:00:00.000+0000"
       flightNumber : "123", 
       Passenger : 12, 
       largeLuggage : 12, 
@@ -88,12 +101,18 @@ describe('POST /order', () => {
       // orderTime_uni : 1535258209996.0, 
       // orderNumber : 1535258209996299465, 
       departureDate : new Date(2018, 08, 30)
+
     }
     request(app)
       .post('/order')
       .send(order1)
       .expect(200)
       .expect((res) => {
+
+        console.log(res.body);
+      let varable = res.body.Passenger;
+        expect(varable).toBe(12);
+
         // console.log(res.body)
         expect(res.body.address.address_line_1).toBe("qw")
         expect(res.body.address.address_line_2).toBe("qwe")
@@ -106,11 +125,21 @@ describe('POST /order', () => {
         expect(res.body.largeLuggage).toBe(12)
         expect(res.body.smallLuggage).toBe(1)
         expect(res.body.departureDate).toBe("2018-09-30T05:00:00.000Z") //different from database
+
       })
       .end((err, res) => {
         if (err) {
           return done(err);
         }
+
+
+        Order.find().then((order) => {
+          console.log(order);
+          expect(order[0].Passenger).toBe(12)
+          done()
+        }).catch((e) => done(e));
+      })
+
       Order.find().then((order) => {
         // console.log(JSON.stringify(order[0].departureDate))
         expect(order.length).toBe(3)
@@ -146,7 +175,6 @@ describe('POST /order', () => {
       }).catch((e) => done(e));
     })
   })
-})
 
 
 describe('GET /order', () => {

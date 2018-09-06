@@ -1,13 +1,22 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <v-app id="inspire">
+
+      <!-- <img src="./assets/logo.png"> -->
     <router-view/>
+    <backFooter></backFooter>
+    </v-app>
   </div>
 </template>
 
 <script>
+import backFooter from './components/footer/backFooter'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    backFooter,
+  }
 };
 </script>
 

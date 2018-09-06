@@ -25,21 +25,23 @@ module.exports={
 		});
 	},
 
-	// getByFilter(filter, res){
-	// 	Order.find(filter).then((order) => {
-	// 		res.status(200).send({order});
-	// 	}, (err) => {
-	// 		res.status(400).send(`The error is "${err}"`);
-	// 	}).catch((err)=>{
-	// 		res.status(400).send(`The reject error is "${err}"`);
-	// 	});
-	// },
+
+	getByFilter(filter, res){
+		Order.find().then((model) => {
+			res.status(200).send({model});
+		}, (err) => {
+			res.status(400).send(`The error is "${err}"`);
+		}).catch((err)=>{
+			res.status(400).send(`The reject error is "${err}"`);
+		});
+	},
 	getAll(req, res){
 		Order.find().then((order) => {
 			res.send({order})
 		},(err) => {
 			res.status(400).send(err)
 		})
+
 	},
 
 	getById(req, res){
