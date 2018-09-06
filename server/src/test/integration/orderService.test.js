@@ -24,9 +24,6 @@ const expect = require('expect');
 const {app} = require('../../../server');
 const {Order} = require('../../models/order');
 
-beforeEach((done) => {
-  Order.remove({}).then(() => {
-    done();
 
   let order = [{ address : {
     address_line_1 : "qwq", 
@@ -84,15 +81,6 @@ describe('POST /order', () => {
       zip : 12312, 
       country : "sad"
       },
-<<<<<<< HEAD
-      flightNumber : 123, 
-      numpassenger : 12, 
-      largeLuggage : 12, 
-      smallLuggage : 1, 
-      //orderTime : "2018-08-26T04:36:49.996+0000", 
-      //orderTime_uni : 1535258209996.0, 
-      //orderNumber : 1535258209996299465, 
-      departureDate : "2018-08-30T00:00:00.000+0000"
       flightNumber : "123", 
       Passenger : 12, 
       largeLuggage : 12, 
@@ -108,11 +96,6 @@ describe('POST /order', () => {
       .send(order1)
       .expect(200)
       .expect((res) => {
-
-        console.log(res.body);
-      let varable = res.body.Passenger;
-        expect(varable).toBe(12);
-
         // console.log(res.body)
         expect(res.body.address.address_line_1).toBe("qw")
         expect(res.body.address.address_line_2).toBe("qwe")
@@ -125,21 +108,11 @@ describe('POST /order', () => {
         expect(res.body.largeLuggage).toBe(12)
         expect(res.body.smallLuggage).toBe(1)
         expect(res.body.departureDate).toBe("2018-09-30T05:00:00.000Z") //different from database
-
       })
       .end((err, res) => {
         if (err) {
           return done(err);
         }
-
-
-        Order.find().then((order) => {
-          console.log(order);
-          expect(order[0].Passenger).toBe(12)
-          done()
-        }).catch((e) => done(e));
-      })
-
       Order.find().then((order) => {
         // console.log(JSON.stringify(order[0].departureDate))
         expect(order.length).toBe(3)
@@ -158,7 +131,7 @@ describe('POST /order', () => {
       }).catch((e) => done(e));
     })
   })
-
+})
   it('Should not produce a new order with invalid body data', (done) => { 
     request(app)
       .post('/order')
@@ -268,44 +241,40 @@ describe('GET /order', () => {
     })
   })
 
-  describe('UPDATE /order/:id', () => {
+  // describe('UPDATE /order/:id', () => {
 
-    it('Should update order by id', (done) => {
-      let HexId = order[0]._id.toHexString()
-      request(app)
-        .delete(`/order/${HexId}` ) 
-        .expect(200)
-        .expect((res) => {
-          expect(res.body.order._id).toBe(HexId)
-        })
-        .end((err, res) => {
-          if(err) {
-            return done(err);
-          }
-        Order.findById(HexId).then((order) => {
-          console.log(order)
-          expect(order).toBeFalsy(); // toNotExist() is not exist anymore...
-          done()
-        }).catch((e) => done(e))
-      })
-    })
+  //   it('Should update order by id', (done) => {
+  //     let HexId = order[0]._id.toHexString()
+  //     request(app)
+  //       .delete(`/order/${HexId}` ) 
+  //       .expect(200)
+  //       .expect((res) => {
+  //         expect(res.body.order._id).toBe(HexId)
+  //       })
+  //       .end((err, res) => {
+  //         if(err) {
+  //           return done(err);
+  //         }
+  //       Order.findById(HexId).then((order) => {
+  //         console.log(order)
+  //         expect(order).toBeFalsy(); // toNotExist() is not exist anymore...
+  //         done()
+  //       }).catch((e) => done(e))
+  //     })
+  //   })
 
-    it('Should return err if the id is not found', (done) => { 
-      let HexId = new ObjectID().toHexString()
-      request(app)
-        .delete(`/order/${HexId}`)
-        .expect(404)
-        .end(done)
-    })
+  //   it('Should return err if the id is not found', (done) => { 
+  //     let HexId = new ObjectID().toHexString()
+  //     request(app)
+  //       .delete(`/order/${HexId}`)
+  //       .expect(404)
+  //       .end(done)
+  //   })
 
-    it('Should return err if the id is not valid', (done) => { 
-      request(app)
-        .delete(`/order/123`)
-        .expect(404)
-        .end(done)
-    })
-  })
-
-
-
-
+  //   it('Should return err if the id is not valid', (done) => { 
+  //     request(app)
+  //       .delete(`/order/123`)
+  //       .expect(404)
+  //       .end(done)
+  //   })
+  // })
