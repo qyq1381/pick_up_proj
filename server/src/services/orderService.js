@@ -34,7 +34,7 @@ module.exports={
 		}).catch((err)=>{
 			res.status(400).send(`The reject error is "${err}"`);
 		});
-	}
+	},
 	getAll(req, res){
 		Order.find().then((order) => {
 			res.send({order})
