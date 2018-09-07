@@ -51,7 +51,6 @@
   }
 </script>
 <style scoped>
-<style scoped>
   #Register, #registerbox {
     display: flex;
     flex-direction: column;

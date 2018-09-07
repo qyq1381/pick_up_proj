@@ -25,14 +25,14 @@ const {app} = require('../../../server');
 const {Order} = require('../../models/order');
 
 
-  let order = [{ address : {
+  let order = [
+    {
     address_line_1 : "qwq", 
     address_line_2 : "qwq", 
     city : "qwq", 
     state : "qwq", 
     zip : 12345, 
-    country : "qwq"
-    },
+    country : "qwq",
     flightNumber : "qwq", 
     Passenger : 1, 
     largeLuggage : 1, 
@@ -43,14 +43,13 @@ const {Order} = require('../../models/order');
     departureDate : new Date(2018, 07, 30),
     _id: new ObjectID()
   },
-  { address : {
+  { 
     address_line_1 : "hhahh", 
     address_line_2 : "haha", 
     city : "hah", 
     state : "hah", 
     zip : 31245, 
-    country : "haha"
-    },
+    country : "haha",
     flightNumber : "hahah", 
     Passenger : 2, 
     largeLuggage : 2, 
@@ -73,14 +72,13 @@ const {Order} = require('../../models/order');
 describe('POST /order', () => {
 
   it('Should produce a new order', (done) => {
-    let order1 = { address : {
+    let order1 = {
       address_line_1 : "qw", 
       address_line_2 : "qwe", 
       city : "qw", 
       state : "ew", 
       zip : 12312, 
-      country : "sad"
-      },
+      country : "sad",
       flightNumber : "123", 
       Passenger : 12, 
       largeLuggage : 12, 
@@ -96,13 +94,13 @@ describe('POST /order', () => {
       .send(order1)
       .expect(200)
       .expect((res) => {
-        // console.log(res.body)
-        expect(res.body.address.address_line_1).toBe("qw")
-        expect(res.body.address.address_line_2).toBe("qwe")
-        expect(res.body.address.city).toBe("qw")
-        expect(res.body.address.state).toBe("ew")
-        expect(res.body.address.zip).toBe(12312)
-        expect(res.body.address.country).toBe("sad")
+        console.log(res.body)
+        expect(res.body.address_line_1).toBe("qw")
+        expect(res.body.address_line_2).toBe("qwe")
+        expect(res.body.city).toBe("qw")
+        expect(res.body.state).toBe("ew")
+        expect(res.body.zip).toBe(12312)
+        expect(res.body.country).toBe("sad")
         expect(res.body.flightNumber).toBe("123")
         expect(res.body.Passenger).toBe(12)
         expect(res.body.largeLuggage).toBe(12)
@@ -116,12 +114,12 @@ describe('POST /order', () => {
       Order.find().then((order) => {
         // console.log(JSON.stringify(order[0].departureDate))
         expect(order.length).toBe(3)
-        expect(order[2].address.address_line_1).toBe("qw")
-        expect(order[2].address.address_line_2).toBe("qwe")
-        expect(order[2].address.city).toBe("qw")
-        expect(order[2].address.state).toBe("ew")
-        expect(order[2].address.zip).toBe(12312)
-        expect(order[2].address.country).toBe("sad")
+        expect(order[2].address_line_1).toBe("qw")
+        expect(order[2].address_line_2).toBe("qwe")
+        expect(order[2].city).toBe("qw")
+        expect(order[2].state).toBe("ew")
+        expect(order[2].zip).toBe(12312)
+        expect(order[2].country).toBe("sad")
         expect(order[2].flightNumber).toBe("123")
         expect(order[2].Passenger).toBe(12)
         expect(order[2].largeLuggage).toBe(12)
@@ -173,12 +171,12 @@ describe('GET /order', () => {
         .expect((res) => {
           // console.log('又咋的了'+res.body.order)
           expect(res.body.order.Passenger).toBe(order[0].Passenger)
-          expect(res.body.order.address.address_line_1).toBe(order[0].address.address_line_1)
-          expect(res.body.order.address.address_line_2).toBe(order[0].address.address_line_2)
-          expect(res.body.order.address.city).toBe(order[0].address.city)
-          expect(res.body.order.address.state).toBe(order[0].address.state)
-          expect(res.body.order.address.zip).toBe(order[0].address.zip)
-          expect(res.body.order.address.country).toBe(order[0].address.country)
+          expect(res.body.order.address_line_1).toBe(order[0].address_line_1)
+          expect(res.body.order.address_line_2).toBe(order[0].address_line_2)
+          expect(res.body.order.city).toBe(order[0].city)
+          expect(res.body.order.state).toBe(order[0].state)
+          expect(res.body.order.zip).toBe(order[0].zip)
+          expect(res.body.order.country).toBe(order[0].country)
           expect(res.body.order.flightNumber).toBe(order[0].flightNumber)
           expect(res.body.order.largeLuggage).toBe(order[0].largeLuggage)
           expect(res.body.order.smallLuggage).toBe(order[0].smallLuggage)
@@ -241,40 +239,60 @@ describe('GET /order', () => {
     })
   })
 
-  // describe('UPDATE /order/:id', () => {
+  describe('UPDATE /order/:id', () => {
 
-  //   it('Should update order by id', (done) => {
-  //     let HexId = order[0]._id.toHexString()
-  //     request(app)
-  //       .delete(`/order/${HexId}` ) 
-  //       .expect(200)
-  //       .expect((res) => {
-  //         expect(res.body.order._id).toBe(HexId)
-  //       })
-  //       .end((err, res) => {
-  //         if(err) {
-  //           return done(err);
-  //         }
-  //       Order.findById(HexId).then((order) => {
-  //         console.log(order)
-  //         expect(order).toBeFalsy(); // toNotExist() is not exist anymore...
-  //         done()
-  //       }).catch((e) => done(e))
-  //     })
-  //   })
+    it('Should update order by id', (done) => {
+      let HexId = order[0]._id.toHexString()
+      let largeLuggage = 13,
+          smallLuggage = 15
+      request(app)
+        .patch(`/order/${HexId}` )
+        .send({
+          largeLuggage,
+          smallLuggage
+        }) 
+        .expect(200)
+        .expect((res) => {
+          expect(res.body.order.largeLuggage).toBe(largeLuggage)
+          expect(res.body.order.smallLuggage).toBe(smallLuggage)
+        })
+        .end((err, res) => {
+          if(err) {
+            return done(err);
+          }
+        Order.findById(HexId).then((order) => {
+          // console.log(order)
+          expect(order.largeLuggage).toBe(13);
+          expect(order.smallLuggage).toBe(15);
+          done()
+        }).catch((e) => done(e))
+      })
+    })
 
-  //   it('Should return err if the id is not found', (done) => { 
-  //     let HexId = new ObjectID().toHexString()
-  //     request(app)
-  //       .delete(`/order/${HexId}`)
-  //       .expect(404)
-  //       .end(done)
-  //   })
+    it('Should return err if the id is not found', (done) => { 
+      let HexId = new ObjectID().toHexString()
+      let largeLuggage = 13,
+          smallLuggage = 15
+      request(app)
+        .patch(`/order/${HexId}`)
+        .send({
+          largeLuggage,
+          smallLuggage
+        })
+        .expect(404)
+        .end(done)
+    })
 
-  //   it('Should return err if the id is not valid', (done) => { 
-  //     request(app)
-  //       .delete(`/order/123`)
-  //       .expect(404)
-  //       .end(done)
-  //   })
-  // })
+    it('Should return err if the id is not valid', (done) => { 
+      let largeLuggage = 13,
+          smallLuggage = 15
+      request(app)
+        .patch(`/order/123`)
+        .send({
+          largeLuggage,
+          smallLuggage
+        })
+        .expect(404)
+        .end(done)
+    })
+  })

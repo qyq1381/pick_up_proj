@@ -39,17 +39,11 @@ module.exports = {
 			'zip', 
 			'country'
 		  ];
-	
-		
-		  
-
 		service.patchById(pickArray, req, res);
-		// service.patchById(pickArray1, req, res);
+		// service.patchById(pickArray1, pickArray2, req, res);
 	},
-
+	
 	deleteById(req, res){
 		service.deleteById(req, res);
-	},
-
-	
+	},	
 }

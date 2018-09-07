@@ -16,7 +16,12 @@ module.exports={
 			orderTime_uni: orderTime.getTime(),
 			orderNumber: orderNumber,
 			departureDate: req.body.departureDate,
-			address: req.body.address
+			address_line_1: req.body.address_line_1,
+			address_line_2: req.body.address_line_2,
+			city: req.body.city,
+			state: req.body.state,
+			zip: req.body.zip,
+			country: req.body.country,
 		});
 		order.save().then((doc) => {
 			res.status(200).send(doc);
@@ -72,12 +77,12 @@ module.exports={
 		let Day = req.body.Day;
 	},
 
-	patchById(pickArray, req, res){
+	patchById(pickArray, req, res){ //may need add complete and completeAt
 		let id = req.params.id;
 		let body = _.pick(req.body, pickArray);
 			// console.log(req.body)
 		if(!ObjectID.isValid(id)) {
-			return res.status(400).send();
+			return res.status(404).send();
 		}
 
 		Order.findByIdAndUpdate(id, {$set: body}, {new: true}).then((order)=>{

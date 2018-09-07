@@ -40,12 +40,12 @@
     </div>
     <div id="page3" v-show="currentStep==3" style="background-color:lightblue">
       <div class="SelectContainer">
-        <div>Address line 1:<input v-model="passengerInfo.address.address_line_1" class="inputbox" /></div>
-        <div>Address line 2:<input v-model="passengerInfo.address.address_line_2" class="inputbox" /></div>
-        <div>City:<input v-model="passengerInfo.address.city"  class="inputbox" /></div>
-        <div>State/Province/Region:<input v-model="passengerInfo.address.state" class="inputbox" /></div>
-        <div>Zip/Postal Code:<input v-model="passengerInfo.address.zip" class="inputbox" @keypress="isNumber(event)"/></div>
-        <div>country:<input v-model="passengerInfo.address.country" class="inputbox" /></div>
+        <div>Address line 1:<input v-model="passengerInfo.address_line_1" class="inputbox" /></div>
+        <div>Address line 2:<input v-model="passengerInfo.address_line_2" class="inputbox" /></div>
+        <div>City:<input v-model="passengerInfo.city"  class="inputbox" /></div>
+        <div>State/Province/Region:<input v-model="passengerInfo.state" class="inputbox" /></div>
+        <div>Zip/Postal Code:<input v-model="passengerInfo.zip" class="inputbox" @keypress="isNumber(event)"/></div>
+        <div>country:<input v-model="passengerInfo.country" class="inputbox" /></div>
       </div>
       <div>
         <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
@@ -86,14 +86,12 @@
           smallLuggage: '',
           email: '',
           wechat: '',
-          address: {
-            address_line_1: '',
-            address_line_2: '',
-            city: '',
-            state: '',
-            zip: '',
-            country: ''
-          },
+          address_line_1: '',
+          address_line_2: '',
+          city: '',
+          state: '',
+          zip: '',
+          country: '',
           departureDate:''
         }
 
