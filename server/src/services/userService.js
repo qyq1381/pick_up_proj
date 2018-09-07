@@ -10,8 +10,8 @@ module.exports={
 		console.log(error);
 		let user = await User.findOne({Email: req.body.email});
 		if (user) return res.status(400).send(`${req.body.email} already registered.`)
-		user = await User.findOne({Phone: req.body.phoneNumber});
-		if (user) return res.status(400).send(`${req.body.phoneNumber} already registered.`);
+		user = await User.findOne({Phone: req.body.phone});
+		if (user) return res.status(400).send(`${req.body.phone} already registered.`);
 		await console.log("no error in duplicate checking");
 		let createTime = new Date();
 		let idNumber = getUserNumber(createTime);
@@ -57,8 +57,8 @@ module.exports={
 		let user = await User.findOne({Email: req.body.email});
 		if (user) return res.status(400).send(`${req.body.email} already registered.`);
 		await console.log("no error in duplicate checking");
-		user = await User.findOne({Phone: req.body.phoneNumber});
-		if (user) return res.status(400).send(`${req.body.phoneNumber} already registered.`);
+		user = await User.findOne({Phone: req.body.phone});
+		if (user) return res.status(400).send(`${req.body.phone} already registered.`);
 		await console.log("no error in duplicate checking");
 	
 
@@ -68,7 +68,7 @@ module.exports={
 			userName: req.body.userName,
 			Email: req.body.email,
 			Password: req.body.password,
-			Phone: req.body.phoneNumber,
+			Phone: req.body.phone,
 			IdNumber: idNumber
 		});
 		//console.log(user);
@@ -81,14 +81,21 @@ module.exports={
 		});
 	},
 
-	getByFilter(filter, res) {
-		User.find(filter).then((order) => {
-			res.send({order});
-		}, (err) => {
-			res.status(400).send(`The error is "${err}"`);
-		}).catch((err)=>{
-			res.status(400).send(`The reject error is "${err}"`);
-		});
+	// getByFilter(filter, res) {
+	// 	User.find(filter).then((user) => {
+	// 		res.send({user});
+	// 	}, (err) => {
+	// 		res.status(400).send(`The error is "${err}"`);
+	// 	}).catch((err)=>{
+	// 		res.status(400).send(`The reject error is "${err}"`);
+	// 	});
+	// },
+	getAll(req, res){
+		User.find().then((user) => {
+			res.send({user})
+		},(err) => {
+			res.status(400).send(err)
+		})
 	},
 
 	getById(req, res){
@@ -98,27 +105,26 @@ module.exports={
 		if(!ObjectID.isValid(id)){
 			return res.status(404).send();
 		}
-		User.findById(id).then((order)=>{
-			if(!order){
+		User.findById(id).then((user)=>{
+			if(!user){
 				return res.status(404).send();
 			}
-			res.send({order});
+			res.send({user});
 		}).catch((err)=>{
 			res.status(400).send(`bad request made by: ${err}`);
 		});
 	},
-	patchById(pickArray1, req, res){
+	patchById(pickArray, req, res){
 		let id = req.params.id;
 		let body = _.pick(req.body, pickArray);
-		// let body2 = _.pick(req.body.address, pickArray2); //have no idea why this is not work
 		if(!ObjectID.isValid(id)) {
-			return res.status(400).send();
+			return res.status(404).send();
 		}
-		User.findByIdAndUpdate(id, {$set: body}, {new: true}).then((order)=>{
-			if(!order){
+		User.findByIdAndUpdate(id, {$set: body}, {new: true}).then((user)=>{
+			if(!user){
 				return res.status(404).send();
 			}
-			res.send({order});
+			res.send({user});
 		}).catch((err) => {
 			res.status(400).send(`bad request made by: ${err}`);
 		});
@@ -130,11 +136,11 @@ module.exports={
 		if(!ObjectID.isValid(_id)){
 			return res.status(404).send();
 		}
-		User.findByIdAndRemove(_id).then((order) => {
-			if(!order){
+		User.findByIdAndRemove(_id).then((user) => {
+			if(!user){
 				return res.status(404).send();
 			}
-			res.send({order});
+			res.send({user});
 		}).catch((err) => {
 			res.status(400).send(`bad request made by: ${err}`);
 		});
