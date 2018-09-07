@@ -94,7 +94,7 @@ describe('POST /order', () => {
       .send(order1)
       .expect(200)
       .expect((res) => {
-        console.log(res.body)
+        // console.log(res.body)
         expect(res.body.address_line_1).toBe("qw")
         expect(res.body.address_line_2).toBe("qwe")
         expect(res.body.city).toBe("qw")

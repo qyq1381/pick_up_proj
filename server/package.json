@@ -5,11 +5,11 @@
   "author": "qyq1381 <qyq1381@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "NODE_ENV=prd nodemon server.js",
     "start": "npm run dev",
     "build": "node build/build.js",
     "test": "mocha src/test/integration/*.test.js",
-    "test-watch": "nodemon --exec 'npm test'"
+    "test-watch": "NODE_ENV=test nodemon --exec 'npm test'"
   },
   "dependencies": {
     "axios": "^0.18.0",

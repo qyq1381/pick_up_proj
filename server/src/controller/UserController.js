@@ -11,12 +11,15 @@ module.exports = {
 		service.postRegister(req, res);
 	},
 	
-	get(req, res) {
-		//filter should come from request
-		const filter = {
-			//write filter
-		}
-		service.getByFilter(filter, req, res);
+	// get(req, res) {
+	// 	//filter should come from request
+	// 	const filter = {
+	// 		//write filter
+	// 	}
+	// 	service.getByFilter(filter, req, res);
+	// },
+	get(req,res) {
+		service.getAll(req,res)
 	},
 
 	getById(req, res) {
@@ -25,7 +28,7 @@ module.exports = {
 
 	patchById(req, res){
 		//pickArray should come from request
-		let pickArray = ['UserName', 'Email','Phone','UserPsw'];
+		let pickArray = ['userName', 'email','phone','password'];
 		service.patchById(pickArray, req, res);
 	},
 
