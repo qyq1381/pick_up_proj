@@ -27,7 +27,7 @@ let UserSchema = new Schema({
 	Email: {
 		type: String,
 		trim: true,
-		unique: true, //won't save same email in mongodb
+		unique: true, //won't save duplicate email in mongodb
 		required: true
 	},
 	Phone: {
@@ -35,6 +35,8 @@ let UserSchema = new Schema({
 		trim: true,
 		default: null,
 		unique: true,
+		index: true,
+		sparse: true
 	},
 	WeChat: {
 		type: String,

@@ -7,6 +7,8 @@ module.exports={
 	getPassengerLuggageByDayFlight(req, res){
 		let flightNumber = req.query.flightnumber;
 		let date = req.query.date;
+		console.log("date"+date);
+		console.log("Num"+flightNumber);
 		let smallLuggage = 0;
 		let largeLuggage = 0;
 		let Passenger = 0;
@@ -30,7 +32,7 @@ module.exports={
 				responseData = {
 					sumSmallLuggage: smallLuggage,
 					sumLargeLuggage: largeLuggage,
-					sumPassener: Passenger,
+					sumPassenger: Passenger,
 				}
 				res.status(200).send(responseData);
 			}).catch((err)=>{

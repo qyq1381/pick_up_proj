@@ -15,6 +15,8 @@ const {User} = require('../../models/user');
       "firstName" : "1", 
       "lastName" : "1", 
       "Email" : "1340019726@qq.com", 
+      "CreateTime": "2018-09-08T15:26:44.717Z",
+      "CreateTime_uni": 1536420404717.0,
       _id: new ObjectID()
   },
   { 
@@ -25,8 +27,34 @@ const {User} = require('../../models/user');
     "firstName" : "2", 
     "lastName" : "2", 
     "Email" : "11@gmail.com", 
+    "CreateTime": "2018-08-26T05:21:38.824Z",
+    "CreateTime_uni": 1535260898824.0,
     _id: new ObjectID()
   }
+//   {
+//     "Password" : "asdaejq", 
+//     "Phone" : null, 
+//     "WeChat" : "aksd", 
+//     "userName" : "haqwnsdn", 
+//     "firstName" : "ks", 
+//     "lastName" : "loas", 
+//     "Email" : "dnwkvlaksd@qq.com", 
+//     "CreateTime": "2018-09-07T15:26:44.717Z",
+//     "CreateTime_uni": 1536420304717.0,
+//     _id: new ObjectID()
+// },
+// { 
+//   "Password" : "lkakjsdj", 
+//   "Phone" : 1235123125, 
+//   "WeChat" : "asd", 
+//   "userName" : "asdasd", 
+//   "firstName" : "22", 
+//   "lastName" : "22", 
+//   "Email" : "11asd@gmail.com", 
+//   "CreateTime": "2018-08-27T05:21:38.824Z",
+//   "CreateTime_uni": 1535260897824.0,
+//   _id: new ObjectID()
+// }
  ]
  beforeEach((done) => {
   User.remove({}).then(() => {
@@ -51,7 +79,7 @@ describe('POST /user', () => {
       .send(user1)
       .expect(200)
       .expect((res) => {
-        console.log(res.body)
+        // console.log(res.body)
         expect(res.body.firstName).toBe("3")
         expect(res.body.lastName).toBe("3")
         expect(res.body.Password).toBe("1113123123")
@@ -291,3 +319,32 @@ describe('GET /user', () => {
         .end(done)
     })
   })
+
+  describe('GET /query/userwithoutfilter', () => {
+
+    it('Should get flight information with specific filter (no filter right now)', (done) => {
+      request(app)
+        .get('/query/userwithoutfilter')
+        .expect(200)
+        .expect((res) => {
+          // console.log(res.body[1]);
+          expect(res.body.length).toBe(2);
+          expect(res.body[1].WeChat).toBe("qw")
+        })
+        .end(done);
+    })
+  })
+
+  // describe('GET /query/notphone', () => {
+
+  //   it('Should get all users, who have registered 7 days with no phone information', (done) => {
+  //     request(app)
+  //       .get('/query/notphone')
+  //       .expect(200)
+  //       .expect((res) => {
+  //         console.log(res);
+  //         // expect(res.body.user.length).toBe(1);
+  //       })
+  //       .end(done);
+  //   })
+  // })

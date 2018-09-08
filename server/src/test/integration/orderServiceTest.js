@@ -37,8 +37,8 @@ const {Order} = require('../../models/order');
     Passenger : 1, 
     largeLuggage : 1, 
     smallLuggage : 1, 
-    // orderTime : "2018-08-26T04:36:49.996+0000", 
-    // orderTime_uni : 1535258209996.0, 
+    orderTime : "2018-08-26T04:36:49.996Z", 
+    orderTime_uni : 1535258209996.0, 
     // orderNumber : 1535258209996299465, 
     departureDate : new Date(2018, 07, 30),
     _id: new ObjectID()
@@ -54,8 +54,8 @@ const {Order} = require('../../models/order');
     Passenger : 2, 
     largeLuggage : 2, 
     smallLuggage : 1, 
-    // orderTime : "2018-08-26T04:36:49.996+0000", 
-    // orderTime_uni : 1535258209996.0, 
+    orderTime : "2018-08-26T04:36:49.996Z", 
+    orderTime_uni : 1535258209996.0, 
     // orderNumber : 1535258209996299465, 
     departureDate : new Date(2018, 07, 31),
     _id: new ObjectID()
@@ -297,3 +297,59 @@ describe('GET /order', () => {
         .end(done)
     })
   })
+
+  describe('GET /query/bydayflight/getByFlightNumber', () => {
+
+    it('Should get luggage information of specific flight by day', (done) => {
+      request(app)
+        .get('/query/bydayflight/getByFlightNumber')
+        .query({
+          flightnumber: "qwq" ,
+          date: "2018-08-30"
+        })
+        .expect(200)
+        .expect((res) => {
+          // console.log(res.body);
+          expect(res.body.sumSmallLuggage).toBe(1);
+          expect(res.body.sumLargeLuggage).toBe(1);
+          expect(res.body.sumPassenger).toBe(1);
+        })
+        .end(done);
+    })
+  })
+
+  describe('GET /query/getFlightInfo', () => {
+
+    it('Should get flight information by flightNumber', (done) => {
+      request(app)
+        .get('/query/getFlightInfo')
+        .query({
+          flightnumber: "hahah"
+        })
+        .expect(200)
+        .expect((res) => {
+          // console.log(res.body);
+          expect(res.body.length).toBe(1);
+          expect(res.body[0].zip).toBe(31245);
+        })
+        .end(done);
+    })
+  })
+
+
+  describe('GET /query/byday/:departureDate', () => {
+
+    it('Should return order by departureDate', (done) => {
+      // console.log(order[1].departureDate)
+      request(app)
+        .get(`/query/byday/${order[1].departureDate}` ) // generate a proper id
+        .expect(200)
+        .expect((res) => {
+          // console.log(res.body)
+          expect(res.body.sumPassenger).toBe(2)
+        })
+        .end(done)
+    })
+  })
+
+  
