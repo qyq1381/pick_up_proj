@@ -40,7 +40,7 @@
         try { await AuthenticationService.register({
           email: this.email,
           password: this.password,
-          phoneNumber: this.phoneNumber,
+          phone: this.phone,
           userName:this.username
         })
       } catch (error) {

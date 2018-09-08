@@ -28,7 +28,7 @@ module.exports = {
 
 	patchById(req, res){
 		//pickArray should come from request
-		let pickArray = ['userName', 'Email','Phone','Password'];
+		let pickArray = ['userName', 'Email','Phone','Password', 'WeChat'];
 		service.patchById(pickArray, req, res);
 	},
 

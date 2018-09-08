@@ -20,6 +20,7 @@ module.exports={
 			lastName: req.body.lastName,
 			Email: req.body.email,
 			Password: req.body.password,
+			userName: req.body.userName,
 			Phone: req.body.phone,
 			WeChat: req.body.wechat,
 			IdNumber: idNumber,
@@ -114,6 +115,7 @@ module.exports={
 			res.status(400).send(`bad request made by: ${err}`);
 		});
 	},
+
 	patchById(pickArray, req, res){
 		let id = req.params.id;
 		let body = _.pick(req.body, pickArray);

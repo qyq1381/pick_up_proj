@@ -31,7 +31,7 @@ let UserSchema = new Schema({
 		required: true
 	},
 	Phone: {
-		type: String,
+		type: Number,
 		trim: true,
 		default: null,
 		unique: true,

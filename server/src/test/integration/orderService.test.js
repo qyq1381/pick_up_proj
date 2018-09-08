@@ -68,7 +68,7 @@ const {Order} = require('../../models/order');
       done()
     })
   })
-
+// console.log(Order)
 describe('POST /order', () => {
 
   it('Should produce a new order', (done) => {
@@ -130,7 +130,7 @@ describe('POST /order', () => {
     })
   })
 })
-  it('Should not produce a new order with invalid body data', (done) => { 
+  it('Should not produce a new order with invalid body data111', (done) => { 
     request(app)
       .post('/order')
       .send({})
@@ -253,6 +253,7 @@ describe('GET /order', () => {
         }) 
         .expect(200)
         .expect((res) => {
+            // console.log(res.body.order)
           expect(res.body.order.largeLuggage).toBe(largeLuggage)
           expect(res.body.order.smallLuggage).toBe(smallLuggage)
         })
@@ -261,7 +262,7 @@ describe('GET /order', () => {
             return done(err);
           }
         Order.findById(HexId).then((order) => {
-          // console.log(order)
+        //   console.log(order)
           expect(order.largeLuggage).toBe(13);
           expect(order.smallLuggage).toBe(15);
           done()
