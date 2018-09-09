@@ -1,17 +1,5 @@
 <template>
-  <!-- <div id="root">
-    <step-progress :length="4" :currentStep="currentStep" :stepName="stepName"></step-progress> -->
-    <!--
-    <div class="SelectContainer">
-          <div>First Name:<input v-model="passengerInfo.firstName" class="inputbox" /></div>
-          <div>Last Name:<input v-model="passengerInfo.lastName" class="inputbox" /></div>
-          <div>Phone Number:<input v-model="passengerInfo.phone" class="inputbox" /></div>
-          <div>Flight Number:<input v-model="passengerInfo.flightNumber" class="inputbox" /></div>
-          <div>Number of passenger:<input v-model="passengerInfo.numpassenger" class="inputbox" /></div>
-          <div>Weight of luggage:<input v-model="passengerInfo.luggage" class="inputbox" /></div>
-          <button id="submitbutton" @click="" :class="'enableBTN'">Continue</button>
-        </div>
-    -->
+  
     <!-- <div id="page1" v-show="currentStep==1" style="background-color:lightgreen">
       <div class="SelectContainer">
         <div>Flight Number:<input v-model="passengerInfo.flightNumber" class="inputbox"/></div>
@@ -61,7 +49,74 @@
         <button id="submitbutton" @click="submitvalue()" :class="'enableBTN'">Submit</button>
       </div>
     </div> -->
-
+   <v-app id="inspire">
+    <v-stepper v-model="e1">
+      <v-stepper-header>
+        <v-stepper-step :complete="e1 > 1" step="1">Name of step 1</v-stepper-step>
+  
+        <v-divider></v-divider>
+  
+        <v-stepper-step :complete="e1 > 2" step="2">Name of step 2</v-stepper-step>
+  
+        <v-divider></v-divider>
+  
+        <v-stepper-step step="3">Name of step 3</v-stepper-step>
+      </v-stepper-header>
+  
+      <v-stepper-items>
+        <v-stepper-content step="1">
+          <v-card
+            class="mb-5"
+            color="grey lighten-1"
+            height="200px"
+          ></v-card>
+  
+          <v-btn
+            color="primary"
+            @click="e1 = 2"
+          >
+            Continue
+          </v-btn>
+  
+          <v-btn flat>Cancel</v-btn>
+        </v-stepper-content>
+  
+        <v-stepper-content step="2">
+          <v-card
+            class="mb-5"
+            color="grey lighten-1"
+            height="200px"
+          ></v-card>
+  
+          <v-btn
+            color="primary"
+            @click="e1 = 3"
+          >
+            Continue
+          </v-btn>
+  
+          <v-btn flat>Cancel</v-btn>
+        </v-stepper-content>
+  
+        <v-stepper-content step="3">
+          <v-card
+            class="mb-5"
+            color="grey lighten-1"
+            height="200px"
+          ></v-card>
+  
+          <v-btn
+            color="primary"
+            @click="e1 = 1"
+          >
+            Continue
+          </v-btn>
+  
+          <v-btn flat>Cancel</v-btn>
+        </v-stepper-content>
+      </v-stepper-items>
+    </v-stepper>
+  </v-app>
   </div>
 </template>
 
@@ -115,7 +170,7 @@
   //       }
   //     }
   //   }
-  // }
+   }
 </script>
 
 <style scoped>
