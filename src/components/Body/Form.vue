@@ -1,244 +1,298 @@
 <template>
-  
-    <!-- <div id="page1" v-show="currentStep==1" style="background-color:lightgreen">
-      <div class="SelectContainer">
-        <div>Flight Number:<input v-model="passengerInfo.flightNumber" class="inputbox"/></div>
-        <div>Departure Date<input v-model="passengerInfo.departureDate" type="date" class="inputbox"/></div>
-        <div>Number of passenger:<input v-model="passengerInfo.Passenger" class="inputbox" @keypress="isNumber(event)"/></div>
-        <div>Number of large luggage:<input v-model="passengerInfo.largeLuggage" class="inputbox" @keypress="isNumber(event)"/></div>
-        <div>Number of small luggage:<input v-model="passengerInfo.smallLuggage" class="inputbox" @keypress="isNumber(event)" /></div>
-      </div>
-      <div>
-        <button id="submitbutton" @click="currentStep++" :class="'enableBTN'">Continue</button>
-      </div>
-    </div>
-    <div id="page2" v-show="currentStep==2" style="background-color:lightyellow">
-      <div class="SelectContainer">
-        <div>First Name:<input v-model="passengerInfo.firstName" class="inputbox" /></div>
-        <div>Last Name:<input v-model="passengerInfo.lastName" class="inputbox" /></div>
-        <div>E-mail:<input v-model="passengerInfo.email" type="email" class="inputbox" /></div>
-        <div>WeChat ID:<input v-model="passengerInfo.wechat" class="inputbox" /></div>
-      </div>
-      <div>
-        <div>
-          <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
-          <button id="submitbutton" @click="currentStep++" :class="'enableBTN'">Continue</button>
-        </div>
-      </div>
-    </div>
-    <div id="page3" v-show="currentStep==3" style="background-color:lightblue">
-      <div class="SelectContainer">
-        <div>Address line 1:<input v-model="passengerInfo.address_line_1" class="inputbox" /></div>
-        <div>Address line 2:<input v-model="passengerInfo.address_line_2" class="inputbox" /></div>
-        <div>City:<input v-model="passengerInfo.city"  class="inputbox" /></div>
-        <div>State/Province/Region:<input v-model="passengerInfo.state" class="inputbox" /></div>
-        <div>Zip/Postal Code:<input v-model="passengerInfo.zip" class="inputbox" @keypress="isNumber(event)"/></div>
-        <div>country:<input v-model="passengerInfo.country" class="inputbox" /></div>
-      </div>
-      <div>
-        <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
-        <button id="submitbutton" @click="currentStep++" :class="'enableBTN'">Continue</button>
-      </div>
-    </div>
-    <div id="page4" v-show="currentStep==4" style="background-color:lightpink">
-      <div class="SelectContainer">
-        <div>Phone number:<input v-model="passengerInfo.phone" input='tel' class="inputbox" @keypress="isNumber(event)"/></div>
-      </div>
-      <div>
-        <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
-        <button id="submitbutton" @click="submitvalue()" :class="'enableBTN'">Submit</button>
-      </div>
-    </div> -->
-   <v-app id="inspire">
+  <v-container>
+
     <v-stepper v-model="e1">
       <v-stepper-header>
-        <v-stepper-step :complete="e1 > 1" step="1">Name of step 1</v-stepper-step>
-  
+        <v-stepper-step :rules="[() =>passengerInfo.departureDate!=''&& passengerInfo.flightNumber!=''&&passengerInfo.numpassenger!=''&& passengerInfo.largeLuggage!=''&&passengerInfo.smallLuggage!='']" :complete="e1 > 1" step="1">Name of step 1</v-stepper-step>
+
         <v-divider></v-divider>
-  
-        <v-stepper-step :complete="e1 > 2" step="2">Name of step 2</v-stepper-step>
-  
+
+        <v-stepper-step :rules="[() => passengerInfo.firstName!=''&&passengerInfo.lastName!=''&& passengerInfo.email!='']" :complete="e1 > 2" step="2">Name of step 2</v-stepper-step>
+
         <v-divider></v-divider>
-  
-        <v-stepper-step step="3">Name of step 3</v-stepper-step>
+
+        <v-stepper-step :rules="[() => passengerInfo.address_line_1!=''&&passengerInfo.city!=''&& passengerInfo.state!=''&& passengerInfo.zip!=''&& passengerInfo.country!='']" :complete="e1 > 3" step="3">Name of step 3</v-stepper-step>
+
+        <v-divider></v-divider>
+
+        <v-stepper-step :rules="[() => passengerInfo.firstName!=''&&passengerInfo.lastName!=''&& passengerInfo.email!='']" step="4">Name of step 4</v-stepper-step>
+
       </v-stepper-header>
-  
+
       <v-stepper-items>
-        <v-stepper-content step="1">
-          <v-card
-            class="mb-5"
-            color="grey lighten-1"
-            height="200px"
-          ></v-card>
-  
-          <v-btn
-            color="primary"
-            @click="e1 = 2"
-          >
+        <v-stepper-content  step="1">
+
+          <v-layout justify-center>
+            <v-flex xs12 sm10 md8 lg6>
+              <v-card ref="form">
+                <v-card-text>
+
+                  <v-text-field v-model="passengerInfo.flightNumber"
+                                :rules="[() => !!passengerInfo.flightNumber || 'This field is required']"
+                                :error-messages="errorMessages"
+                                label="Flight Number*"
+                                mask="AA####A"
+                                required></v-text-field>
+                  <v-text-field v-model="passengerInfo.departureDate"
+                                :rules="[() => !!passengerInfo.departureDate || 'This field is required']"
+                                :error-messages="errorMessages"
+                                label="Departure Date*"
+                                type="date"
+                                required></v-text-field>
+                  <v-text-field v-model="passengerInfo.Passenger"
+                                :rules="[() => !!passengerInfo.Passenger || 'This field is required']"
+                                :error-messages="errorMessages"
+                                label="Number of passenger*"
+                                mask="##"
+                                required></v-text-field>
+                  <v-text-field v-model="passengerInfo.largeLuggage"
+                                :rules="[() => !!passengerInfo.largeLuggage || 'This field is required']"
+                                :error-messages="errorMessages"
+                                mask="##"
+                                label="Number of large luggage*"
+                                placeholder="large luggage Standard"
+                                required></v-text-field>
+                  <v-text-field v-model="passengerInfo.smallLuggage"
+                                :rules="[() => !!passengerInfo.smallLuggage || 'This field is required']"
+                                :error-messages="errorMessages"
+                                label="Number of small luggage*"
+                                placeholder="small luggage Standard"
+                                mask="##"
+                                required></v-text-field>
+                </v-card-text>
+                <v-divider class="mt-5"></v-divider>
+
+              </v-card>
+            </v-flex>
+          </v-layout>
+
+
+          <v-btn color="primary"
+                 @click="e1 = 2">
             Continue
           </v-btn>
-  
-          <v-btn flat>Cancel</v-btn>
+
         </v-stepper-content>
-  
+
         <v-stepper-content step="2">
-          <v-card
-            class="mb-5"
-            color="grey lighten-1"
-            height="200px"
-          ></v-card>
-  
-          <v-btn
-            color="primary"
-            @click="e1 = 3"
-          >
+          <v-layout justify-center>
+            <v-flex xs12 sm10 md8 lg6>
+              <v-card ref="form">
+                <v-card-text>
+                  <v-text-field v-model="passengerInfo.firstName"
+                                :rules="[() => !!passengerInfo.firstName || 'This field is required']"
+                                :error-messages="errorMessages"
+                                label="First Name*"
+                                placeholder="John"
+                                mask="AAAAAAAAAAA"
+                                required></v-text-field>
+                  <v-text-field v-model="passengerInfo.lastName"
+                                :rules="[() => !!passengerInfo.lastName || 'This field is required']"
+                                :error-messages="errorMessages"
+                                label="Last Name*"
+                                placeholder="Doe"
+                                mask="AAAAAAAAAAA"
+                                required></v-text-field>
+                  <v-text-field v-model="passengerInfo.email"
+                                :rules="[() => !!passengerInfo.email || 'This field is required']"
+                                :error-messages="errorMessages"
+                                label="Email*"
+                                required></v-text-field>
+                  <v-text-field v-model="passengerInfo.wechat"
+                                :error-messages="errorMessages"
+                                label="WeChat"></v-text-field>
+
+                </v-card-text>
+                <v-divider class="mt-5"></v-divider>
+
+              </v-card>
+            </v-flex>
+          </v-layout>
+
+          <v-btn flat @click="e1 = 1">Previous</v-btn>
+          <v-btn color="primary"
+                 @click="e1 = 3">
             Continue
           </v-btn>
-  
-          <v-btn flat>Cancel</v-btn>
+
+
         </v-stepper-content>
-  
+
         <v-stepper-content step="3">
-          <v-card
-            class="mb-5"
-            color="grey lighten-1"
-            height="200px"
-          ></v-card>
-  
-          <v-btn
-            color="primary"
-            @click="e1 = 1"
-          >
+          <v-layout justify-center>
+            <v-flex xs12 sm10 md8 lg6>
+              <v-card ref="form">
+                <v-card-text>
+                  <v-text-field v-model="passengerInfo.address_line_1"
+                                label="Address line 1*"
+                                placeholder="Snowy Rock Pl"
+                                counter="25"
+                                required
+                                :rules="[
+                                ()=>
+                    !!passengerInfo.address_line_1 || 'This field is required',
+                    () => !!passengerInfo.address_line_1 && passengerInfo.address_line_1.length <= 25 || 'Address must be less than 25 characters',
+                    addressCheck
+                    ]"
+                    >
+                  </v-text-field>
+                  <v-text-field v-model="passengerInfo.address_line_2"
+                                label="Address line 2"
+                                placeholder="Snowy Rock Pl"
+                                counter="25"
+                             
+                    >
+                  </v-text-field>
+                  <v-text-field :rules="[() => !!passengerInfo.city || 'This field is required', addressCheck]"
+                                v-model="passengerInfo.city"
+                                label="City*"
+                                placeholder="El Paso"
+                                mask="AAAAAAAAAAA"
+                                required></v-text-field>
+                  <v-text-field v-model="passengerInfo.state"
+                                :rules="[() => !!passengerInfo.state || 'This field is required']"
+                                label="State/Province/Region*"
+                                required
+                                mask="AA"
+                                placeholder="TX"></v-text-field>
+                  <v-text-field :rules="[() => !!passengerInfo.zip || 'This field is required']"
+                                v-model="passengerInfo.zip"
+                                label="ZIP / Postal Code*"
+                                required
+                                mask="#####"
+                                placeholder="79938"></v-text-field>
+
+                  <v-autocomplete :rules="[() => !!passengerInfo.country || 'This field is required']"
+                                  :items="countries"
+                                  v-model="passengerInfo.country"
+                                  label="Country*"
+                                  placeholder="Select..."
+                                  required></v-autocomplete>
+
+                </v-card-text>
+                <v-divider class="mt-5"></v-divider>
+
+              </v-card>
+            </v-flex>
+          </v-layout>
+          <v-btn flat @click="e1 = 2">Prevous</v-btn>
+          <v-btn color="primary"
+                 @click="e1 = 4">
             Continue
           </v-btn>
-  
-          <v-btn flat>Cancel</v-btn>
+
+
+        </v-stepper-content>
+        <v-stepper-content step="4">
+          <v-layout justify-center>
+            <v-flex xs12 sm10 md8 lg6>
+              <v-card ref="form">
+                <v-card-text>
+
+                  <v-text-field v-model="passengerInfo.phone"
+                                :error-messages="errorMessages"
+                                mask="phone"
+                                label="Phone Number"></v-text-field>
+
+                </v-card-text>
+                <v-divider class="mt-5"></v-divider>
+
+              </v-card>
+            </v-flex>
+          </v-layout>
+          <v-btn flat @click="e1 = 3">Previous</v-btn>
+          <v-btn color="primary"
+                 @click="submit">
+            Submit
+          </v-btn>
+          <v-alert :value="formHasErrors"
+                   type="error">
+            Please complete all require fields!
+          </v-alert>
+
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
-  </v-app>
-  </div>
+  </v-container>
 </template>
 
 <script>
-  // import eventmethods from "../../services/api/eventmethods.js";
-  // import stepProgress from '../Body/stepProgress.vue'
+  import eventmethods from "../../services/api/eventmethods.js";
+  import stepProgress from '../Body/stepProgress.vue'
   export default {
-  //   components: {
-  //     stepProgress
-  //   },
-  //   data() {
-  //     return {
-  //       currentStep: 1,
-  //       stepName: ['Pick Up Info', 'Your Info', 'Destination', 'Phone Number'],
-  //       passengerInfo: {
-  //         firstName: '',
-  //         lastName: '',
-  //         phone: '',
-  //         flightNumber: '',
-  //         Passenger: '',
-  //         largeLuggage: '',
-  //         smallLuggage: '',
-  //         email: '',
-  //         wechat: '',
-  //         address_line_1: '',
-  //         address_line_2: '',
-  //         city: '',
-  //         state: '',
-  //         zip: '',
-  //         country: '',
-  //         departureDate:''
-  //       }
+    components: {
+      stepProgress
+    },
+    computed() {
+      return {
+        required: {
+          firstName: this.passengerInfo.firstName,
+          lastName: this.passengerInfo.lastName,
+          flightNumber: this.passengerInfo.flightNumber,
+          Passenger: this.passengerInfo.Passenger,
+          largeLuggage: this.passengerInfo.largeLuggage,
+          smallLuggage: this.passengerInfo.smallLuggage,
+          email: this.passengerInfo.email,
+          address_line_1: this.passengerInfo.address_line_1,
+          city: this.passengerInfo.city,
+          state: this.passengerInfo.state,
+          zip: this.passengerInfo.zip,
+          country: this.passengerInfo.country,
+          departureDate: this.passengerInfo.departureDate,
+        }
+      }
+    },
 
-  //     }
-  //   },
-  //   methods: {
-  //     sendevent: eventmethods.sendeventform,
-  //     submitvalue: function () {
-  //       this.sendevent(this.passengerInfo);
-  //     },
-  //     submit: function () {
-  //       alert('You Complete the pages, Yea!!')
-  //     },
-  //     isNumber: function (evt) {
-  //       evt = (evt) ? evt : window.event;
-  //       var charCode = (evt.which) ? evt.which : evt.keyCode;
-  //       if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-  //         evt.preventDefault();;
-  //       } else {
-  //         return true;
-  //       }
-  //     }
-  //   }
-   }
+    data() {
+      return {
+        formHasErrors: false,
+        countries: ['United States'],
+        e1: 0,
+        stepName: ['Pick Up Info', 'Your Info', 'Destination', 'Phone Number'],
+        passengerInfo: {
+          firstName: '',
+          lastName: '',
+          phone: '',
+          flightNumber: '',
+          Passenger: '',
+          largeLuggage: '',
+          smallLuggage: '',
+          email: '',
+          wechat: '',
+          address_line_1: '',
+          address_line_2: '',
+          city: '',
+          state: '',
+          zip: '',
+          country: '',
+          departureDate: ''
+        }
+
+      }
+    },
+    methods: {
+      sendevent: eventmethods.sendeventform,
+      submitvalue: function () {
+        this.sendevent(this.passengerInfo);
+      },
+      addressCheck: function () {
+        this.errorMessages = this.address && !this.name
+          ? 'Hey! I\'m required'
+          : ''
+      },
+      submit() {
+        
+        this.formHasErrors = false
+
+        this.required.forEach(f => {
+          if (!this.required[f]) this.formHasErrors = true
+        })
+        if (!this.formHasErrors) {
+          this.sendevent(this.passengerInfo);
+        }
+      }
+    }
+  }
 </script>
 
-<style scoped>
 
-  /* #root {
-    display: flex;
-    flex-direction: column;
-  } */
-
-  /* #page1, #page2, #page3, #page4 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    flex-grow: 1;
-  }
-
-  .disableBTN,
-  .enableBTN {
-    margin: 0 50px 40px 50px;
-    padding: 0.75rem 1.5rem;
-    font-size: 1.25rem;
-    border-radius: 0.3rem;
-    color: #fff;
-    background-color: #f0ad4e;
-    border-color: #f0ad4e;
-    font-weight: 400;
-    line-height: 1.25;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-  }
-
-    .enableBTN:hover {
-      cursor: pointer;
-    }
-
-  .SelectContainer {
-    margin-top: 2rem;
-    padding: 40px 0 40px 0;
-    width: 30%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-content: center;
-    align-items: stretch;
-    text-align: left;
-    align-self: center;
-    flex-grow: 1;
-  }
-
-  #form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  input {
-    border: 1px #aaa solid;
-    border-radius: 4px;
-    background: 0 0;
-    text-align: left;
-    font-size: 20px;
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    padding: 0 20px;
-    margin-bottom: 2rem;
-  } */
-</style>
