@@ -1,6 +1,36 @@
 <template>
+ <v-footer
+      height="auto"
+      color="primary lighten-1"
+    >
+      <v-layout
+        justify-center
+        row
+        wrap
+      >
+        <v-btn
+          v-for="link in links"
+          :key="link"
+          color="white"
+          flat
+          round
+        >
+          {{ link }}
+        </v-btn>
+        <v-flex
+          primary
+          lighten-2
+          py-3
+          text-xs-center
+          white--text
+          xs12
+        >
+          &copy;2018 — <strong>Company Name</strong>
+        </v-flex>
+      </v-layout>
+    </v-footer>
 
-  <div id="footer">
+  <!-- <div id="footer">
 
     <footer_logo ClickLogo="#" LogoPath="https://dgsecmg9973qw.cloudfront.net/junkmycar/Images/JMCLogoFooter.png">© Junk my Car, LLC. 2018</footer_logo>
     <div style="flex-grow:1"></div>
@@ -12,18 +42,25 @@
     <a href="/Privacy" class="FooterItem">Privacy</a>
     <a href="/SiteMap" class="FooterItem">Site map</a>
 
-  </div>
+  </div> -->
 </template>
 
 <script>
 
-  import footer_logo from "../components/Footer/Footer_logo.vue"
+  // import footer_logo from "../components/Footer/Footer_logo.vue"
 
   export default {
     name: 'footer_main',
-    components: {
-      footer_logo,
-    }
+   data: () => ({
+    links: [
+      'Home',
+      'About Us',
+      'Team',
+      'Services',
+      'Blog',
+      'Contact Us'
+    ]
+  })
   };
 
 </script>
@@ -31,7 +68,7 @@
 <style scoped>
 
 
-  #footer {
+  /* #footer {
     display: flex;
   }
 
@@ -45,6 +82,6 @@
       text-decoration: none;
       color: white;
       background-color: gray;
-    }
+    } */
 </style>
 
