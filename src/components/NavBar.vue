@@ -1,9 +1,10 @@
 <template>
-  <v-toolbar color="blue">
-    <a href="/" id="Logo"><img src="https://dgsecmg9973qw.cloudfront.net/junkmycar/Images/JMCLogo.png" /></a>
+  
+    <v-toolbar color="blue">
+      <a href="/" id="Logo"><img src="https://dgsecmg9973qw.cloudfront.net/junkmycar/Images/JMCLogo.png" /></a>
 
-  </v-toolbar>
-
+    </v-toolbar>
+  
 
 
   <!--
