@@ -1,20 +1,33 @@
 <template>
-
-  <div id="NavBar">
-
+  <v-toolbar color="blue">
     <a href="/" id="Logo"><img src="https://dgsecmg9973qw.cloudfront.net/junkmycar/Images/JMCLogo.png" /></a>
-    <!--
 
-    <a href="./Form" class="NavItem">Form</a>
-    <a href="./AboutUs" class="NavItem">About Us</a>
-    <a href="./FAQ" class="NavItem">FAQ</a>
-    <div style="flex:1;"></div>
+  </v-toolbar>
 
-    <navbar_icon IconClass="fa fa-comments fa-lg">Chat</navbar_icon>
-    <navbar_icon IconClass="fa fa-phone fa-lg">(666)666-6666</navbar_icon>
-    <a href="./LogIn" class="NavItem">LogIn/Register</a>
-        -->
-  </div>
+
+
+  <!--
+        
+      <v-toolbar-side-icon></v-toolbar-side-icon>
+  <v-toolbar-title>Title</v-toolbar-title>
+  <v-spacer></v-spacer>
+  <v-toolbar-items class="hidden-sm-and-down">
+    <v-btn flat>Link One</v-btn>
+    <v-btn flat>Link Two</v-btn>
+    <v-btn flat>Link Three</v-btn>
+       
+  </v-toolbar-items>
+        -------------------------------------
+  <a href="./Form" class="NavItem">Form</a>
+  <a href="./AboutUs" class="NavItem">About Us</a>
+  <a href="./FAQ" class="NavItem">FAQ</a>
+  <div style="flex:1;"></div>
+
+  <navbar_icon IconClass="fa fa-comments fa-lg">Chat</navbar_icon>
+  <navbar_icon IconClass="fa fa-phone fa-lg">(666)666-6666</navbar_icon>
+  <a href="./LogIn" class="NavItem">LogIn/Register</a>
+      -->
+
 
 </template>
 <script>
