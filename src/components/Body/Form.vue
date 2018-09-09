@@ -1,6 +1,6 @@
 <template>
-  <div id="root">
-    <step-progress :length="4" :currentStep="currentStep" :stepName="stepName"></step-progress>
+  <!-- <div id="root">
+    <step-progress :length="4" :currentStep="currentStep" :stepName="stepName"></step-progress> -->
     <!--
     <div class="SelectContainer">
           <div>First Name:<input v-model="passengerInfo.firstName" class="inputbox" /></div>
@@ -12,7 +12,7 @@
           <button id="submitbutton" @click="" :class="'enableBTN'">Continue</button>
         </div>
     -->
-    <div id="page1" v-show="currentStep==1" style="background-color:lightgreen">
+    <!-- <div id="page1" v-show="currentStep==1" style="background-color:lightgreen">
       <div class="SelectContainer">
         <div>Flight Number:<input v-model="passengerInfo.flightNumber" class="inputbox"/></div>
         <div>Departure Date<input v-model="passengerInfo.departureDate" type="date" class="inputbox"/></div>
@@ -60,72 +60,72 @@
         <button id="submitbutton" @click="currentStep--" :class="'enableBTN'">Previous</button>
         <button id="submitbutton" @click="submitvalue()" :class="'enableBTN'">Submit</button>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </template>
 
 <script>
-  import eventmethods from "../../services/api/eventmethods.js";
-  import stepProgress from '../Body/stepProgress.vue'
+  // import eventmethods from "../../services/api/eventmethods.js";
+  // import stepProgress from '../Body/stepProgress.vue'
   export default {
-    components: {
-      stepProgress
-    },
-    data() {
-      return {
-        currentStep: 1,
-        stepName: ['Pick Up Info', 'Your Info', 'Destination', 'Phone Number'],
-        passengerInfo: {
-          firstName: '',
-          lastName: '',
-          phone: '',
-          flightNumber: '',
-          Passenger: '',
-          largeLuggage: '',
-          smallLuggage: '',
-          email: '',
-          wechat: '',
-          address_line_1: '',
-          address_line_2: '',
-          city: '',
-          state: '',
-          zip: '',
-          country: '',
-          departureDate:''
-        }
+  //   components: {
+  //     stepProgress
+  //   },
+  //   data() {
+  //     return {
+  //       currentStep: 1,
+  //       stepName: ['Pick Up Info', 'Your Info', 'Destination', 'Phone Number'],
+  //       passengerInfo: {
+  //         firstName: '',
+  //         lastName: '',
+  //         phone: '',
+  //         flightNumber: '',
+  //         Passenger: '',
+  //         largeLuggage: '',
+  //         smallLuggage: '',
+  //         email: '',
+  //         wechat: '',
+  //         address_line_1: '',
+  //         address_line_2: '',
+  //         city: '',
+  //         state: '',
+  //         zip: '',
+  //         country: '',
+  //         departureDate:''
+  //       }
 
-      }
-    },
-    methods: {
-      sendevent: eventmethods.sendeventform,
-      submitvalue: function () {
-        this.sendevent(this.passengerInfo);
-      },
-      submit: function () {
-        alert('You Complete the pages, Yea!!')
-      },
-      isNumber: function (evt) {
-        evt = (evt) ? evt : window.event;
-        var charCode = (evt.which) ? evt.which : evt.keyCode;
-        if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
-          evt.preventDefault();;
-        } else {
-          return true;
-        }
-      }
-    }
-  }
+  //     }
+  //   },
+  //   methods: {
+  //     sendevent: eventmethods.sendeventform,
+  //     submitvalue: function () {
+  //       this.sendevent(this.passengerInfo);
+  //     },
+  //     submit: function () {
+  //       alert('You Complete the pages, Yea!!')
+  //     },
+  //     isNumber: function (evt) {
+  //       evt = (evt) ? evt : window.event;
+  //       var charCode = (evt.which) ? evt.which : evt.keyCode;
+  //       if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+  //         evt.preventDefault();;
+  //       } else {
+  //         return true;
+  //       }
+  //     }
+  //   }
+  // }
 </script>
 
 <style scoped>
 
-  #root {
+  /* #root {
     display: flex;
     flex-direction: column;
-  }
+  } */
 
-  #page1, #page2, #page3, #page4 {
+  /* #page1, #page2, #page3, #page4 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -185,5 +185,5 @@
     line-height: 50px;
     padding: 0 20px;
     margin-bottom: 2rem;
-  }
+  } */
 </style>
