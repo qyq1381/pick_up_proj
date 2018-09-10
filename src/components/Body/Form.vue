@@ -7,7 +7,7 @@
 
         <v-divider></v-divider>
 
-        <v-stepper-step :rules="[() => passengerInfo.firstName!=''&&passengerInfo.lastName!=''&& passengerInfo.email!=''&&passengerInfo.email]" :complete="e1 > 2" step="2">Your Info</v-stepper-step>
+        <v-stepper-step :rules="[() => passengerInfo.firstName!=''&& passengerInfo.lastName!=''&& passengerInfo.email!=''&&passengerInfo.email && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(passengerInfo.email)]" :complete="e1 > 2" step="2">Your Info</v-stepper-step>
 
         <v-divider></v-divider>
 
@@ -191,9 +191,13 @@
                  @click="submit">
             Submit
           </v-btn>
-          <v-alert :value="this.formHasErrors"
+          <v-alert :value="this.formHasEmpty"
                    type="error">
-            Please complete all require fields!
+            Please complete all require fields !
+          </v-alert>
+          <v-alert :value="this.emailIsInvalid"
+                   type="error">
+            Please doublecheck your email !
           </v-alert>
 
         </v-stepper-content>
@@ -227,7 +231,8 @@
 
     data: () => {
       return {
-        formHasErrors: false,
+        formHasEmpty: false,
+        emailIsInvalid: false,
         countries: ['United States'],
         e1: 0,
         passengerInfo: {
@@ -263,18 +268,25 @@
       this.$router.push(route)
       },
       submit() {
-        // console.log(this.formHasErrors)
-        this.formHasErrors = false
+        // console.log(this.formHasEmpty)
+        this.formHasEmpty = false
+        this.emailIsInvalid = false
         Object.keys(this.requiredData).forEach(f => {
           // console.log(this.requiredData[f])
           if (!this.requiredData[f])
-            this.formHasErrors = true
+            this.formHasEmpty = true
           })
-          // console.log(this.formHasErrors)
-        if(!this.formHasErrors) {
-          this.sendevent(this.passengerInfo);
-          this.navigateTo({name: 'Success'})
+          // console.log(this.formHasEmpty)
+        if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.passengerInfo.email))
+          this.emailIsInvalid = true
+        else if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.passengerInfo.email)){
+          this.emailIsInvalid = false
+          if(!this.formHasEmpty) {
+            this.sendevent(this.passengerInfo);
+            this.navigateTo({name: 'Success'})
+          }
         }
+       console.log(this.emailIsInvalid)
       }
     }
   }
