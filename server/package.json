@@ -8,8 +8,11 @@
     "dev": "NODE_ENV=prd nodemon server.js",
     "start": "npm run dev",
     "build": "node build/build.js",
-    "test": "mocha src/test/integration/*Test.js",
+    "test": "jest",
     "test-watch": "NODE_ENV=default nodemon --exec 'npm test'"
+  },
+  "jest": {
+    "verbose": true
   },
   "dependencies": {
     "axios": "^0.18.0",
