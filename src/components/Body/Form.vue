@@ -37,6 +37,17 @@
                                 label="Departure Date*"
                                 type="date"
                                 required></v-text-field>
+                  <!-- <v-text-field slot="activator"
+                                v-model="date"
+                                label="Picker in menu"
+                                prepend-icon="event"
+                                readonly
+                                class="D"></v-text-field>
+                  <v-date-picker v-model="date" no-title scrollable>
+                    <v-spacer></v-spacer>
+                    <v-btn flat color="primary" @click="menu = false">Cancel</v-btn>
+                    <v-btn flat color="primary" @click="$refs.menu.save(date)">OK</v-btn>
+                  </v-date-picker> -->
                   <v-text-field v-model="passengerInfo.Passenger"
                                 :rules="[(v) => !!v || 'This field is required']"
                                 label="Number of passenger*"
@@ -282,11 +293,12 @@
         else if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.passengerInfo.email)){
           this.emailIsInvalid = false
           if(!this.formHasEmpty) {
+            console.log(this.passengerInfo.departureDate)
             this.sendevent(this.passengerInfo);
             this.navigateTo({name: 'Success'})
           }
         }
-       console.log(this.emailIsInvalid)
+      //  console.log(this.emailIsInvalid)
       }
     }
   }
