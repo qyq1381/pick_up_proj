@@ -7,7 +7,7 @@
 
         <v-divider></v-divider>
 
-        <v-stepper-step :rules="[() => passengerInfo.firstName!=''&&passengerInfo.lastName!=''&& passengerInfo.email!='']" :complete="e1 > 2" step="2">Your Info</v-stepper-step>
+        <v-stepper-step :rules="[() => passengerInfo.firstName!=''&&passengerInfo.lastName!=''&& passengerInfo.email!=''&&passengerInfo.email]" :complete="e1 > 2" step="2">Your Info</v-stepper-step>
 
         <v-divider></v-divider>
 
@@ -26,39 +26,36 @@
             <v-flex xs12 sm10 md8 lg6>
               <v-card ref="form">
                 <v-card-text>
-
+                  <v-form v-model="valid" lazy-validation="">
                   <v-text-field v-model="passengerInfo.flightNumber"
-                                :rules="[() => !!passengerInfo.flightNumber || 'This field is required']"
-                                :error-messages="errorMessages"
+                                :rules="[(v) => !!v || 'This field is required']"
                                 label="Flight Number*"
                                 mask="AA####A"
                                 required></v-text-field>
                   <v-text-field v-model="passengerInfo.departureDate"
-                                :rules="[() => !!passengerInfo.departureDate || 'This field is required']"
-                                :error-messages="errorMessages"
+                                :rules="[(v) => !!v || 'This field is required']"
                                 label="Departure Date*"
                                 type="date"
                                 required></v-text-field>
                   <v-text-field v-model="passengerInfo.Passenger"
-                                :rules="[() => !!passengerInfo.Passenger || 'This field is required']"
-                                :error-messages="errorMessages"
+                                :rules="[(v) => !!v || 'This field is required']"
                                 label="Number of passenger*"
                                 mask="##"
                                 required></v-text-field>
                   <v-text-field v-model="passengerInfo.largeLuggage"
-                                :rules="[() => !!passengerInfo.largeLuggage || 'This field is required']"
-                                :error-messages="errorMessages"
+                                :rules="[(v) => !!v || 'This field is required']"
                                 mask="##"
                                 label="Number of large luggage*"
                                 placeholder="large luggage Standard"
                                 required></v-text-field>
                   <v-text-field v-model="passengerInfo.smallLuggage"
-                                :rules="[() => !!passengerInfo.smallLuggage || 'This field is required']"
-                                :error-messages="errorMessages"
+                                :rules="[(v) => !!v || 'This field is required']"
                                 label="Number of small luggage*"
                                 placeholder="small luggage Standard"
                                 mask="##"
                                 required></v-text-field>
+
+                  </v-form>
                 </v-card-text>
                 <v-divider class="mt-5"></v-divider>
 
@@ -80,27 +77,21 @@
               <v-card ref="form">
                 <v-card-text>
                   <v-text-field v-model="passengerInfo.firstName"
-                                :rules="[() => !!passengerInfo.firstName || 'This field is required']"
-                                :error-messages="errorMessages"
+                                :rules="[(v) => !!v || 'This field is required']"
                                 label="First Name*"
-                                placeholder="John"
                                 mask="AAAAAAAAAAA"
                                 required></v-text-field>
                   <v-text-field v-model="passengerInfo.lastName"
-                                :rules="[() => !!passengerInfo.lastName || 'This field is required']"
-                                :error-messages="errorMessages"
+                                :rules="[(v) => !!v || 'This field is required']"
                                 label="Last Name*"
-                                placeholder="Doe"
                                 mask="AAAAAAAAAAA"
                                 required></v-text-field>
                   <v-text-field v-model="passengerInfo.email"
-                                :rules="[() => !!passengerInfo.email || 'This field is required']"
-                                :error-messages="errorMessages"
+                                :rules="this.emailRules"
                                 label="Email*"
                                 type="email"
                                 required></v-text-field>
                   <v-text-field v-model="passengerInfo.wechat"
-                                :error-messages="errorMessages"
                                 label="WeChat"></v-text-field>
 
                 </v-card-text>
@@ -129,11 +120,9 @@
                                 counter="25"
                                 required
                                 :rules="[
-                                ()=>
-                    !!passengerInfo.address_line_1 || 'This field is required',
-                    () => !!passengerInfo.address_line_1 && passengerInfo.address_line_1.length <= 25 || 'Address must be less than 25 characters',
-                    addressCheck
-                    ]"
+                                (v)=>!!v || 'This field is required',
+                                (v) => !!v && v.length <= 25 || 'Address must be less than 25 characters'
+                                ]"
                     >
                   </v-text-field>
                   <v-text-field v-model="passengerInfo.address_line_2"
@@ -142,25 +131,25 @@
                              
                     >
                   </v-text-field>
-                  <v-text-field :rules="[() => !!passengerInfo.city || 'This field is required', addressCheck]"
+                  <v-text-field :rules="[(v) => !!v || 'This field is required']"
                                 v-model="passengerInfo.city"
                                 label="City*"
                                 mask="AAAAAAAAAAA"
                                 required></v-text-field>
                   <v-text-field v-model="passengerInfo.state"
-                                :rules="[() => !!passengerInfo.state || 'This field is required']"
+                                :rules="[(v) => !!v || 'This field is required']"
                                 label="State/Province/Region*"
                                 required
                                 mask="AA"
                                 placeholder="TX"></v-text-field>
-                  <v-text-field :rules="[() => !!passengerInfo.zip || 'This field is required']"
+                  <v-text-field :rules="[(v) => !!v || 'This field is required']"
                                 v-model="passengerInfo.zip"
                                 label="ZIP / Postal Code*"
                                 required
                                 mask="#####"
                                 placeholder="79938"></v-text-field>
 
-                  <v-autocomplete :rules="[() => !!passengerInfo.country || 'This field is required']"
+                  <v-autocomplete :rules="[(v) => !!v || 'This field is required']"
                                   :items="countries"
                                   v-model="passengerInfo.country"
                                   label="Country*"
@@ -188,7 +177,6 @@
                 <v-card-text>
 
                   <v-text-field v-model="passengerInfo.phone"
-                                :error-messages="errorMessages"
                                 mask="phone"
                                 label="Phone Number"></v-text-field>
 
@@ -203,7 +191,7 @@
                  @click="submit">
             Submit
           </v-btn>
-          <v-alert :value="formHasErrors"
+          <v-alert :value="this.formHasErrors"
                    type="error">
             Please complete all require fields!
           </v-alert>
@@ -232,7 +220,7 @@
             state: this.passengerInfo.state,
             zip: this.passengerInfo.zip,
             country: this.passengerInfo.country,
-            departureDate: this.passengerInfo.departureDate,
+            departureDate: this.passengerInfo.departureDate
         }
       }
     },
@@ -259,7 +247,11 @@
           zip: '',
           country: '',
           departureDate: ''
-        }
+        },
+        emailRules: [
+          (v) => !!v || 'E-mail is required',
+          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
+        ]
       }
     },
     methods: {
@@ -267,28 +259,22 @@
       submitvalue: function () {
         this.sendevent(this.passengerInfo);
       },
-      addressCheck: function () {
-        this.errorMessages = this.address && !this.name
-          ? 'Hey! I\'m required'
-          : ''
-      },
       navigateTo (route) {
       this.$router.push(route)
       },
       submit() {
-        // this.requiredData.forEach(f => {
-        //   if (!this.requiredData[f]) this.formHasErrors = true
-        // })
-        // if (!this.formHasErrors) {
-        //   this.sendevent(this.passengerInfo);
-        // }
+        // console.log(this.formHasErrors)
+        this.formHasErrors = false
         Object.keys(this.requiredData).forEach(f => {
+          // console.log(this.requiredData[f])
           if (!this.requiredData[f])
             this.formHasErrors = true
           })
-        if(!this.formHasErrors)
+          // console.log(this.formHasErrors)
+        if(!this.formHasErrors) {
           this.sendevent(this.passengerInfo);
           this.navigateTo({name: 'Success'})
+        }
       }
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <v-toolbar>
     <v-toolbar-side-icon></v-toolbar-side-icon>
-    <v-toolbar-title>Title</v-toolbar-title>
+    <v-toolbar-title>Company Name</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn flat>Link One</v-btn>
@@ -9,22 +9,9 @@
       <v-btn flat>Link Three</v-btn>
     </v-toolbar-items>
   </v-toolbar>
-
-    </v-toolbar>
   
 
   <!--
-        
-      <v-toolbar-side-icon></v-toolbar-side-icon>
-  <v-toolbar-title>Title</v-toolbar-title>
-  <v-spacer></v-spacer>
-  <v-toolbar-items class="hidden-sm-and-down">
-    <v-btn flat>Link One</v-btn>
-    <v-btn flat>Link Two</v-btn>
-    <v-btn flat>Link Three</v-btn>
-       
-  </v-toolbar-items>
-        -------------------------------------
   <a href="./Form" class="NavItem">Form</a>
   <a href="./AboutUs" class="NavItem">About Us</a>
   <a href="./FAQ" class="NavItem">FAQ</a>
