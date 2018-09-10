@@ -8,6 +8,7 @@ import AboutUs from '@/components/Body/AboutUs.vue'
 import Register from '@/components/Body/Register.vue'
 import NotFound from '@/components/Body/404.vue'
 import back_end_ui from '@/components/Body/back_end_ui.vue'
+import success from '@/components/Body/success.vue'
 import passengerInfo from '@/components/Body/passengerInfo.vue'
 Vue.use(Router)
 
@@ -62,6 +63,11 @@ export default new Router({
       path: '/passengerinfo',
       name: 'Passenger Info',
       component: passengerInfo
+    },  
+    {
+      path: '/success',
+      name: 'Success',
+      component: success
     },  
 
   ]

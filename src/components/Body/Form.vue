@@ -3,19 +3,19 @@
 
     <v-stepper v-model="e1">
       <v-stepper-header>
-        <v-stepper-step :rules="[() =>passengerInfo.departureDate!=''&& passengerInfo.flightNumber!=''&&passengerInfo.numpassenger!=''&& passengerInfo.largeLuggage!=''&&passengerInfo.smallLuggage!='']" :complete="e1 > 1" step="1">Name of step 1</v-stepper-step>
+        <v-stepper-step :rules="[() =>passengerInfo.departureDate!=''&& passengerInfo.flightNumber!=''&&passengerInfo.numpassenger!=''&& passengerInfo.largeLuggage!=''&&passengerInfo.smallLuggage!='']" :complete="e1 > 1" step="1">Flight Info</v-stepper-step>
 
         <v-divider></v-divider>
 
-        <v-stepper-step :rules="[() => passengerInfo.firstName!=''&&passengerInfo.lastName!=''&& passengerInfo.email!='']" :complete="e1 > 2" step="2">Name of step 2</v-stepper-step>
+        <v-stepper-step :rules="[() => passengerInfo.firstName!=''&&passengerInfo.lastName!=''&& passengerInfo.email!='']" :complete="e1 > 2" step="2">Your Info</v-stepper-step>
 
         <v-divider></v-divider>
 
-        <v-stepper-step :rules="[() => passengerInfo.address_line_1!=''&&passengerInfo.city!=''&& passengerInfo.state!=''&& passengerInfo.zip!=''&& passengerInfo.country!='']" :complete="e1 > 3" step="3">Name of step 3</v-stepper-step>
+        <v-stepper-step :rules="[() => passengerInfo.address_line_1!=''&&passengerInfo.city!=''&& passengerInfo.state!=''&& passengerInfo.zip!=''&& passengerInfo.country!='']" :complete="e1 > 3" step="3">Destination</v-stepper-step>
 
         <v-divider></v-divider>
 
-        <v-stepper-step :rules="[() => passengerInfo.firstName!=''&&passengerInfo.lastName!=''&& passengerInfo.email!='']" step="4">Name of step 4</v-stepper-step>
+        <v-stepper-step :rules="[() => passengerInfo.firstName!=''&&passengerInfo.lastName!=''&& passengerInfo.email!='']" step="4">Optional Info</v-stepper-step>
 
       </v-stepper-header>
 
@@ -97,6 +97,7 @@
                                 :rules="[() => !!passengerInfo.email || 'This field is required']"
                                 :error-messages="errorMessages"
                                 label="Email*"
+                                type="email"
                                 required></v-text-field>
                   <v-text-field v-model="passengerInfo.wechat"
                                 :error-messages="errorMessages"
@@ -125,7 +126,6 @@
                 <v-card-text>
                   <v-text-field v-model="passengerInfo.address_line_1"
                                 label="Address line 1*"
-                                placeholder="Snowy Rock Pl"
                                 counter="25"
                                 required
                                 :rules="[
@@ -138,7 +138,6 @@
                   </v-text-field>
                   <v-text-field v-model="passengerInfo.address_line_2"
                                 label="Address line 2"
-                                placeholder="Snowy Rock Pl"
                                 counter="25"
                              
                     >
@@ -146,7 +145,6 @@
                   <v-text-field :rules="[() => !!passengerInfo.city || 'This field is required', addressCheck]"
                                 v-model="passengerInfo.city"
                                 label="City*"
-                                placeholder="El Paso"
                                 mask="AAAAAAAAAAA"
                                 required></v-text-field>
                   <v-text-field v-model="passengerInfo.state"
@@ -218,37 +216,32 @@
 
 <script>
   import eventmethods from "../../services/api/eventmethods.js";
-  import stepProgress from '../Body/stepProgress.vue'
   export default {
-    components: {
-      stepProgress
-    },
-    computed() {
-      return {
-        required: {
-          firstName: this.passengerInfo.firstName,
-          lastName: this.passengerInfo.lastName,
-          flightNumber: this.passengerInfo.flightNumber,
-          Passenger: this.passengerInfo.Passenger,
-          largeLuggage: this.passengerInfo.largeLuggage,
-          smallLuggage: this.passengerInfo.smallLuggage,
-          email: this.passengerInfo.email,
-          address_line_1: this.passengerInfo.address_line_1,
-          city: this.passengerInfo.city,
-          state: this.passengerInfo.state,
-          zip: this.passengerInfo.zip,
-          country: this.passengerInfo.country,
-          departureDate: this.passengerInfo.departureDate,
+    computed: {
+          requiredData() {
+          return {
+            firstName: this.passengerInfo.firstName,
+            lastName: this.passengerInfo.lastName,
+            flightNumber: this.passengerInfo.flightNumber,
+            Passenger: this.passengerInfo.Passenger,
+            largeLuggage: this.passengerInfo.largeLuggage,
+            smallLuggage: this.passengerInfo.smallLuggage,
+            email: this.passengerInfo.email,
+            address_line_1: this.passengerInfo.address_line_1,
+            city: this.passengerInfo.city,
+            state: this.passengerInfo.state,
+            zip: this.passengerInfo.zip,
+            country: this.passengerInfo.country,
+            departureDate: this.passengerInfo.departureDate,
         }
       }
     },
 
-    data() {
+    data: () => {
       return {
         formHasErrors: false,
         countries: ['United States'],
         e1: 0,
-        stepName: ['Pick Up Info', 'Your Info', 'Destination', 'Phone Number'],
         passengerInfo: {
           firstName: '',
           lastName: '',
@@ -267,7 +260,6 @@
           country: '',
           departureDate: ''
         }
-
       }
     },
     methods: {
@@ -280,16 +272,23 @@
           ? 'Hey! I\'m required'
           : ''
       },
+      navigateTo (route) {
+      this.$router.push(route)
+      },
       submit() {
-        
-        this.formHasErrors = false
-
-        this.required.forEach(f => {
-          if (!this.required[f]) this.formHasErrors = true
-        })
-        if (!this.formHasErrors) {
+        // this.requiredData.forEach(f => {
+        //   if (!this.requiredData[f]) this.formHasErrors = true
+        // })
+        // if (!this.formHasErrors) {
+        //   this.sendevent(this.passengerInfo);
+        // }
+        Object.keys(this.requiredData).forEach(f => {
+          if (!this.requiredData[f])
+            this.formHasErrors = true
+          })
+        if(!this.formHasErrors)
           this.sendevent(this.passengerInfo);
-        }
+          this.navigateTo({name: 'Success'})
       }
     }
   }
