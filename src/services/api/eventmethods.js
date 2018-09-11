@@ -17,6 +17,6 @@ export default {
         console.log(error);
       }
     );
-    alert(JSON.stringify(obj, null, 4))
+    // alert(JSON.stringify(obj, null, 4))
   }
 };

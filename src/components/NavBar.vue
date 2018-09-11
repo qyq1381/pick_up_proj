@@ -1,15 +1,14 @@
 <template>
   <v-toolbar>
-    <v-toolbar-side-icon></v-toolbar-side-icon>
+    <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
     <v-toolbar-title>Company Name</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat>Link One</v-btn>
-      <v-btn flat>Link Two</v-btn>
-      <v-btn flat>Link Three</v-btn>
+      <v-btn flat>Home</v-btn>
+      <!-- <v-btn flat>About</v-btn>
+      <v-btn flat>Store</v-btn> -->
     </v-toolbar-items>
   </v-toolbar>
-  
 
   <!--
   <a href="./Form" class="NavItem">Form</a>
@@ -32,11 +31,16 @@
     components: {
       navbar_icon
     },
+    methods: {
+      navigateTo (route) {
+      this.$router.push(route)
+      }
+    }
   };
 </script>
 
 <style scoped>
-  #Logo {
+  /* #Logo {
     display: flex;
     align-items: center;
     margin: 1rem 15px 1rem 0;
@@ -74,5 +78,5 @@
     border-color: #0c68b8;
     background-color: #0c79b8;
     align-items: stretch;
-  }
+  } */
 </style>

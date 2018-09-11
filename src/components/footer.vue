@@ -8,7 +8,6 @@
         row
         wrap
       >
-
         <v-flex
           primary
           lighten-2

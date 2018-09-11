@@ -204,7 +204,7 @@
           </v-btn>
           <v-alert :value="this.formHasEmpty"
                    type="error">
-            Please complete all require fields !
+            Please complete all required fields !
           </v-alert>
           <v-alert :value="this.emailIsInvalid"
                    type="error">
