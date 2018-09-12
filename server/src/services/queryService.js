@@ -13,20 +13,14 @@ module.exports={
 		let largeLuggage = 0;
 		let Passenger = 0;
 		let responseData = {};
-		let dateMatch = false;
-		let databaseDate = "";
-		Order.find({flightNumber: flightNumber,
+		Order.find({flightNumber: flightNumber, departureDate: date 
 		})
 		.then((orderInfo)=>{
 			orderInfo.forEach((object)=>{
 				if(object.departureDate){
-					databaseDate = object.departureDate.toISOString().substring(0,10);
-					dateMatch = (databaseDate===date)? true: false;
-					if(dateMatch){
 						smallLuggage += object.smallLuggage;
 						largeLuggage += object.largeLuggage;
 						Passenger += object.Passenger;
-					}
 				}
 			});
 				responseData = {
@@ -83,7 +77,6 @@ module.exports={
 			}
 
 		},
-
 		getUserNotPhone(req, res){
 			let day = 7;
 			let currentTime = Date.now();
@@ -95,7 +88,6 @@ module.exports={
 				res.status(400).send(err);
 			})
 		},
-
 		getFlightInfo(req, res){
 			let flightnumber = req.query.flightnumber;
 			console.log("getFlightInfo working")

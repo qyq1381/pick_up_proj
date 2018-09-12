@@ -9,7 +9,7 @@ let orderSchema = new Schema({
     type: Number
   },
   departureDate:{
-    type: Date,
+    type: String,
     required: true,
   },  
   flightNumber:{

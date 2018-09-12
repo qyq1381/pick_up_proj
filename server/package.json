@@ -8,7 +8,7 @@
     "dev": "NODE_ENV=prd nodemon server.js",
     "start": "npm run dev",
     "build": "node build/build.js",
-    "test": "jest",
+    "test": "jest --watchAll", 
     "test-watch": "NODE_ENV=default nodemon --exec 'npm test'"
   },
   "jest": {

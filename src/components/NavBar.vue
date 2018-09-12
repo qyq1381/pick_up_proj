@@ -4,7 +4,7 @@
     <v-toolbar-title>Company Name</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat>Home</v-btn>
+      <v-btn flat @click="navigateTo({name: 'index'})">Home</v-btn>
       <!-- <v-btn flat>About</v-btn>
       <v-btn flat>Store</v-btn> -->
     </v-toolbar-items>

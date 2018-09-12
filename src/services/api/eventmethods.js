@@ -3,7 +3,7 @@ export default {
     let data = obj;
     this.$http.post("http://localhost:3000/order", data).then(
       response => {
-        console.log("success");
+        console.log(response);
       },
       error => {
         console.log("failed");
