@@ -55,7 +55,7 @@
 		<td class="text-xs-left">{{ date_display }}</td>
 		<td class="text-xs-left">{{ NumberofPassengerLuggage.data.sumSmallLuggage}}</td>
 		<td class="text-xs-left">{{ NumberofPassengerLuggage.data.sumLargeLuggage }}</td>
-		<td class="text-xs-left">{{ NumberofPassengerLuggage.data.sumPassener}}</td>
+		<td class="text-xs-left">{{ NumberofPassengerLuggage.data.sumPassenger}}</td>
 	</template>
 </v-data-table>
 <v-container fluid>
@@ -110,8 +110,7 @@ export default {
 				data: [{
 					sumSmallLuggage: 0,
 					sumLargeLuggage: 0,
-					sumPassener: 0,
-					dateMatch: false,
+					sumPassenger: 0,
 				}]
 			},
 			headers: [
