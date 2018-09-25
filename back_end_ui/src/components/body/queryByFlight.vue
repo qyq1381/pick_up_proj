@@ -38,7 +38,7 @@
 				</v-menu>
 			</v-flex>
 			<v-flex xs2>
-				<v-btn color="success" @click="searchServices">Search</v-btn>
+				<v-btn color="success" @click="searchServices">SearchServices</v-btn>
 			</v-flex>
 		</v-layout>
 
