@@ -5,8 +5,8 @@
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn flat @click="navigateTo({name: 'index'})">Home</v-btn>
-      <!-- <v-btn flat>About</v-btn>
-      <v-btn flat>Store</v-btn> -->
+      <v-btn flat @click="navigateTo({name: 'Register'})">Sign Up</v-btn>
+      <v-btn flat @click="navigateTo({name: 'login'})">Log In</v-btn>
     </v-toolbar-items>
   </v-toolbar>
 
@@ -24,23 +24,27 @@
 
 </template>
 <script>
-  import navbar_icon from "../components/NavBar/NavBar_icon.vue";
+import navbar_icon from "../components/NavBar/NavBar_icon.vue";
 
-  export default {
-    name: "navbar",
-    components: {
-      navbar_icon
-    },
-    methods: {
-      navigateTo (route) {
-      this.$router.push(route)
-      }
+export default {
+  name: "navbar",
+  components: {
+    navbar_icon
+  },
+  date: () => ({
+    items: [{ title: "1" }, { title: "2" }]
+  }),
+
+  methods: {
+    navigateTo(route) {
+      this.$router.push(route);
     }
-  };
+  }
+};
 </script>
 
 <style scoped>
-  /* #Logo {
+/* #Logo {
     display: flex;
     align-items: center;
     margin: 1rem 15px 1rem 0;

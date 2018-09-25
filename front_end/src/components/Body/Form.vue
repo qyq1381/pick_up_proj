@@ -141,14 +141,12 @@
                                 :rules="[(v) => !!v || 'This field is required']"
                                 label="State/Province/Region*"
                                 required
-                                mask="AA"
-                                placeholder="TX"></v-text-field>
+                                mask="AA"></v-text-field>
                   <v-text-field :rules="[(v) => !!v || 'This field is required']"
                                 v-model="passengerInfo.zip"
                                 label="ZIP / Postal Code*"
                                 required
-                                mask="#####"
-                                placeholder="79938"></v-text-field>
+                                mask="#####"></v-text-field>
 
                   <v-autocomplete :rules="[(v) => !!v || 'This field is required']"
                                   :items="countries"
@@ -208,90 +206,99 @@
 </template>
 
 <script>
-  import eventmethods from "../../services/api/eventmethods.js";
-  export default {
-    computed: {
-          requiredData() {
-          return {
-            firstName: this.passengerInfo.firstName,
-            lastName: this.passengerInfo.lastName,
-            flightNumber: this.passengerInfo.flightNumber,
-            Passenger: this.passengerInfo.Passenger,
-            largeLuggage: this.passengerInfo.largeLuggage,
-            smallLuggage: this.passengerInfo.smallLuggage,
-            email: this.passengerInfo.email,
-            address_line_1: this.passengerInfo.address_line_1,
-            city: this.passengerInfo.city,
-            state: this.passengerInfo.state,
-            zip: this.passengerInfo.zip,
-            country: this.passengerInfo.country,
-            departureDate: this.passengerInfo.departureDate
-        }
-      }
-    },
-
-    data: () => {
+import eventmethods from "../../services/api/eventmethods.js";
+export default {
+  computed: {
+    requiredData() {
       return {
-        formHasEmpty: false,
-        emailIsInvalid: false,
-        countries: ['United States'],
-        e1: 0,
-        passengerInfo: {
-          firstName: '',
-          lastName: '',
-          phone: '',
-          flightNumber: '',
-          Passenger: '',
-          largeLuggage: '',
-          smallLuggage: '',
-          email: '',
-          wechat: '',
-          address_line_1: '',
-          address_line_2: '',
-          city: '',
-          state: '',
-          zip: '',
-          country: '',
-          departureDate: ''
-        },
-        emailRules: [
-          (v) => !!v || 'E-mail is required',
-          (v) => /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
-        ]
-      }
+        firstName: this.passengerInfo.firstName,
+        lastName: this.passengerInfo.lastName,
+        flightNumber: this.passengerInfo.flightNumber,
+        Passenger: this.passengerInfo.Passenger,
+        largeLuggage: this.passengerInfo.largeLuggage,
+        smallLuggage: this.passengerInfo.smallLuggage,
+        email: this.passengerInfo.email,
+        address_line_1: this.passengerInfo.address_line_1,
+        city: this.passengerInfo.city,
+        state: this.passengerInfo.state,
+        zip: this.passengerInfo.zip,
+        country: this.passengerInfo.country,
+        departureDate: this.passengerInfo.departureDate
+      };
+    }
+  },
+
+  data: () => {
+    return {
+      formHasEmpty: false,
+      emailIsInvalid: false,
+      countries: ["United States"],
+      e1: 0,
+      passengerInfo: {
+        firstName: "",
+        lastName: "",
+        phone: "",
+        flightNumber: "",
+        Passenger: "",
+        largeLuggage: "",
+        smallLuggage: "",
+        email: "",
+        wechat: "",
+        address_line_1: "",
+        address_line_2: "",
+        city: "",
+        state: "",
+        zip: "",
+        country: "",
+        departureDate: ""
+      },
+      emailRules: [
+        v => !!v || "E-mail is required",
+        v =>
+          /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v) ||
+          "E-mail must be valid"
+      ]
+    };
+  },
+  methods: {
+    sendevent: eventmethods.sendeventform,
+    submitvalue: function() {
+      this.sendevent(this.passengerInfo);
     },
-    methods: {
-      sendevent: eventmethods.sendeventform,
-      submitvalue: function () {
-        this.sendevent(this.passengerInfo);
-      },
-      navigateTo (route) {
-      this.$router.push(route)
-      },
-      submit() {
-        // console.log(this.formHasEmpty)
-        this.formHasEmpty = false
-        this.emailIsInvalid = false
-        Object.keys(this.requiredData).forEach(f => {
-          // console.log(this.requiredData[f])
-          if (!this.requiredData[f])
-            this.formHasEmpty = true
-          })
-          // console.log(this.formHasEmpty)
-        if(!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.passengerInfo.email))
-          this.emailIsInvalid = true
-        else if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.passengerInfo.email)){
-          this.emailIsInvalid = false
-          if(!this.formHasEmpty) {
-            console.log(this.passengerInfo.departureDate)
-            this.sendevent(this.passengerInfo);
-            this.navigateTo({name: 'Success'})
-          }
+    navigateTo(route) {
+      this.$router.push(route);
+    },
+    submit() {
+      // console.log(this.formHasEmpty)
+      this.formHasEmpty = false;
+      this.emailIsInvalid = false;
+      Object.keys(this.requiredData).forEach(f => {
+        // console.log(this.requiredData[f])
+        if (!this.requiredData[f]) this.formHasEmpty = true;
+      });
+      // console.log(this.formHasEmpty)
+      if (
+        !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+          this.passengerInfo.email
+        )
+      )
+        this.emailIsInvalid = true;
+      else if (
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+          this.passengerInfo.email
+        )
+      ) {
+        this.emailIsInvalid = false;
+        if (!this.formHasEmpty) {
+          console.log(this.passengerInfo.departureDate);
+          this.sendevent(this.passengerInfo);
+          this.navigateTo({ name: "Success" });
         }
-      //  console.log(this.emailIsInvalid)
       }
+      //  console.log(this.emailIsInvalid)
     }
   }
+};
 </script>
 
 

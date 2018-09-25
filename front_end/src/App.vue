@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-app>
+    <v-app light>
       <navbar></navbar>
       <router-view style="flex-grow:1"></router-view>
       <footer_main></footer_main>
