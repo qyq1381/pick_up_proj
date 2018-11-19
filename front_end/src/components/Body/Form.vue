@@ -3,19 +3,19 @@
 
     <v-stepper v-model="e1">
       <v-stepper-header>
-        <v-stepper-step :rules="[() =>passengerInfo.departureDate!=''&& passengerInfo.flightNumber!=''&&passengerInfo.numpassenger!=''&& passengerInfo.largeLuggage!=''&&passengerInfo.smallLuggage!='']" :complete="e1 > 1" step="1">Flight Info</v-stepper-step>
+        <v-stepper-step :rules="[() => page1UnTouched || (passengerInfo.departureDate!=''&& passengerInfo.flightNumber!=''&&passengerInfo.numpassenger!=''&& passengerInfo.largeLuggage!=''&&passengerInfo.smallLuggage!='')]" :complete="e1 > 1" step="1">Flight Info</v-stepper-step>
 
         <v-divider></v-divider>
 
-        <v-stepper-step :rules="[() => passengerInfo.firstName!=''&& passengerInfo.lastName!=''&& passengerInfo.email!=''&&passengerInfo.email && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(passengerInfo.email)]" :complete="e1 > 2" step="2">Your Info</v-stepper-step>
+        <v-stepper-step :rules="[() => page2UnTouched || (passengerInfo.firstName!=''&& passengerInfo.lastName!=''&& passengerInfo.email!=''&&passengerInfo.email && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(passengerInfo.email))]" :complete="e1 > 2" step="2">Your Info</v-stepper-step>
 
         <v-divider></v-divider>
 
-        <v-stepper-step :rules="[() => passengerInfo.address_line_1!=''&&passengerInfo.city!=''&& passengerInfo.state!=''&& passengerInfo.zip!=''&& passengerInfo.country!='']" :complete="e1 > 3" step="3">Destination</v-stepper-step>
+        <v-stepper-step :rules="[() => page3UnTouched || (passengerInfo.address_line_1!=''&&passengerInfo.city!=''&& passengerInfo.state!=''&& passengerInfo.zip!=''&& passengerInfo.country!='')]" :complete="e1 > 3" step="3">Destination</v-stepper-step>
 
         <v-divider></v-divider>
 
-        <v-stepper-step :rules="[() => passengerInfo.firstName!=''&&passengerInfo.lastName!=''&& passengerInfo.email!='']" step="4">Optional Info</v-stepper-step>
+        <v-stepper-step :rules="[() => page4UnTouched || (passengerInfo.firstName!=''&&passengerInfo.lastName!=''&& passengerInfo.email!='')]" step="4">Optional Info</v-stepper-step>
 
       </v-stepper-header>
 
@@ -66,7 +66,7 @@
 
 
           <v-btn color="primary"
-                 @click="e1 = 2">
+                 @click="e1 = 2, page1UnTouched = false">
             Continue
           </v-btn>
 
@@ -104,7 +104,7 @@
 
           <v-btn flat @click="e1 = 1">Previous</v-btn>
           <v-btn color="primary"
-                 @click="e1 = 3">
+                 @click="e1 = 3, page2UnTouched = false">
             Continue
           </v-btn>
 
@@ -163,7 +163,7 @@
           </v-layout>
           <v-btn flat @click="e1 = 2">Prevous</v-btn>
           <v-btn color="primary"
-                 @click="e1 = 4">
+                 @click="e1 = 4, page3UnTouched = false">
             Continue
           </v-btn>
 
@@ -232,6 +232,10 @@ export default {
     return {
       formHasEmpty: false,
       emailIsInvalid: false,
+      page1UnTouched: true,
+      page2UnTouched: true,
+      page3UnTouched: true,
+      page4UnTouched: true,
       countries: ["United States"],
       e1: 0,
       passengerInfo: {
