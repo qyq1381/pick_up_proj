@@ -1,7 +1,7 @@
 <template>
   <v-toolbar color="primary lighten-1" dark>
     <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
-    <v-toolbar-title>Company Name</v-toolbar-title>
+    <v-toolbar-title>Lead Your Way</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn flat @click="navigateTo({name: 'index'})">Home</v-btn>
