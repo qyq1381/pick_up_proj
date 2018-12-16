@@ -1,12 +1,12 @@
 <template>
-  <v-toolbar>
+  <v-toolbar color="primary lighten-1" dark>
     <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
     <v-toolbar-title>Company Name</v-toolbar-title>
     <v-spacer></v-spacer>
     <v-toolbar-items class="hidden-sm-and-down">
       <v-btn flat @click="navigateTo({name: 'index'})">Home</v-btn>
-      <!-- <v-btn flat @click="navigateTo({name: 'Register'})">Sign Up</v-btn> -->
-      <!-- <v-btn flat @click="navigateTo({name: 'login'})">Log In</v-btn> -->
+      <v-btn flat @click="navigateTo({name: 'Register'})">Sign Up</v-btn>
+      <v-btn flat @click="navigateTo({name: 'login'})">Log In</v-btn>
     </v-toolbar-items>
   </v-toolbar>
 
@@ -19,9 +19,7 @@
   <navbar_icon IconClass="fa fa-comments fa-lg">Chat</navbar_icon>
   <navbar_icon IconClass="fa fa-phone fa-lg">(666)666-6666</navbar_icon>
   <a href="./LogIn" class="NavItem">LogIn/Register</a>
-      -->
-
-
+  -->
 </template>
 <script>
 import navbar_icon from "../components/NavBar/NavBar_icon.vue";
