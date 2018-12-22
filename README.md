@@ -45,7 +45,7 @@ npm start
 ```
 
 ## App demo
-![alt text](pick/front_end/src/assets/1.png?raw=true)
+![alt text](./front_end/src/assets/1.png?raw=true)
 
 ## Running the tests
 
