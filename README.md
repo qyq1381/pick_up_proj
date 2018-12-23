@@ -56,7 +56,7 @@ npm start
 
 ### Check Server (PostMan)
 
-![alt text](./front_end/src/assets/Back_end_ui.png?raw=true)
+![alt text](./front_end/src/assets/postman.png?raw=true)
 
 ### Back_End_UI
 
