@@ -47,16 +47,20 @@ npm start
 ```
 
 ## App demo
+
 ### Front_End_UI
+
 ![alt text](./front_end/src/assets/1.png?raw=true)
 ![alt text](./front_end/src/assets/2.png?raw=true)
 ![alt text](./front_end/src/assets/3.png?raw=true)
 
 ### Check Server (PostMan)
+
 ![alt text](./front_end/src/assets/Back_end_ui.png?raw=true)
 
 ### Back_End_UI
-![alt text](./front_end/src/assets/postman.png?raw=true)
+
+![alt text](./front_end/src/assets/Back_end_ui.png?raw=true)
 
 ## Running the tests
 
