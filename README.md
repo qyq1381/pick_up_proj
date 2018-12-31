@@ -79,24 +79,16 @@ Heroku: https://id.heroku.com/
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* Vue.js (https://vuejs.org/) - The web framework used
+* npm (https://maven.apache.org/) - Dependency Management
+* MongoDB (https://www.mongodb.com/) - The dataBase used
+* Express.js (https://expressjs.com/) - Web framework for Node.js
+* Mongoose (https://mongoosejs.com) - MongoDB Object Modeling
+* Axios (https://www.npmjs.com/package/axios) - Promise based HTTP client for the node.js
+* Joi (https://www.npmjs.com/package/joi) - Validator for JavaScript objects
+* Jest (https://jestjs.io/) - JavaScript Testing used
 
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors        
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
