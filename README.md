@@ -80,6 +80,7 @@ Heroku: https://id.heroku.com/
 ## Built With
 
 * Vue.js (https://vuejs.org/) - The web framework used
+* Vue.cli (https://cli.vuejs.org/) - Set up the base environment for this app 
 * npm (https://maven.apache.org/) - Dependency Management
 * MongoDB (https://www.mongodb.com/) - The dataBase used
 * Express.js (https://expressjs.com/) - Web framework for Node.js
